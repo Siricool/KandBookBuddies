@@ -62,7 +62,7 @@ export default function RegistrationScreen({navigation}) {
                 keyboardShouldPersistTaps="always">
                 <Image
                     style={styles.logo}
-                    //source={require('../../../assets/icon.png')}
+                    source={require('../assets/BBicon.png')}
                 />
                 <TextInput
                     style={styles.input}
