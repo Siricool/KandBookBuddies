@@ -2,7 +2,6 @@
 import firebase from 'firebase/app'
 import '@firebase/auth';
 import '@firebase/firestore';
-//import firebase from 'firebase/app'; NOG FEL
 
 //DETTA ÄR FRÅN BOOKBUDDIES-database
 const firebaseConfig = {

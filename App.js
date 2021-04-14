@@ -11,6 +11,8 @@ import {decode, encode} from 'base-64'
 if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
+import { firebase } from './src/firebase/config'
+
 const Stack = createStackNavigator();
 //Julia test import LogInScreen from './Screens/LogInScreen';
 //import BookClubScreen from './Screens/BookClubScreen'; verkar oklart att ladda in flera Screens på samma return
@@ -25,7 +27,7 @@ export default function App() {
       <Stack.Navigator>
 
       { user ? (
-        <Stack.Screen name="Home">
+        <Stack.Screen name="StartPageScreen">
           {props => <StartPageScreen {...props} extraData={user} />}
         </Stack.Screen>
 
