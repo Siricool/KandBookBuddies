@@ -7,7 +7,7 @@ import { Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './RegStyle';
 
-import { firebase } from '../src/firebase/config'
+import { firebase } from '../firebase/config'
 
 
 export default function RegistrationScreen({navigation}) {
@@ -62,7 +62,7 @@ export default function RegistrationScreen({navigation}) {
                 keyboardShouldPersistTaps="always">
                 <Image
                     style={styles.logo}
-                    source={require('../assets/BBicon.png')}
+                    source={require('../../assets/BBicon.png')}
                 />
                 <TextInput
                     style={styles.input}
