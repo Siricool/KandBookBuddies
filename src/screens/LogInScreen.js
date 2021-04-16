@@ -7,7 +7,7 @@ import { Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './LoginStyle';
 
-import { firebase } from '../src/firebase/config'
+import { firebase } from '../firebase/config'
 
 /*export default function App() {
   return (
@@ -38,7 +38,7 @@ export default function LogInScreen({navigation}) {
                 .get()
                 .then(firestoreDocument => {
                     if (!firestoreDocument.exists) {
-                        alert("User does not exist anymore.")
+                        alert("User does not exist anymore.") //hit har den kommit
                         return;
                     }
                     const user = firestoreDocument.data()
@@ -60,7 +60,7 @@ export default function LogInScreen({navigation}) {
                 keyboardShouldPersistTaps="always">
                 <Image
                     style={styles.logo}
-                    source={require('../assets/BBicon.png')}
+                    source={require('../../assets/BBicon.png')}
                 />
                 <TextInput
                     style={styles.input}
