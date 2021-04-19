@@ -12,12 +12,38 @@ if (!global.btoa) { global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
 import { firebase } from './src/firebase/config'
+/*import firebase from 'firebase/app'*/
+
+//for the simple guide
+import { Provider } from 'react-redux';
+import { store } from './redux/App-redux'; 
 
 const Stack = createStackNavigator();
 //Julia test import LogInScreen from './Screens/LogInScreen';
 //import BookClubScreen from './Screens/BookClubScreen'; verkar oklart att ladda in flera Screens på samma return
 
-export default function App() {
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="LogInScreen" component={LogInScreen}/>
+            <Stack.Screen name="StartPageScreen" component={StartPageScreen}/>
+            <Stack.Screen name="RegistrationScreen" component={RegistrationScreen}/>
+          </Stack.Navigator>
+          </NavigationContainer>
+      </Provider>
+    );
+  }
+}
+
+/*<View style = {styles.container}>
+          <Text>My App</Text>
+          </View>*/ 
+
+/*export default function App() {
 
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
@@ -48,12 +74,12 @@ export default function App() {
       //<StatusBar style="auto" />
     //</View>
   );
-}
+}*/
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#d679ae',
     alignItems: 'center',
     justifyContent: 'center',
   },
