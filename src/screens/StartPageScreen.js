@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 
 import firebase from 'firebase/app'
 
@@ -16,17 +16,16 @@ import firebase from 'firebase/app'
 }*/
 
 import { connect } from 'react-redux';
-import { setPersonData, watchPersonData } from '../../redux/App-redux';
+import { watchPersonData } from '../../redux/App-redux';
 
 const mapStateToProps = (state) => {
     return { 
-        setPersonData: state.setPersonData,
-        data: state.data
-    };
+        personData: state.personData,     
+      };
 }
-   const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return { 
-        setPersonData: (text) => { dispatch(setPersonData(text))},
+        //setPersonData: (text) => { dispatch(setPersonData(text))},
         watchPersonData: () => { dispatch(watchPersonData()) },
     };
 }
@@ -35,15 +34,20 @@ class StartPageScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.data,
+      personData: this.props.watchPersonData(),
     }
-    console.log(this.props.data.fullName)
+
+    this.props.watchPersonData();
+
+    console.log(this.props.personData)
+    
   }
+  
 
     render() {
         return (
             <View style={styles.container}>
-                <Text>{this.props.data.fullName}</Text>
+                <Text>{this.props.personData}</Text>               
             </View>
         )
     }

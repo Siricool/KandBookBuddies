@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 //import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Image, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './RegStyle';

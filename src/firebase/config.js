@@ -3,10 +3,15 @@ import firebase from 'firebase/app'
 import '@firebase/auth';
 import '@firebase/firestore';
 
+//import firebase from "firebase"
+
+
+
 //DETTA ÄR FRÅN BOOKBUDDIES-database
 const firebaseConfig = {
   apiKey: "AIzaSyCYQJxigBe3LF3dmZQNRZSHU6hdFsccxhw",
   authDomain: "bookbuddies-database.firebaseapp.com",
+  databaseURL: "https://bookbuddies-database.firebaseio.com",
   projectId: "bookbuddies-database",
   storageBucket: "bookbuddies-database.appspot.com",
   messagingSenderId: "477890257148",
