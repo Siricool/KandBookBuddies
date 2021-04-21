@@ -36,13 +36,13 @@ const mapDispatchToProps = (dispatch) => {
 class StartPageScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      personData: this.props.watchPersonData(),
-    }
+    //this.state = {
+      //personData: this.props.data(),
+   // }
 
     this.props.watchPersonData();
 
-    console.log(this.props.personData)
+    console.log("i startpage"+this.props.personData.fullName)
     
   }
 
@@ -57,6 +57,8 @@ class StartPageScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+              <Text>{this.props.personData.fullName}</Text>
+              <Text>{this.props.personData.email}</Text>
               <Text style={styles.text}>My Profile</Text>
               <Text style={styles.smallText}>User ID</Text>
               <Text style={styles.middleText}>My Stats</Text>
@@ -68,7 +70,7 @@ class StartPageScreen extends React.Component {
                     source={require('../../assets/BBicon.png')}
                 />
                 </TouchableHighlight>  
-                <Text>{this.props.personData}</Text>     
+                
                         
             </View>
         )
