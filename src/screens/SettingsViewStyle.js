@@ -8,10 +8,10 @@ export default StyleSheet.create({
         //justifyContent: 'center',
     },
     logo: {
-        height: 60,
-        width: 60,
-        marginBottom: 10,
-        marginLeft: 30,
+        height: 120,
+        width: 120,
+        alignSelf: "center",
+        margin: 60
     },
     text: {
         fontSize: 25,

@@ -93,10 +93,7 @@ export default class RegistrationScreen extends React.Component {
             <KeyboardAwareScrollView
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always">
-                <Image
-                    style={styles.logo}
-                    source={require('../../assets/BBicon.png')}
-                />
+                <Text style={styles.text}>Sign Up</Text>
                 <TextInput
                     style={styles.input}
                     placeholder='Full Name'
@@ -141,8 +138,12 @@ export default class RegistrationScreen extends React.Component {
                     <Text style={styles.buttonTitle}>Create account</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Already got an account? <Text onPress={this.onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+                    <Text style={styles.footerText}>Already got an account? <Text onPress={this.onFooterLinkPress} style={styles.footerLink}>Sign in</Text></Text>
                 </View>
+                <Image
+                    style={styles.logo}
+                    source={require('../../assets/BBicon.png')}
+                />
             </KeyboardAwareScrollView>
         </View>
     )

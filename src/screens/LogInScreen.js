@@ -53,6 +53,8 @@ export default class LogInScreen extends React.Component {
                     style={styles.logo}
                     source={require('../../assets/BBicon.png')}
                 />
+                <Text style={styles.text}>Sign In</Text>
+                <Text style={styles.smallText}>Hey Buddie! Nice to see you again.</Text>
                 <TextInput
                     style={styles.input}
                     placeholder='E-mail'
@@ -75,7 +77,7 @@ export default class LogInScreen extends React.Component {
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => this.onLoginPress()}>
-                    <Text style={styles.buttonTitle}>Log in</Text>
+                    <Text style={styles.buttonTitle}>Sign in</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={this.onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
