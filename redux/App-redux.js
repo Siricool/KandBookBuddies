@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 //import * as firebase from 'firebase'; fel hämtning
 import firebase from 'firebase/app';
+
 import '@firebase/firestore';
 
 
@@ -34,36 +35,19 @@ const setPersonData = (personData) => {
 
 const watchPersonData = () => {
     return function(dispatch){
-        firebase.firestore()
-        .collection("users")
-        .get()
-        .then((snapshot) => 
-            {snapshot.docs.forEach(doc => 
-                //lär behöva göra om utan forEach med currentUser aktiverad för att få tag i profil
-                //pga det är den som loopar igenom alla användare just nu
-                { console.log(doc.data()) //denna som skriver ut alla användare i terminalen                    
-                  //var actionSetPersonData = setPersonData(doc.data())
-                  //dispatch(actionSetPersonData);  
-                  dispatch(setPersonData); 
-                  //Oklart hur dispatchen ska formuleras för att skicka datan till startpage,
-                  //blir error när man skickar hela listan, dvs doc.data()
-				},
-                function(error) {console.log(error)});                
-            });
+        console.log("uid: "+ firebase.auth().currentUser.uid);
+
+        const docRef = firebase.firestore()
+                        .collection("users")
+                        .doc(firebase.auth().currentUser.uid);
+
+        docRef.get().then(function(doc){
+            //console.log(doc.data());
+            const personData = doc.data();
+            const actionSetPersonData = setPersonData(personData);
+            dispatch(actionSetPersonData);
+        })                
+       
     }
 }
-/*
-const watchPersonData = () => {
-    return function(dispatch) {
-
-        
-      firebase.firestore().collection("users").on("value", function(snapshot)
-      { 
-          var personData = snapshot.val();
-          var actionSetPersonData = setPersonData(personData);
-          dispatch(actionSetPersonData);
-      }, function(error) { console.log(error); });
-    }
-  };*/
-
 export { setPersonData, watchPersonData }
