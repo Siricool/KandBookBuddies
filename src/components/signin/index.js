@@ -25,12 +25,12 @@ const SignIn = props => {
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-    if (currentUser) {
+    /*if (currentUser) {
       //resetForm();
       //history.push('/');
     }
     
-  }, currentUser);
+  },*/ currentUser});
 
   //ev ta bort
   const resetForm = () => {
@@ -72,7 +72,7 @@ const SignIn = props => {
               onPress={() => handleSubmit()}>
                 <Text>Sign in</Text>
           </TouchableOpacity>
-          <Text>{currentUser.fullName}</Text>
+          
       </View>
     </AuthWrapper>
   );
