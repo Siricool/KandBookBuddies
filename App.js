@@ -1,86 +1,80 @@
-import { StatusBar } from 'expo-status-bar';
-//import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { useEffect } from 'react';
+import {Provider} from "react-redux";
+import {store} from './src/redux/createStore';
 import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { LogInScreen, StartPageScreen, RegistrationScreen, SettingsViewScreen } from './src/screens'
-import {decode, encode} from 'base-64'
-if (!global.btoa) { global.btoa = encode }
-if (!global.atob) { global.atob = decode }
+import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Switch, Route } from 'react-router-native';
+import { checkUserSession } from './src/redux/User/user.actions';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from "./src/components/stacknavigator/stacknavigator"
 
-import { firebase } from './src/firebase/config'
-/*import firebase from 'firebase/app'*/
-
-//for the simple guide
-import { Provider } from 'react-redux';
-import { store } from './redux/App-redux'; 
-
-const Stack = createStackNavigator();
-//Julia test import LogInScreen from './Screens/LogInScreen';
-//import BookClubScreen from './Screens/BookClubScreen'; verkar oklart att ladda in flera Screens på samma return
-
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="LogInScreen" component={LogInScreen}/>
-            <Stack.Screen name="StartPageScreen" component={StartPageScreen}/>
-            <Stack.Screen name="RegistrationScreen" component={RegistrationScreen}/>
-          </Stack.Navigator>
-          </NavigationContainer>
-      </Provider>
-    );
-  }
+export default function App() {     
+  return (
+    <Provider store={store}>      
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </Provider>
+  );
 }
 
-/*<View style = {styles.container}>
-          <Text>My App</Text>
-          </View>*/ 
 
-/*export default function App() {
 
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
+/*
+// components
+//import AdminToolbar from './components/AdminToolbar';
+
+// hoc
+import WithAuth from './src/hoc/withAuth';
+import WithAdminAuth from './src/hoc/withAdminAuth';
+
+// layouts
+//import MainLayout from './layouts/MainLayout';
+//import HomepageLayout from './layouts/HomepageLayout';
+//import AdminLayout from './layouts/AdminLayout';
+//import DashboardLayout from './layouts/DashboardLayout';
+
+// pages
+
+//vi kommer nog ha const App = props
+
+import LogInScreen from './src/screens/login/LogInScreen';
+import UserProfile from './src/screens/startpage/StartPageScreen';
+import  { Registration } from './src/screens/registration/RegistrationScreen';
+
+
+const App = props => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+
+  }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    <div className="App">   
+      <Switch>
+        <Route exact path='/login' render={() => (
+            <LogInScreen />
+        )}
+        />
 
-      { user ? ( //Denna navigering går ej
-        <Stack.Screen name="StartPageScreen">
-          {props => <StartPageScreen {...props} extraData={user} />}
-        </Stack.Screen>
+        <Route exact path="/registration" render={() => (
+            <Registration/>
+        )}
+        />
 
-      ) : (
-        <>
-
-          <Stack.Screen name="Login" component={LogInScreen} />
-          <Stack.Screen name="Registration" component={RegistrationScreen} />
-        </>
-
-      )}
-      </Stack.Navigator>
-    </NavigationContainer>
-    //Julia test<LogInScreen/>
-    //Start <BookClubScreen/>
-    //<View style={styles.container}>
-      //<Text>Open up App.js to start working on your app!</Text>
-      //<StatusBar style="auto" />
-    //</View>
+        <Route exact path="/startpage" render={() => (
+            <UserProfile/>
+        )}
+        />
+      </Switch>
+    </div>
   );
-}*/
+  }
+  
+  export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#d679ae',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+*/
