@@ -25,13 +25,11 @@ const SignIn = props => {
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-    /*if (currentUser) {
-      //resetForm();
-      //history.push('/');
-    }
-    
+   /* if (currentUser) {
+      resetForm();
+      history.push('/');
   },*/ currentUser});
-//teeeest
+
   //ev ta bort
   const resetForm = () => {
     setEmail('');
@@ -41,9 +39,10 @@ const SignIn = props => {
   const handleSubmit = () => { //här va en async
     //preventDefault();
     dispatch(emailSignInStart({ email, password }));
+    console.log("nu pressed "+email)
+    
   }
 
- 
   const configAuthWrapper = {
     headline: 'LogIn'
   };
@@ -58,7 +57,7 @@ const SignIn = props => {
             onChangeText={(text) => setEmail(text)}
             
           />
-
+     
           <TextInput
             placeholder="password"
             placeholderTextColor="#aaaaaa"
@@ -66,6 +65,7 @@ const SignIn = props => {
             onChangeText= {(text) => setPassword(text)}
             
           />
+         
 
           <TouchableOpacity
               style = {styles.button}

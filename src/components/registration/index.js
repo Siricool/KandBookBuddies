@@ -79,11 +79,10 @@ const Signup = props => {
         )}
 
           <TextInput
-            type="text"
-            name="displayName"
-            value={displayName}
             placeholder="Full name"
-            handleFormSubmit={e => setDisplayName(e.target.value)}
+            value={displayName}
+            placeholderTextColor="#aaaaaa" 
+            handleFormSubmit={displayName => setDisplayName(displayName)}
           />
 
           <TextInput
