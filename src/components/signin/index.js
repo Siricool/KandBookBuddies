@@ -37,7 +37,7 @@ const SignIn = props => {
   };
 
   const handleSubmit = () => { //här va en async
-    
+    //preventDefault();
     dispatch(emailSignInStart({ email, password }));
     console.log("nu pressed "+email)
     
@@ -53,13 +53,17 @@ const SignIn = props => {
           <TextInput
             placeholder='E-mail'
             placeholderTextColor="#aaaaaa"
+            //value={email}
             onChangeText={(text) => setEmail(text)}
+            
           />
      
           <TextInput
             placeholder="password"
             placeholderTextColor="#aaaaaa"
-            onChangeText={(text) => setPassword(text)}
+            //value={password}
+            onChangeText= {(text) => setPassword(text)}
+            
           />
          
 
@@ -68,7 +72,7 @@ const SignIn = props => {
               onPress={() => handleSubmit()}>
                 <Text>Sign in</Text>
           </TouchableOpacity>
-
+          
       </View>
     </AuthWrapper>
   );

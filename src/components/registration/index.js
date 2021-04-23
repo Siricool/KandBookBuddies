@@ -8,7 +8,7 @@ import AuthWrapper from './../AuthWrapper';
 //import FormInput from './../forms/forminput'; bytte från forminput till textinput nedan
 //import Button from './../forms/button';
 import { TextInput, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
-import { styles } from '../forms/button/styles';
+//import { styles } from '../forms/button/styles';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
