@@ -1,27 +1,19 @@
 import React from 'react';
 //import './styles.scss';
+import { TextInput, TouchableOpacity,  StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 
-import BBicon from '../../../assets/BBicon.png'
 
-const UserProfile = props => {
-  const { currentUser } = props;
-  const { displayName } = currentUser;
+//import BBicon from '../../../assets/BBicon.png'
 
+//const UserProfile = props => {
+  //const { currentUser } = props;
+  //const { displayName } = currentUser;
+
+const UserProfile = () => {
   return (
-    <div className="UserProfile">
-      <ul>
-        <li>
-          <div className="img">
-            <img src={BBicon} />
-          </div>
-        </li>
-        <li>
-          <span className="displayName">
-            {displayName && displayName}
-          </span>
-        </li>
-      </ul>
-    </div>
+    <View className="UserProfile">
+      <Text>hej Siri</Text>
+    </View>
   );
 }
 

@@ -7,8 +7,8 @@ import { signUpUserStart } from './../../redux/User/user.actions';
 import AuthWrapper from './../AuthWrapper';
 //import FormInput from './../forms/forminput'; bytte från forminput till textinput nedan
 //import Button from './../forms/button';
-import { TextInput, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
-
+import { TextInput, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { styles } from '../forms/button/styles';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -64,7 +64,7 @@ const Signup = props => {
 
   return (
     <AuthWrapper {...configAuthWrapper}>
-      <Text /*className="formWrap"*/>
+      <View /*className="formWrap"*/>
 
         {errors.length > 0 && (
           <ul>
@@ -79,11 +79,10 @@ const Signup = props => {
         )}
 
           <TextInput
-            type="text"
-            name="displayName"
-            value={displayName}
             placeholder="Full name"
-            handleFormSubmit={e => setDisplayName(e.target.value)}
+            value={displayName}
+            placeholderTextColor="#aaaaaa" 
+            handleFormSubmit={displayName => setDisplayName(displayName)}
           />
 
           <TextInput
@@ -117,7 +116,7 @@ const Signup = props => {
           </TouchableOpacity>
 
           
-      </Text>
+      </View>
     </AuthWrapper>
   );
 }
