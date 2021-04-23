@@ -1,12 +1,12 @@
 import React from 'react';
-import UserProfile from './../../components/userProfile';
+import StartPage from './../../components/start';
 import './StartStyle'; //kasnke blir cscc??
 import {View} from 'react-native'
 
 const StartPageScreen = props => {
   return (
     <View className="startPageScreen">
-      <UserProfile />
+      <StartPage />
     </View>
   );
 };

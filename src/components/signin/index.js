@@ -10,8 +10,9 @@ import AuthWrapper  from './../AuthWrapper/index';
 //import Button from './../forms/button';
 import { TextInput, TouchableOpacity,  StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 //import { TouchableOpacity } from 'react-native-gesture-handler';
-import { styles } from '../forms/button/styles';
+//import { styles } from '../forms/button/styles';
 
+import styles from './styles.js';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser
@@ -48,9 +49,11 @@ const SignIn = props => {
   };
 
   return (
-    <AuthWrapper {...configAuthWrapper}>
+    <AuthWrapper >
       <View /*className="formWrap"*/>
-          <TextInput
+        <Text style = {styles.title}>HEY BUDDIE!! NICE TO SEE YOU AGAIN</Text>
+          <TextInput 
+            style = {styles.input}
             placeholder='E-mail'
             placeholderTextColor="#aaaaaa"
             //value={email}
@@ -59,9 +62,12 @@ const SignIn = props => {
           />
      
           <TextInput
+            style = {styles.input}
+            secureTextEntry
             placeholder="password"
             placeholderTextColor="#aaaaaa"
             //value={password}
+            
             onChangeText= {(text) => setPassword(text)}
             
           />
