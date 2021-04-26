@@ -90,7 +90,6 @@ const SignIn = props => {
                     autoCapitalize="none"
           />
          
-
           <TouchableOpacity
               style = {styles.button}
               onPress={() => handleSubmit()}>
