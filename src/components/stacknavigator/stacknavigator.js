@@ -15,16 +15,14 @@ const mapState = ({ user }) => ({
 });
 
 const StackNavigator = () => {
-  //här lägger jag in nytt
-  const dispatch = useDispatch();
+  
   const { currentUser } = useSelector(mapState);
 
-console.log("i stacknavigator")
     return (
         <Stack.Navigator>   
           {currentUser ? (
               
-              <Stack.Screen name="StartPageScreen" component={StartPageScreen}/>
+            <Stack.Screen name="StartPageScreen" component={StartPageScreen}/>
           ) : (
             <>
             <Stack.Screen name="LogInScreen" component={LogInScreen}/>
@@ -42,3 +40,5 @@ console.log("i stacknavigator")
 }
 
 export default StackNavigator
+
+
