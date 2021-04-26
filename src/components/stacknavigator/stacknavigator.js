@@ -3,6 +3,7 @@ import { createStackNavigator  } from '@react-navigation/stack';
 import LogInScreen from "../../screens/login/LogInScreen"
 import Registration from "../../screens/registration/RegistrationScreen"
 import StartPageScreen from "../../screens/startpage/StartPageScreen"
+import BCOverviewScreen from "../../screens/bookclub/BookClubsOverviewScreen"
 import { useDispatch, useSelector } from 'react-redux';
 import { TextInput, TouchableOpacity,  StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 
@@ -23,8 +24,8 @@ console.log("i stacknavigator")
     return (
         <Stack.Navigator>   
           {currentUser ? (
-              
-              <Stack.Screen name="StartPageScreen" component={StartPageScreen}/>
+              <Stack.Screen name="BCOverviewScreen" component={BCOverviewScreen}/>
+              //<Stack.Screen name="StartPageScreen" component={StartPageScreen}/>
           ) : (
             <>
             <Stack.Screen name="LogInScreen" component={LogInScreen}/>
