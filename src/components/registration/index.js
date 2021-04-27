@@ -22,6 +22,7 @@ const Signup = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const groupID = null;
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -54,9 +55,11 @@ const Signup = props => {
     dispatch(signUpUserStart({
       displayName,
       email,
+      groupID,
       password,
       confirmPassword
-    }));
+    }))
+    
   }
 
   const configAuthWrapper = {
