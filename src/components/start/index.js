@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, TextInput, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { Image, TextInput, TouchableHighlight, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 import { useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles.js';
-import { NavigationContainer } from '@react-navigation/native';
+//import Toolbar from '../toolbar/index.js';
+//import { NavigationContainer } from '@react-navigation/native';
 
 //const UserProfile = props => {
 //const { currentUser } = props;
@@ -13,19 +14,19 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-const StartPage = () => {
-
+const StartPage = ({ navigation }) => {
+  console.log('hej i start')
   const { currentUser } = useSelector(mapState);
 
+
+  console.log('i start 2 ' + currentUser.displayName)
   return (
     <View className="StartPage" style={styles.container}>
       <KeyboardAwareScrollView
         style={{ width: '100%', height: '100%' }}
       >
         <Text style={styles.text}> BUDDIES UPDATES  </Text>
-
-        <Text style={styles.smallText}>Hey {currentUser.fullName}! Here are some updates from your buddies.</Text>
-
+        <Text style={styles.smallText}>Hey {currentUser.displayName}! Here are some updates from your buddies.</Text>
         <Text style={styles.textLeft}> Book Buddy of the week  </Text>
         <Text style={styles.smallText}> Your friend Carola has read a lot! </Text>
         <Image
@@ -40,11 +41,43 @@ const StartPage = () => {
           source={require('../../../assets/sherlock.jpg')}
         />
 
-        <Text style={styles.textLeft}> {currentUser.fullName}, check out this book!  </Text>
+        <Text style={styles.textLeft}> {currentUser.displayName}, check out this book!  </Text>
         <Image
           style={styles.bookImage}
           source={require('../../../assets/sherlock.jpg')}
         />
+        <View style={styles.row}>
+          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+              style={styles.menuToolbar}
+              source={require('../../../assets/Profile_picture.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+              style={styles.menuToolbar}
+              source={require('../../../assets/BookClubs_picture.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
+            <Image
+              style={styles.menuToolbar}
+              source={require('../../../assets/House_picture.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+              style={styles.menuToolbar}
+              source={require('../../../assets/Search_picture.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+              style={styles.menuToolbar}
+              source={require('../../../assets/Settings_picture.png')}
+            />
+          </TouchableHighlight>
+        </View>
 
       </KeyboardAwareScrollView>
     </View>
@@ -57,7 +90,33 @@ export default StartPage;
 
 
 
-/*{currentUser.fullName}
+/*
+
+        <View style={styles.row}>
+        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+                style={styles.menuToolbar}
+                source={require('../../../assets/Profile_picture.png')}
+            />
+        </TouchableHighlight>
+
+        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+                style={styles.menuToolbar}
+                source={require('../../../assets/Profile_picture.png')}
+            />
+        </TouchableHighlight>
+
+        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+            <Image
+                style={styles.menuToolbar}
+                source={require('../../../assets/Profile_picture.png')}
+            />
+        </TouchableHighlight>
+</View>
+
+
+{currentUser.fullName}
 
 <TouchableOpacity
               style = {styles.button}
