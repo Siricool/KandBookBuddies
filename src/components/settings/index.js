@@ -1,29 +1,34 @@
-import React from 'react';
-import styles from './styles.js';
-import {useSelector} from 'react-redux';
-import { View, Text, TouchableOpacity, TouchableHighlight, Image} from 'react-native';
 
+import React from 'react';
+import { Text, View, TouchableHighlight, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useSelector } from 'react-redux';
+
+import styles from './styles.js'
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
   });
 
-  const BCOverview = ({ navigation }) => {
-    const{ currentUser }= useSelector(mapState);
-    
+const Settings= ({ navigation }) => {
 
-    return (
-      <View style={styles.container}>
-           <KeyboardAwareScrollView style={{width: '100%', height: '100%'}}>
-        <Text style={styles.title}> My Book Clubs </Text>
+  const { currentUser } = useSelector(mapState);
+  return (
+    <View style={styles.container}>
+        <KeyboardAwareScrollView
+        style={{width: '100%', height: '100%'}}
+        >
+         <Text style={styles.text}> Settings </Text>
+         <Text style={styles.smallText}> {currentUser.displayName}, feel free to update your settings! </Text>
+         
+         <Text style={styles.text2}> Time to update your profile pic? </Text>
 
-        <TouchableOpacity style = {styles.button}>
-        <Text style = {styles.buttonText}>Book Lovers </Text>
-        </TouchableOpacity>    
+         <Text style={styles.text2}> Wanna switch to night mode? </Text>
+         <Text style={styles.smallText}> This will take care of 
+         your eyes when clubbing at night! </Text>
 
-        <View style={styles.row}>
-          <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
+         <View style={styles.row}>
+          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Profile_picture.png')}
@@ -55,9 +60,12 @@ const mapState = ({ user }) => ({
           </TouchableHighlight>
         </View>
 
-        </KeyboardAwareScrollView>
-      </View>
-    );
-  }
+      </KeyboardAwareScrollView>
+    </View>
+  );
+}
 
-export default BCOverview;
+export default Settings;
+
+
+

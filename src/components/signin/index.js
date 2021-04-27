@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Link, useHistory } from 'react-router-native';
-import { emailSignInStart } from './../../redux/User/user.actions';
-
-//import './styles.scss'
-
-import AuthWrapper  from './../AuthWrapper/index';
-//import FormInput from './../forms/forminput'; bytte från forminput till textinput nedan
-//import Button from './../forms/button';
-import { Image, TextInput, TouchableOpacity,  StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
-//import { TouchableOpacity } from 'react-native-gesture-handler';
-//import { styles } from '../forms/button/styles';
-
-import styles from './styles.js';
+import { useHistory } from 'react-router-native';
+import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+import { emailSignInStart } from './../../redux/User/user.actions';
+import AuthWrapper from './../AuthWrapper/index';
+import styles from './styles.js';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser
 });
 
-const SignIn = props => {
+const SignIn = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser } = useSelector(mapState);
@@ -30,7 +23,8 @@ const SignIn = props => {
    /* if (currentUser) {
       resetForm();
       history.push('/');
-  },*/ currentUser});
+  },*/ currentUser
+  });
 
   //ev ta bort
   const resetForm = () => {
@@ -41,61 +35,73 @@ const SignIn = props => {
   const handleSubmit = () => { //här va en async
     //preventDefault();
     dispatch(emailSignInStart({ email, password }));
-    console.log("nu pressed "+email)
-    
+    console.log("nu pressed " + email)
+  }
+
+  const handleSign = () => {
+    navigation.navigate('StartPage')
   }
 
   const configAuthWrapper = {
     headline: 'LogIn'
   };
 
-  /*VI BEHÖVER NGT LIKNANDE FÖR HÄVNININGEN TILL REGISTRATION SCREEN
-  onFooterLinkPress = () => {
-    navigation.navigate('Registration')
-}*/
+  const onFooterLinkPress = () => {
+    navigation.navigate('Signup')
+  }
 
   return (
     <AuthWrapper >
       <View style={styles.container}>
         <KeyboardAwareScrollView
-        style={{width: '100%', height: '100%'}}
-      /* style={{ flex: 1, width: '100%' }}
-        keyboardShouldPersistTaps="always" Denna del gör att det blir helt vitt, oklart varför?*/
+          style={{ width: '100%', height: '100%' }}
+        /* style={{ flex: 1, width: '100%' }}
+          keyboardShouldPersistTaps="always" Denna del gör att det blir helt vitt, oklart varför?*/
         >
-      <Image
-        style={styles.logo}
-        source={require('../../../assets/BBicon.png')}
-      />
-                <Text style={styles.text}>Sign In</Text>
-                <Text style={styles.smallText}>Hey Buddie! Nice to see you again.</Text>
-          <TextInput 
-            style = {styles.input}
+          <Image
+            style={styles.logo}
+            source={require('../../../assets/BBicon.png')}
+          />
+          <Text style={styles.text}>Sign In</Text>
+          <Text style={styles.smallText}>Hey Buddie! Nice to see you again.</Text>
+          <TextInput
+            style={styles.input}
             placeholder='E-mail'
             placeholderTextColor="#aaaaaa"
             //value={email}
             onChangeText={(text) => setEmail(text)}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
-            
+
           />
-     
+
           <TextInput
-            style = {styles.input}
+            style={styles.input}
             secureTextEntry
             placeholder="Password"
             placeholderTextColor="#aaaaaa"
             //value={password}
-            onChangeText= {(text) => setPassword(text)}
+            onChangeText={(text) => setPassword(text)}
             underlineColorAndroid="transparent"
-                    autoCapitalize="none"
+            autoCapitalize="none"
           />
-         
+
           <TouchableOpacity
-              style = {styles.button}
-              onPress={() => handleSubmit()}>
-                <Text>Sign in</Text>
+            style={styles.button}
+            onPress={() => handleSubmit()}>
+            <Text>Press here to submit and then sign in below!</Text>
           </TouchableOpacity>
-          </KeyboardAwareScrollView>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleSign()}>
+            <Text>Sign in</Text>
+          </TouchableOpacity>
+
+          <View style={styles.footerView}>
+            <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+          </View>
+        </KeyboardAwareScrollView>
       </View>
     </AuthWrapper>
   );
@@ -103,24 +109,3 @@ const SignIn = props => {
 
 export default SignIn;
 
-/*NAVIGERINGEN TILL REGISTRATION SCREEN
-<View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-                </View>
-*/ 
-
-
-/* denna låg under Button
-<form onSubmit={handleSubmit}>
- </form>
-
-<Button title="submit">
-            LogIn
-          </Button>
-
-<div>
-            <Link to="/registration">
-              Register
-            </Link>
-          </div>
-          */

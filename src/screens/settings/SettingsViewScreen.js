@@ -1,21 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Settings from './../../components/settings';
+import './SettingsViewStyle'; //kasnke blir cscc??
+import { View } from 'react-native'
 
-export default function App() {
+const SettingsViewScreen = props => {
   return (
-    <View style={styles.container}>
-      //<Text>Hejsan</Text>
-      <StatusBar style="auto" />
+    <View className="settingsViewScreen">
+      <Settings/>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default SettingsViewScreen;
+
+
+
+
