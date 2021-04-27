@@ -1,14 +1,8 @@
 import React from 'react';
-import { Image, TextInput, TouchableHighlight, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { Image, TouchableHighlight, View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles.js';
-//import Toolbar from '../toolbar/index.js';
-//import { NavigationContainer } from '@react-navigation/native';
-
-//const UserProfile = props => {
-//const { currentUser } = props;
-//const { displayName } = currentUser;
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -47,7 +41,7 @@ const StartPage = ({ navigation }) => {
           source={require('../../../assets/sherlock.jpg')}
         />
         <View style={styles.row}>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Profile_picture.png')}

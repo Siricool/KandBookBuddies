@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Link, useHistory } from 'react-router-native';
-import { emailSignInStart } from './../../redux/User/user.actions';
-
-//import './styles.scss'
-
-import AuthWrapper from './../AuthWrapper/index';
-//import FormInput from './../forms/forminput'; bytte från forminput till textinput nedan
-//import Button from './../forms/button';
-import { Image, TextInput, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
-//import { TouchableOpacity } from 'react-native-gesture-handler';
-//import { styles } from '../forms/button/styles';
-
-import styles from './styles.js';
+import { useHistory } from 'react-router-native';
+import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+import { emailSignInStart } from './../../redux/User/user.actions';
+import AuthWrapper from './../AuthWrapper/index';
+import styles from './styles.js';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser
@@ -43,9 +36,6 @@ const SignIn = ({ navigation }) => {
     //preventDefault();
     dispatch(emailSignInStart({ email, password }));
     console.log("nu pressed " + email)
-    //console.log(currentUser)
-    //navigation.navigate('StartPage')
-    
   }
 
   const handleSign = () => {
@@ -55,7 +45,6 @@ const SignIn = ({ navigation }) => {
   const configAuthWrapper = {
     headline: 'LogIn'
   };
-
 
   const onFooterLinkPress = () => {
     navigation.navigate('Signup')
@@ -120,32 +109,3 @@ const SignIn = ({ navigation }) => {
 
 export default SignIn;
 
-/*
-<Text></Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handleSign()}>
-            <Text>Sign in</Text>
-          </TouchableOpacity>
-
-NAVIGERINGEN TILL REGISTRATION SCREEN
-<View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
-                </View>
-*/
-
-
-/* denna låg under Button
-<form onSubmit={handleSubmit}>
- </form>
-
-<Button title="submit">
-            LogIn
-          </Button>
-
-<div>
-            <Link to="/registration">
-              Register
-            </Link>
-          </div>
-          */
