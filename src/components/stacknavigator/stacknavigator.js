@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import { createStackNavigator  } from '@react-navigation/stack';
 import LogInScreen from "../../screens/login/LogInScreen"
 import Registration from "../../screens/registration/RegistrationScreen"
@@ -47,3 +47,4 @@ const StackNavigator = () => {
 export default StackNavigator
 
 
+*/
