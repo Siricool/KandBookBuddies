@@ -1,4 +1,77 @@
-import React, { useEffect } from 'react';
+import 'react-native-gesture-handler';
+import React, { useEffect, useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import SignIn from './src/components/signin/index'
+import Signup from './src/components/registration'
+import StartPage from './src/components/start'
+import BCOverview from './src/components/bcOverview'
+import { store } from './src/redux/createStore';
+import { Provider, useSelector } from "react-redux";
+
+
+import { decode, encode } from 'base-64'
+if (!global.btoa) { global.btoa = encode }
+if (!global.atob) { global.atob = decode }
+/*
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+*/
+
+const Stack = createStackNavigator();
+
+
+export default function App() {
+
+  //const { currentUser } = useSelector(mapState);
+  //console.log('i apps' + currentUser)
+ // const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
+
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {user ? (
+            <Stack.Screen name="StartPage" component={StartPage} />
+
+
+          ) : (
+            <>
+              <Stack.Screen name="SignIn" component={SignIn} />
+              <Stack.Screen name="Signup" component={Signup} />
+              <Stack.Screen name="StartPage" component={StartPage} />
+              <Stack.Screen name="BCOverview" component={BCOverview} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+
+    </Provider>
+    
+  );
+}
+
+
+/*import React from 'react'
+import {NavigationContainer} from '@react-navigation/native'
+import TabNavigator from './src/components/toolbar/index'
+import AppContainer from './src/components/toolbar/AppNavigation'
+import NavigationService from './src/components/toolbar/NavigationService'
+
+const App = () => {
+  return (
+    <AppContainer
+      ref={navigationRef => {
+        NavigationService.setTopLevelNavigator(navigationRef)
+      }}
+      />
+  )
+}
+*/
+
+/*import React, { useEffect } from 'react';
 import {Provider} from "react-redux";
 import {store} from './src/redux/createStore';
 import 'react-native-gesture-handler';
@@ -9,9 +82,9 @@ import { checkUserSession } from './src/redux/User/user.actions';
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigator from "./src/components/stacknavigator/stacknavigator"
 
-export default function App() {     
+export default function App() {
   return (
-    <Provider store={store}>      
+    <Provider store={store}>
       <NavigationContainer>
         <StackNavigator />
       </NavigationContainer>
@@ -20,7 +93,7 @@ export default function App() {
 }
 
 
-
+*/
 /*
 // components
 //import AdminToolbar from './components/AdminToolbar';
@@ -53,7 +126,7 @@ const App = props => {
   }, []);
 
   return (
-    <div className="App">   
+    <div className="App">
       <Switch>
         <Route exact path='/login' render={() => (
             <LogInScreen />
@@ -73,7 +146,7 @@ const App = props => {
     </div>
   );
   }
-  
+
   export default App;
 
 
