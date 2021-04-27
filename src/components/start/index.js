@@ -71,7 +71,7 @@ const StartPage = ({ navigation }) => {
               source={require('../../../assets/Search_picture.png')}
             />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Settings_picture.png')}
