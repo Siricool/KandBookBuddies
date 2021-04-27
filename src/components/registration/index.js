@@ -114,6 +114,7 @@ const Signup = props => {
 
           <TextInput
             style={styles.input}
+            secureTextEntry
             type="password"
             name="password"
             value={password}
@@ -126,6 +127,7 @@ const Signup = props => {
 
           <TextInput
             style={styles.input}
+            secureTextEntry
             type="password"
             name="confirmPassword"
             value={confirmPassword}
