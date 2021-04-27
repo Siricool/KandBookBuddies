@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, useHistory, Link } from 'react-router-native';
+import { useHistory} from 'react-router-native';
 import { signUpUserStart } from './../../redux/User/user.actions';
 import styles from './styles';
 
@@ -10,6 +10,7 @@ import AuthWrapper from './../AuthWrapper';
 import { Image, TextInput, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 //import { styles } from '../forms/button/styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { NavigationEvents } from 'react-navigation';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -24,6 +25,7 @@ const Signup = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const groupID = null;
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -56,9 +58,11 @@ const Signup = props => {
     dispatch(signUpUserStart({
       displayName,
       email,
+      groupID,
       password,
       confirmPassword
-    }));
+    }))
+    
   }
 
   const configAuthWrapper = {

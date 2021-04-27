@@ -68,6 +68,7 @@ export function* onSignOutUserStart() {
 export function* signUpUser({ payload: {
   displayName,
   email,
+  groupID,
   password,
   confirmPassword
 } }) {
@@ -82,7 +83,7 @@ export function* signUpUser({ payload: {
 
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName };
+    const additionalData = { displayName, groupID };
     yield getSnapshotFromUserAuth(user, additionalData);
 
   } catch (err) {
