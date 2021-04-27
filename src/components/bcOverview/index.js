@@ -11,19 +11,19 @@ const mapState = ({ user }) => ({
 
   const BCOverview = ({ navigation }) => {
     const{ currentUser }= useSelector(mapState);
-    console.log('BOOOOOOKCLUBBBB '+currentUser.displayName)
+    
 
     return (
       <View style={styles.container}>
            <KeyboardAwareScrollView style={{width: '100%', height: '100%'}}>
-        <Text style={styles.title}> My Book Clubs {currentUser.displayName} </Text>
+        <Text style={styles.title}> My Book Clubs </Text>
 
         <TouchableOpacity style = {styles.button}>
         <Text style = {styles.buttonText}>Book Lovers </Text>
         </TouchableOpacity>    
 
         <View style={styles.row}>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Profile_picture.png')}

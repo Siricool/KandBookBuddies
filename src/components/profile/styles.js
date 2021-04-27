@@ -16,11 +16,11 @@ export default StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
     },
-    /*menuToolbar: {
+    menuToolbar: {
         height: 40,
         width: 40,
         backgroundColor: '#fde3b7',
-    },*/
+    },
     text: {
         fontSize: 25,
         fontWeight: "bold",

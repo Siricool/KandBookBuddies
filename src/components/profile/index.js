@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Switch, useHistory, Link, TouchableHighlight } from 'react-router-native';
-import { signUpUserStart } from './../../redux/User/user.actions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './styles';
 
-import AuthWrapper from './../AuthWrapper';
-//import FormInput from './../forms/forminput'; bytte från forminput till textinput nedan
-//import Button from './../forms/button';
-import { Image, TextInput, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
-//import { styles } from '../forms/button/styles';
+import { Image, TouchableHighlight, View, Text } from 'react-native';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
 });
 
-const MyProfile = () => {
+const MyProfile = ({navigation}) => {
     const { currentUser } = useSelector(mapState);
 
     return (
@@ -27,32 +22,34 @@ const MyProfile = () => {
                 <Text style={styles.middleText}>My Book Clubs</Text>
                 <Text style={styles.middleText}>My Books</Text>
                 <View style={styles.row}>
-                    <Image
-                        style={styles.menuToolbar}
-                        source={require('../../../assets/BBicon.png')}
-                    />
-                    <TouchableHighlight onPress={() => onFooterLinkPress()}>
+                    <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
                         <Image
                             style={styles.menuToolbar}
-                            source={require('../../../assets/BBicon.png')}
+                            source={require('../../../assets/Profile_picture.png')}
                         />
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={() => onFooterLinkPress()}>
+                    <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
                         <Image
                             style={styles.menuToolbar}
-                            source={require('../../../assets/BBicon.png')}
+                            source={require('../../../assets/BookClubs_picture.png')}
                         />
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={() => onFooterLinkPress()}>
+                    <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
                         <Image
                             style={styles.menuToolbar}
-                            source={require('../../../assets/BBicon.png')}
+                            source={require('../../../assets/House_picture.png')}
                         />
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={() => onFooterLinkPress()}>
+                    <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
                         <Image
                             style={styles.menuToolbar}
-                            source={require('../../../assets/BBicon.png')}
+                            source={require('../../../assets/Search_picture.png')}
+                        />
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
+                        <Image
+                            style={styles.menuToolbar}
+                            source={require('../../../assets/Settings_picture.png')}
                         />
                     </TouchableHighlight>
                 </View>

@@ -1,48 +1,48 @@
 import React from 'react';
 
-import { Image, TextInput, TouchableHighlight, TouchableOpacity, StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { Image, TouchableHighlight, View } from 'react-native';
 import styles from './styles.js';
 
-const Toolbar = ({navigation}) => {
+const Toolbar = ({ navigation }) => {
 
 
-return (
-    <View style={styles.container}>
-        <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-            <Image
-                style={styles.menuToolbar}
-                source={require('../../../assets/Profile_picture.png')}
-            />
-        </TouchableHighlight>
-            <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-                <Image
-                    style={styles.menuToolbar}
-                    source={require('../../../assets/BookClubs_picture.png')}
-                />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-                <Image
-                    style={styles.menuToolbar}
-                    source={require('../../../assets/House_picture.png')}
-                />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-                <Image
-                    style={styles.menuToolbar}
-                    source={require('../../../assets/Search_picture.png')}
-                />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-                <Image
-                    style={styles.menuToolbar}
-                    source={require('../../../assets/Settings_picture.png')}
-                />
-            </TouchableHighlight>
+    return (
+        <View style={styles.container}>
+            <View style={styles.row}>
+                <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+                    <Image
+                        style={styles.menuToolbar}
+                        source={require('../../../assets/Profile_picture.png')}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+                    <Image
+                        style={styles.menuToolbar}
+                        source={require('../../../assets/BookClubs_picture.png')}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+                    <Image
+                        style={styles.menuToolbar}
+                        source={require('../../../assets/House_picture.png')}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+                    <Image
+                        style={styles.menuToolbar}
+                        source={require('../../../assets/Search_picture.png')}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+                    <Image
+                        style={styles.menuToolbar}
+                        source={require('../../../assets/Settings_picture.png')}
+                    />
+                </TouchableHighlight>
+            </View>
+
         </View>
-
-    </View>
-)
+    )
 
 }
 
@@ -116,7 +116,7 @@ const Toolbar = () => {
             <Tab.Screen
                 name="StartPageScreen" component={StartPageScreen}
 
-               
+
             />
 
         </Tab.Navigator>
