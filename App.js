@@ -6,6 +6,7 @@ import SignIn from './src/components/signin/index'
 import Signup from './src/components/registration'
 import StartPage from './src/components/start'
 import BCOverview from './src/components/bcOverview'
+import Settings from './src/components/settings'
 import { store } from './src/redux/createStore';
 import { Provider, useSelector } from "react-redux";
 
@@ -43,6 +44,7 @@ export default function App() {
               <Stack.Screen name="Signup" component={Signup} />
               <Stack.Screen name="StartPage" component={StartPage} />
               <Stack.Screen name="BCOverview" component={BCOverview} />
+              <Stack.Screen name="Settings" component={Settings} />
             </>
           )}
         </Stack.Navigator>

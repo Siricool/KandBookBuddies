@@ -13,7 +13,7 @@ export default StyleSheet.create({
         marginTop: 10,
         marginLeft: 30,
         marginRight: 30,
-        fontFamily: 'Roboto' 
+        fontFamily: 'Helvetica' 
     },
     text2: {
         fontSize: 20,
@@ -21,7 +21,7 @@ export default StyleSheet.create({
         marginTop: 10,
         marginLeft: 30,
         marginRight: 30,
-        fontFamily: 'Roboto' 
+        fontFamily: 'Helvetica' 
     },
     smallText: {
         fontSize: 15,
@@ -30,6 +30,26 @@ export default StyleSheet.create({
         marginBottom: 10,
         marginLeft: 30,
         marginRight: 30,
-        fontFamily: 'Roboto' 
+        fontFamily: 'Helvetica' 
     },
+    container: {
+        flex: 1,
+        backgroundColor: '#fde3b7',
+        //alignItems: 'center',
+        //justifyContent: 'center',
+    },
+    row: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 15,
+        marginRight: 15,
+    },
+    menuToolbar: {
+        height: 40,
+        width: 40,
+        backgroundColor: '#fde3b7',
+    }
   });
