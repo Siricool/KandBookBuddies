@@ -36,12 +36,17 @@ const SignIn = ({ navigation }) => {
     //preventDefault();
     dispatch(emailSignInStart({ email, password }));
     console.log("nu pressed " + email)
+    if (currentUser != null) {
+      console.log("i handlesubmit if")
+      navigation.navigate('StartPage')
+    }
   }
 
+  /* behövs ej mer :D 
   const handleSign = () => {
     navigation.navigate('StartPage')
   }
-
+*/
   const configAuthWrapper = {
     headline: 'LogIn'
   };
@@ -63,7 +68,7 @@ const SignIn = ({ navigation }) => {
             source={require('../../../assets/BBicon.png')}
           />
           <Text style={styles.text}>Sign In</Text>
-          <Text style={styles.smallText}>Hey Buddie! Nice to see you again.</Text>
+          <Text style={styles.smallText}>Hey Buddy! Nice to see you again.</Text>
           <TextInput
             style={styles.input}
             placeholder='E-mail'
@@ -89,15 +94,10 @@ const SignIn = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => handleSubmit()}>
-            <Text>Press here to submit and then sign in below!</Text>
+            <Text>Sign in </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handleSign()}>
-            <Text>Sign in</Text>
-          </TouchableOpacity>
-
+          
           <View style={styles.footerView}>
             <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
           </View>
@@ -109,3 +109,11 @@ const SignIn = ({ navigation }) => {
 
 export default SignIn;
 
+
+/*
+<TouchableOpacity
+            style={styles.button}
+            onPress={() => handleSign()}>
+            <Text>Continue to Book Buddies!</Text>
+          </TouchableOpacity>
+*/

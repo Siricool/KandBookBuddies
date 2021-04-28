@@ -8,6 +8,7 @@ import StartPage from './src/components/start'
 import BCOverview from './src/components/bcOverview'
 import Settings from './src/components/settings'
 import MyProfile from './src/components/profile'
+import CreateBC from './src/components/createBC'
 
 import { store } from './src/redux/createStore';
 import { Provider } from "react-redux";
@@ -31,6 +32,7 @@ export default function App() {
               <Stack.Screen name="BCOverview" component={BCOverview} />
               <Stack.Screen name="Settings" component={Settings} />
               <Stack.Screen name="MyProfile" component={MyProfile} />
+              <Stack.Screen name="CreateBC" component={CreateBC} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

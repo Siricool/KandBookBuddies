@@ -22,6 +22,7 @@ const mapState = ({ user }) => ({
         <Text style = {styles.buttonText}>Book Lovers </Text>
         </TouchableOpacity>    
 
+        
         <View style={styles.row}>
           <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
             <Image

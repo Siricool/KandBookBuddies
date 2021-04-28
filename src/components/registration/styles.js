@@ -29,6 +29,15 @@ export default StyleSheet.create({
         marginRight: 30,
         fontFamily: 'Helvetica' 
     },
+    smallText: {
+        fontSize: 15,
+        color: 'grey',
+        marginTop: 5,
+        marginBottom: 10,
+        marginLeft: 30,
+        marginRight: 30,
+        fontFamily: 'Helvetica' 
+    },
     input: {
         height: 48,
         borderRadius: 5,
