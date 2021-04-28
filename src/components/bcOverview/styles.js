@@ -54,6 +54,7 @@ export default StyleSheet.create({
         marginBottom: 10,
         marginLeft: 15,
         marginRight: 15,
+        
     },
     menuToolbar: {
         height: 40,

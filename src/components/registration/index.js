@@ -14,7 +14,8 @@ const mapState = ({ user }) => ({
   userErr: user.userErr
 });
 
-const Signup = props => {
+//const Signup = props => {
+const Signup = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser, userErr } = useSelector(mapState);
@@ -60,11 +61,20 @@ const Signup = props => {
       confirmPassword
     }))
     
+    
+  }
+
+  const handleSignIn = () => {
+    navigation.navigate('CreateBC')
   }
 
   const configAuthWrapper = {
     headline: 'Registration'
   };
+
+  const onFooterLinkPress = () => {
+    navigation.navigate('SignIn')
+  }
 
   return (
     <AuthWrapper /*{...configAuthWrapper}*/>
@@ -76,6 +86,7 @@ const Signup = props => {
         >
 
           <Text style={styles.text}>Sign Up</Text>
+          <Text style={styles.smallText}> Welcome to Book Buddies! We are glad you are joining us. </Text>
           <TextInput
             style={styles.input}
             placeholder="Full name"
@@ -130,10 +141,27 @@ const Signup = props => {
             onPress={handleFormSubmit}>
             <Text>Sign up</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSignIn}>
+            <Text>
+              Create or join book club!
+            </Text>
+          </TouchableOpacity>
+
+
+
+          <View style={styles.footerView}>
+            <Text style={styles.footerText}> Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign in!</Text></Text>
+          </View>
+
           <Image
             style={styles.logo}
             source={require('../../../assets/BBicon.png')}
           />
+
+          
 
         </KeyboardAwareScrollView>
       </View>
@@ -143,3 +171,11 @@ const Signup = props => {
 
 export default Signup;
 
+
+/*
+LÄGG IN NAVIGATION I PROPS
+
+
+
+
+*/

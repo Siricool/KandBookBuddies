@@ -10,24 +10,26 @@ import { createBCStart } from '../../redux/BookClub/bc.actions';
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
     userErr: user.userErr
-  });
+});
 
-const CreateBC = props =>{
+const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
-    const { currentUser, useErr} = useSelector(mapState);
+    const { currentUser, useErr } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
-
 
     useEffect(() => {
         currentUser
     });
 
-    const handleCreateBC = event => {
-        event.preventDefault();
+    const handleCreateBC = () => {
+        // event.preventDefault();
         dispatch(createBCStart({
-            groupName          
+            groupName
         }));
+        if (currentUser.groupName != null) {
+            navigation.navigate('StartPage')
+        }
     }
 
     return (
@@ -46,11 +48,11 @@ const CreateBC = props =>{
                     />
 
                     <TouchableOpacity
-                    style={styles.button}
-                    onPress={handleCreateBC}>
-                    <Text>Create Book Club</Text>
+                        style={styles.button}
+                        onPress={handleCreateBC}>
+                        <Text>Create Book Club</Text>
                     </TouchableOpacity>
-        
+
                 </KeyboardAwareScrollView>
             </View>
         </AuthWrapper>

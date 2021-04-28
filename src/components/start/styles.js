@@ -15,6 +15,7 @@ export default StyleSheet.create({
         fontWeight: "bold",
         color: '#f9ad30',
         marginTop: 10,
+        marginBottom: 10,
         marginLeft: 25,
         marginRight: 25,
         alignSelf: "center",
@@ -123,6 +124,7 @@ export default StyleSheet.create({
   },
   row: {
       flexDirection: "row",
+      flex: 10,
       flexWrap: "wrap",
       justifyContent: "space-between",
       marginTop: 10,
