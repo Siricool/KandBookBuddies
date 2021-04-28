@@ -12,11 +12,16 @@ const mapState = ({ user }) => ({
     userErr: user.userErr
 });
 
+const mapClub = ({bookclub}) => ({
+    currentBC: bookclub.currentBC
+})
+
 const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
     const { currentUser, useErr } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
+    const { currentBC} = useSelector(mapClub);
 
     useEffect(() => {
         currentUser
@@ -27,7 +32,7 @@ const CreateBC = ({ navigation }) => {
         dispatch(createBCStart({
             groupName
         }));
-        if (currentUser.groupName != null) {
+        if (currentBC != null) {
             navigation.navigate('StartPage')
         }
     }
@@ -40,7 +45,7 @@ const CreateBC = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         placeholder="Name of Book Club"
-                        value={groupName}
+                        
                         placeholderTextColor='#aaaaaa'
                         onChangeText={(text) => setGroupName(text)}
                         underlineColorAndroid='transparent'
