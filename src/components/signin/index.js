@@ -34,19 +34,11 @@ const SignIn = ({ navigation }) => {
 
   const handleSubmit = () => { //här va en async
     //preventDefault();
-    dispatch(emailSignInStart({ email, password }));
+    dispatch(emailSignInStart({ email, password })) ;
     console.log("nu pressed " + email)
-    if (currentUser != null) {
-      console.log("i handlesubmit if")
-      navigation.navigate('StartPage')
-    }
+    navigation.navigate('LoadingPage')
   }
 
-  /* behövs ej mer :D 
-  const handleSign = () => {
-    navigation.navigate('StartPage')
-  }
-*/
   const configAuthWrapper = {
     headline: 'LogIn'
   };

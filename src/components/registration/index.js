@@ -67,11 +67,13 @@ const Signup = ({ navigation }) => {
 
   const handleSignIn = () => {
     dispatch(emailSignInStart({ email, password }));
+    navigation.navigate('ChooseBC')
   }
-
+/*
   const handleCreate = () => {
     navigation.navigate('CreateBC')
   }
+  */
 
   const configAuthWrapper = {
     headline: 'Registration'
@@ -150,19 +152,8 @@ const Signup = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={handleSignIn}>
-            <Text>Sign In</Text>
+            <Text>Next step!</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleCreate}>
-            <Text>
-              Create or join book club!
-            </Text>
-          </TouchableOpacity>
-
-          
-
 
           <View style={styles.footerView}>
             <Text style={styles.footerText}> Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign in!</Text></Text>
