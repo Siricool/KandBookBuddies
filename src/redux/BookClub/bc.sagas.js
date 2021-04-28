@@ -1,7 +1,25 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
-import { handleBCProfile, firestore } from './../../firebase/utils';
+import { firestore } from './../../firebase/utils';
+import { createdBCSuccess } from "./bc.actions";
+import bcTypes from './bc.types'
 
 
+export function* getSnapshotFromBC(bookclub = {}){
+
+    try{
+        const snapshot = yield bookclub.get();
+
+        yield put(
+            createdBCSuccess({
+                id: snapshot.id,
+                ...snapshot.data()
+            })
+        );
+
+    } catch (err){
+
+    }
+}
 export function* createBC({ payload:{
     groupName   
 }}) {
@@ -10,14 +28,14 @@ export function* createBC({ payload:{
      const bookclub = yield firestore.collection('bookclubs')
      .add({groupName});
      console.log('testtest'+bookclub.id);
-      //yield getSnapshotFromBC(bookclub);
+     yield getSnapshotFromBC(bookclub);
  } catch(err){
      console.log('error oups');
  }
 }
 
 export function* onCreateBCStart() {
-    yield takeLatest(userTypes.CREATE_BC_START, createBC);
+    yield takeLatest(bcTypes.CREATE_BC_START, createBC);
 }
 
 export default function* bcSagas(){

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-native';
 import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { emailSignInStart } from './../../redux/User/user.actions';
 
 import AuthWrapper from './../AuthWrapper';
 import { signUpUserStart } from './../../redux/User/user.actions';
@@ -65,6 +66,10 @@ const Signup = ({ navigation }) => {
   }
 
   const handleSignIn = () => {
+    dispatch(emailSignInStart({ email, password }));
+  }
+
+  const handleCreate = () => {
     navigation.navigate('CreateBC')
   }
 
@@ -145,11 +150,18 @@ const Signup = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             onPress={handleSignIn}>
+            <Text>Sign In</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleCreate}>
             <Text>
               Create or join book club!
             </Text>
           </TouchableOpacity>
 
+          
 
 
           <View style={styles.footerView}>
