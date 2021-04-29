@@ -20,28 +20,15 @@ const SignIn = ({ navigation }) => {
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-   /* if (currentUser) {
-      resetForm();
-      history.push('/');
-  },*/ currentUser
-  });
+    if (currentUser){
+      navigation.navigate('StartPage');
+    }
+  }, [currentUser]
+  );
 
-  //ev ta bort
-  const resetForm = () => {
-    setEmail('');
-    setPassword('');
-  };
-
-  const handleSubmit = () => { //här va en async
-    //preventDefault();
+  const handleSubmit = () => { 
     dispatch(emailSignInStart({ email, password })) ;
-    console.log("nu pressed " + email)
-    navigation.navigate('LoadingPage')
   }
-
-  const configAuthWrapper = {
-    headline: 'LogIn'
-  };
 
   const onFooterLinkPress = () => {
     navigation.navigate('Signup')

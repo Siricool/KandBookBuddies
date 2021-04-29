@@ -27,22 +27,14 @@ const Signup = ({ navigation }) => {
   const groupID = null;
   const [errors, setErrors] = useState([]);
 
-  useEffect(() => {
-    /*if (currentUser) {
-      reset();
-      history.push('/');
-    }
-
-  }, [currentUser]);*/
-    currentUser
-  });
+  
 
   useEffect(() => {
-    if (Array.isArray(userErr) && userErr.length > 0) {
-      setErrors(userErr);
+    if (currentUser){
+      navigation.navigate('ChooseBC');
     }
-
-  }, [userErr]);
+  }, [currentUser]
+  );
 
   const reset = () => {
     setDisplayName('');
@@ -60,15 +52,16 @@ const Signup = ({ navigation }) => {
       groupID,
       password,
       confirmPassword
-    }))
-    
+    })),
+    dispatch(emailSignInStart({ email, password }))
     
   }
 
-  const handleSignIn = () => {
+  /*const handleSignIn = () => {
     dispatch(emailSignInStart({ email, password }));
+
     navigation.navigate('ChooseBC')
-  }
+  }*/
 /*
   const handleCreate = () => {
     navigation.navigate('CreateBC')
@@ -149,11 +142,6 @@ const Signup = ({ navigation }) => {
             <Text>Sign up</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleSignIn}>
-            <Text>Next step!</Text>
-          </TouchableOpacity>
 
           <View style={styles.footerView}>
             <Text style={styles.footerText}> Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign in!</Text></Text>

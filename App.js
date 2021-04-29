@@ -9,7 +9,6 @@ import BCOverview from './src/components/bcOverview'
 import Settings from './src/components/settings'
 import MyProfile from './src/components/profile'
 import CreateBC from './src/components/createBC'
-import LoadingPage from './src/components/loading'
 import ChooseBC from './src/components/chooseBC';
 
 import { store } from './src/redux/createStore';
@@ -35,7 +34,6 @@ export default function App() {
               <Stack.Screen name="Settings" component={Settings} />
               <Stack.Screen name="MyProfile" component={MyProfile} />
               <Stack.Screen name="CreateBC" component={CreateBC} />
-              <Stack.Screen name="LoadingPage" component={LoadingPage} />
               <Stack.Screen name="ChooseBC" component={ChooseBC} />
         </Stack.Navigator>
       </NavigationContainer>

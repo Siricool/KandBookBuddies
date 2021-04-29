@@ -11,21 +11,23 @@ const mapState = ({ user }) => ({
     currentUser: user.currentUser,
     userErr: user.userErr
 });
-/*
+
 const mapClub = ({bookclub}) => ({
     currentBC: bookclub.currentBC
-})*/
+})
 
 const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
     const { currentUser, useErr } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
-    //const { currentBC} = useSelector(mapClub);
+    const { currentBC} = useSelector(mapClub);
 
     useEffect(() => {
-        currentUser
-    });
+        if (currentBC)
+        {navigation.navigate('StartPage')}
+    },[currentBC]
+    );
 
     const handleCreateBC = () => {
         // event.preventDefault();
@@ -33,7 +35,6 @@ const CreateBC = ({ navigation }) => {
             groupName
         }));
         
-        navigation.navigate('StartPage')
         
     }
 
