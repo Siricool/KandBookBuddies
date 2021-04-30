@@ -93,14 +93,8 @@ export function* signUpUser({ payload: {
 }
 
 export function* getSnapshotFromUser(updatedUser = {}){
-  //console.log('HEJHEJHEJ'+user)
- // console.log('HEJHEJHEJ'+user.id)
-  //console.log(user.data())
   try{
-    //const snapshot = yield user.get();
-    //const updatedUser = yield firestore.collection('users').doc(userID).get();
     const snapshot = yield updatedUser.get();
-    console.log('INNE I GETsNAPSHOTUSER:');
     yield put(
       updatedUserSuccess({
         id: snapshot.id,
@@ -109,7 +103,7 @@ export function* getSnapshotFromUser(updatedUser = {}){
     );
   }
   catch (err){
-    console.log('LITEEROR JAPP')
+    //console.log('err')
 
   }
 }
@@ -125,11 +119,10 @@ export function* updateGroupsForUser({payload: {groupName}}){
       const groupArray = snapshotUser.groupID;
       groupArray.push(groupName);
 
-      const updatedUser = yield firestore.collection('users').doc(userID).update({groupID: groupArray})
-
+      yield firestore.collection('users').doc(userID).update({groupID: groupArray})
+      const updatedUserRef = firestore.collection('users').doc(userID);
       
-      
-      yield getSnapshotFromUser(updatedUser);
+      yield getSnapshotFromUser(updatedUserRef);
   }
   catch (err){
 

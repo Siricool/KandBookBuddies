@@ -27,25 +27,14 @@ const CreateBC = ({ navigation }) => {
 
     useEffect(() => {
        /* if (currentBC)
-         { updateUserInfo()
-            console.log('HELLLLLO1')   
+         { updateUserInfo()   
         }*/
-        console.log('I INDEX'+updatedUser)
         if (updatedUser){
-            console.log('HELLLLLO')
             navigation.navigate('StartPage')
         }
 
         },[updatedUser]
     );
-
- /*   useEffect(() => {
-        console.log('HEJ'+updatedUser)
-    if (updatedUser){
-        console.log('HELLLLLO')
-        navigation.navigate('StartPage')
-    }}, [updatedUser]
-    );*/
 
     
 
