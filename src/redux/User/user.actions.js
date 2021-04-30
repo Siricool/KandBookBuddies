@@ -36,3 +36,13 @@ export const userError = err => ({
 export const resetUserState = () => ({
   type: userTypes.RESET_USER_STATE
 });
+
+export const updateGroupsForUser = bookclub => ({
+  type: userTypes.UPDATE_GROUPS_FOR_USER,
+  payload: bookclub
+});
+
+export const updatedUserSuccess = user => ({
+  type: userTypes.UPDATED_USER_SUCCESS,
+  payload: user
+});

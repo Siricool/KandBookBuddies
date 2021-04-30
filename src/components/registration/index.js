@@ -7,6 +7,7 @@ import { emailSignInStart } from './../../redux/User/user.actions';
 
 import AuthWrapper from './../AuthWrapper';
 import { signUpUserStart } from './../../redux/User/user.actions';
+
 import styles from './styles';
 
 
@@ -24,7 +25,7 @@ const Signup = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const groupID = null;
+  const groupID = [];
   const [errors, setErrors] = useState([]);
 
   
@@ -57,20 +58,6 @@ const Signup = ({ navigation }) => {
     
   }
 
-  /*const handleSignIn = () => {
-    dispatch(emailSignInStart({ email, password }));
-
-    navigation.navigate('ChooseBC')
-  }*/
-/*
-  const handleCreate = () => {
-    navigation.navigate('CreateBC')
-  }
-  */
-
-  const configAuthWrapper = {
-    headline: 'Registration'
-  };
 
   const onFooterLinkPress = () => {
     navigation.navigate('SignIn')

@@ -6,9 +6,11 @@ import AuthWrapper from '../AuthWrapper';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBCStart } from '../../redux/BookClub/bc.actions';
+import {updateGroupsForUser} from '../../redux/User/user.actions';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
+    updatedUser: user.updatedUser,
     userErr: user.userErr
 });
 
@@ -18,24 +20,44 @@ const mapClub = ({bookclub}) => ({
 
 const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
-    const { currentUser, useErr } = useSelector(mapState);
+    const { currentUser, useErr, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
     const { currentBC} = useSelector(mapClub);
 
     useEffect(() => {
-        if (currentBC)
-        {navigation.navigate('StartPage')}
-    },[currentBC]
+       /* if (currentBC)
+         { updateUserInfo()
+            console.log('HELLLLLO1')   
+        }*/
+        console.log('I INDEX'+updatedUser)
+        if (updatedUser){
+            console.log('HELLLLLO')
+            navigation.navigate('StartPage')
+        }
+
+        },[updatedUser]
     );
+
+ /*   useEffect(() => {
+        console.log('HEJ'+updatedUser)
+    if (updatedUser){
+        console.log('HELLLLLO')
+        navigation.navigate('StartPage')
+    }}, [updatedUser]
+    );*/
+
+    
 
     const handleCreateBC = () => {
         // event.preventDefault();
+        
         dispatch(createBCStart({
-            groupName
+            groupName,
+            members
         }));
         
-        
+        dispatch(updateGroupsForUser({groupName}));
     }
 
     return (
