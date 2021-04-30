@@ -6,12 +6,13 @@ import { View, Text, TouchableOpacity, TouchableHighlight, Image} from 'react-na
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const mapState = ({ user }) => ({
-    currentUser: user.currentUser
+    currentUser: user.currentUser,
+    updatedUser: user.updatedUser
   });
 
   const BCOverview = ({ navigation }) => {
     const{ currentUser }= useSelector(mapState);
-    
+    const { updatedUser } = useSelector(mapState);
 
     return (
       <View style={styles.container}>
@@ -19,7 +20,7 @@ const mapState = ({ user }) => ({
         <Text style={styles.title}> My Book Clubs </Text>
 
         <TouchableOpacity style = {styles.button}>
-        <Text style = {styles.buttonText}>Book Lovers </Text>
+        <Text style = {styles.buttonText}>{updatedUser.groupID} </Text>
         </TouchableOpacity>    
 
         
