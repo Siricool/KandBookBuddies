@@ -21,13 +21,13 @@ export function* getSnapshotFromBC(bookclub = {}){
     }
 }
 export function* createBC({ payload:{
-    groupName   
+    groupName,
+    members   
 }}) {
 
  try { 
      const bookclub = yield firestore.collection('bookclubs')
-     .add({groupName});
-     console.log('testtest'+bookclub.id);
+     .add({groupName, members});
      yield getSnapshotFromBC(bookclub);
  } catch(err){
      console.log('error oups');

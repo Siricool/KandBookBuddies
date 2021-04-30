@@ -9,11 +9,9 @@ const mapState = ({ user }) => ({
 });
 
 const StartPage = ({ navigation }) => {
-  console.log('hej i start')
+  
   const { currentUser } = useSelector(mapState);
-
-
-  console.log('i start 2 ' + currentUser.displayName)
+  
   return (
     <View className="StartPage" style={styles.container}>
       <KeyboardAwareScrollView

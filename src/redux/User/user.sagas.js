@@ -1,7 +1,7 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import { auth, handleUserProfile, getCurrentUser } from './../../firebase/utils';
+import { auth, handleUserProfile, getCurrentUser, firestore } from './../../firebase/utils';
 import userTypes from './user.types';
-import { signInSuccess, signOutUserSuccess, userError } from './user.actions';
+import { signInSuccess, signOutUserSuccess, userError, updatedUserSuccess } from './user.actions';
 
 
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
@@ -92,8 +92,56 @@ export function* signUpUser({ payload: {
 
 }
 
+export function* getSnapshotFromUser(updatedUser = {}){
+  //console.log('HEJHEJHEJ'+user)
+ // console.log('HEJHEJHEJ'+user.id)
+  //console.log(user.data())
+  try{
+    //const snapshot = yield user.get();
+    //const updatedUser = yield firestore.collection('users').doc(userID).get();
+    const snapshot = yield updatedUser.get();
+    console.log('INNE I GETsNAPSHOTUSER:');
+    yield put(
+      updatedUserSuccess({
+        id: snapshot.id,
+        ...snapshot.data()
+      })
+    );
+  }
+  catch (err){
+    console.log('LITEEROR JAPP')
+
+  }
+}
+
+export function* updateGroupsForUser({payload: {groupName}}){
+  
+  try{   
+      const user = yield getCurrentUser();
+      const userID = user.uid;
+ 
+      const userRef= yield firestore.collection('users').doc(userID).get();
+      const snapshotUser = userRef.data();
+      const groupArray = snapshotUser.groupID;
+      groupArray.push(groupName);
+
+      const updatedUser = yield firestore.collection('users').doc(userID).update({groupID: groupArray})
+
+      
+      
+      yield getSnapshotFromUser(updatedUser);
+  }
+  catch (err){
+
+  }
+}
+
 export function* onSignUpUserStart() {
   yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser);
+}
+
+export function* onUpdateGroupsForUser() {
+  yield takeLatest(userTypes.UPDATE_GROUPS_FOR_USER, updateGroupsForUser);
 }
 
 
@@ -103,5 +151,6 @@ export default function* userSagas() {
     call(onCheckUserSession),
     call(onSignOutUserStart),
     call(onSignUpUserStart),
+    call(onUpdateGroupsForUser),
   ])
 }
