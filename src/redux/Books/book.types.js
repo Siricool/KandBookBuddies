@@ -1,0 +1,10 @@
+const bookTypes = {
+    //ADD_NEW_PRODUCT_START: 'ADD_NEW_PRODUCT_START',
+    FETCH_BOOKS_START: 'FETCH_BOOKS_START',
+    SET_BOOKS: 'SET_BOOKS',
+   
+    //FETCH_PRODUCT_START: 'FETCH_PRODUCT_START',
+    //SET_PRODUCT: 'SET_PRODUCT',
+  };
+  
+  export default bookTypes;

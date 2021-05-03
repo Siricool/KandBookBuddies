@@ -10,6 +10,7 @@ import Settings from './src/components/settings'
 import MyProfile from './src/components/profile'
 import CreateBC from './src/components/createBC'
 import ChooseBC from './src/components/chooseBC';
+import Search from './src/components/search'
 
 import { store } from './src/redux/createStore';
 import { Provider } from "react-redux";
@@ -35,6 +36,7 @@ export default function App() {
               <Stack.Screen name="MyProfile" component={MyProfile} />
               <Stack.Screen name="CreateBC" component={CreateBC} />
               <Stack.Screen name="ChooseBC" component={ChooseBC} />
+              <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
