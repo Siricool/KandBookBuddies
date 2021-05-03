@@ -1,24 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-
 import { View, Text, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles.js';
 
-/*
-const mapState = ({ user }) => ({
-    currentUser: user.currentUser
-});*/
 
 const ChooseBC = ({ navigation }) => {
-    //const { currentUser } = useSelector(mapState);
-
     const handleCreate = () => {
         navigation.navigate('CreateBC')
       }
-
     const handleJoin = () => {
-        navigation.navigate('CreateBC')
+        navigation.navigate('JoinBC')
       }
     
     return (

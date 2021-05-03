@@ -16,13 +16,13 @@ const mapState = ({ user }) => ({
 
     return (
       <View style={styles.container}>
-           <KeyboardAwareScrollView style={{width: '100%', height: '100%'}}>
+           <KeyboardAwareScrollView style={{width: '100%', height: '88%'}}>
         <Text style={styles.title}> My Book Clubs </Text>
 
         <TouchableOpacity style = {styles.button}>
         <Text style = {styles.buttonText}>{updatedUser.groupID} </Text>
         </TouchableOpacity>    
-
+        </KeyboardAwareScrollView>
         
         <View style={styles.row}>
           <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
@@ -57,7 +57,7 @@ const mapState = ({ user }) => ({
           </TouchableHighlight>
         </View>
 
-        </KeyboardAwareScrollView>
+        
       </View>
     );
   }

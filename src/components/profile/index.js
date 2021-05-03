@@ -15,12 +15,13 @@ const MyProfile = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <KeyboardAwareScrollView style={{ width: '100%', height: '100%' }}>
+            <KeyboardAwareScrollView style={{ width: '100%', height: '88%' }}>
                 <Text style={styles.text}>My Profile</Text>
                 <Text style={styles.smallText}>{currentUser.fullName}</Text>
                 <Text style={styles.middleText}>My Stats</Text>
                 <Text style={styles.middleText}>My Book Clubs</Text>
                 <Text style={styles.middleText}>My Books</Text>
+                </KeyboardAwareScrollView>
                 <View style={styles.row}>
                     <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
                         <Image
@@ -53,7 +54,7 @@ const MyProfile = ({navigation}) => {
                         />
                     </TouchableHighlight>
                 </View>
-            </KeyboardAwareScrollView>
+            
         </View>
     );
 }
