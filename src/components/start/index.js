@@ -11,7 +11,7 @@ const mapState = ({ user }) => ({
 const StartPage = ({ navigation }) => {
   
   const { currentUser } = useSelector(mapState);
-  
+
   return (
     <View className="StartPage" style={styles.container}>
       <KeyboardAwareScrollView
@@ -59,7 +59,7 @@ const StartPage = ({ navigation }) => {
               source={require('../../../assets/House_picture.png')}
             />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight onPress={() => navigation.navigate('Search')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Search_picture.png')}
