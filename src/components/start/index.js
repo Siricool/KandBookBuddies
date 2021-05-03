@@ -15,7 +15,7 @@ const StartPage = ({ navigation }) => {
   return (
     <View className="StartPage" style={styles.container}>
       <KeyboardAwareScrollView
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '88%' }}
       >
         <Text style={styles.text}> BUDDIES UPDATES  </Text>
         <Text style={styles.smallText}>Hey {currentUser.displayName}! Here are some updates from your buddies.</Text>
@@ -38,6 +38,8 @@ const StartPage = ({ navigation }) => {
           style={styles.bookImage}
           source={require('../../../assets/sherlock.jpg')}
         />
+
+      </KeyboardAwareScrollView>
         <View style={styles.row}>
           <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
             <Image
@@ -71,7 +73,7 @@ const StartPage = ({ navigation }) => {
           </TouchableHighlight>
         </View>
 
-      </KeyboardAwareScrollView>
+      
     </View>
   );
 }

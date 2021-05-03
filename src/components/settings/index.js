@@ -16,7 +16,7 @@ const Settings= ({ navigation }) => {
   return (
     <View style={styles.container}>
         <KeyboardAwareScrollView
-        style={{width: '100%', height: '100%'}}
+        style={{width: '100%', height: '88%'}}
         >
          <Text style={styles.text}> Settings </Text>
          <Text style={styles.smallText}> {currentUser.displayName}, feel free to update your settings! </Text>
@@ -26,6 +26,7 @@ const Settings= ({ navigation }) => {
          <Text style={styles.text2}> Wanna switch to night mode? </Text>
          <Text style={styles.smallText}> This will take care of 
          your eyes when clubbing at night! </Text>
+         </KeyboardAwareScrollView>
 
          <View style={styles.row}>
           <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
@@ -60,7 +61,7 @@ const Settings= ({ navigation }) => {
           </TouchableHighlight>
         </View>
 
-      </KeyboardAwareScrollView>
+      
     </View>
   );
 }

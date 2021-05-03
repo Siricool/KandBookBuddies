@@ -3,8 +3,6 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     container: {
-        
-        //flexDirection: "row",
         backgroundColor: '#fde3b7'
     },
     title: {
@@ -119,65 +117,23 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fde3b7',
-      //alignItems: 'center',
-      //justifyContent: 'center',
+      justifyContent: 'center',
   },
   row: {
       flexDirection: "row",
       flex: 10,
       flexWrap: "wrap",
       justifyContent: "space-between",
-      marginTop: 10,
-      marginBottom: 10,
-      marginLeft: 15,
-      marginRight: 15,
+      backgroundColor: '#f9ad30',
+
   },
   menuToolbar: {
       height: 40,
       width: 40,
-      backgroundColor: '#fde3b7',
+      backgroundColor: '#f9ad30',
+      marginTop:15,
+      marginLeft: 5,
+      marginRight: 5
   }
 })
 
-
-/*
-.userProfile {
-    display: block;
-    width: 100%;
-    margin: 3rem auto 1rem;
-  
-    ul, li {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-    }
-  
-    ul {
-      li {
-        display: block;
-        width: 100%;
-  
-        .img {
-          display: block;
-          width: 5.0rem;
-          margin: 0 auto;
-  
-          img {
-            display: block;
-            width: 100%;
-          }
-        }
-  
-        .displayName {
-          display: block;
-          width: 100%;
-          text-align: center;
-          margin: 1rem auto;
-          font-size: 1.8rem;
-          line-height: 1;
-          text-transform: uppercase;
-        }
-      }
-    }
-  }
-  */

@@ -48,17 +48,19 @@ export default StyleSheet.create({
     },
     row: {
         flexDirection: "row",
+       // flex: 10,
         flexWrap: "wrap",
         justifyContent: "space-between",
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 15,
-        marginRight: 15,
+        backgroundColor: '#f9ad30',
         
     },
     menuToolbar: {
         height: 40,
         width: 40,
-        backgroundColor: '#fde3b7',
+        backgroundColor: '#f9ad30',
+        marginTop:15,
+        marginBottom:15,
+        marginLeft: 5,
+        marginRight: 5
     }
 });
