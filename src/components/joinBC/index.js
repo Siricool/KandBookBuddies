@@ -1,30 +1,47 @@
-import React, { useEffect } from 'react';
-import { TouchableOpacity, View, Text, returnKeyType} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, View, Text, TextInput, returnKeyType} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { ScrollView, SearchBar } from 'react-native-gesture-handler';
+import { FlatList, ScrollView} from 'react-native-gesture-handler';
+import { SearchBar } from 'react-native-elements';
 
 import AuthWrapper from '../AuthWrapper';
 import styles from './styles.js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const JoinBC = ({navigation}) => {
+    const [searching, setSearch] = useState('');
 
-
-    /*useEffect(() => {
+    useEffect(() => {
 
     });
 
     const handleJoinBC = () => {
 
-    }*/
+    }
 
     return (
         <AuthWrapper>
+
             <View style={styles.container}>
-            <KeyboardAwareScrollView style={{ width: '100%', height: '100%' }}>
+           
             <Text style={styles.text}>Join Book Club</Text>
+            <SafeAreaView>
+                <SearchBar 
+                    round
+                    inputContainerStyle={styles.input}
+                    containerStyle={styles.inputcontainer}                 
+                    lightTheme 
+                    //value={search}
+                    onChangeText = {(text) => setSearch(text)}
+                />
+
+                <FlatList
+                
+                />
+             </SafeAreaView>   
 
             
-            </KeyboardAwareScrollView>
+            
             </View>
             
            </AuthWrapper> 
