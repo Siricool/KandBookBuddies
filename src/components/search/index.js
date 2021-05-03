@@ -29,7 +29,7 @@ const Search = ({ navigation }) => {
   return (
     <View style={styles.container}>
         <KeyboardAwareScrollView
-        style={{width: '100%', height: '100%'}}
+        style={{width: '100%', height: '88%'}}
         >
          <Text style={styles.text}> Search </Text>
        
@@ -46,7 +46,7 @@ const Search = ({ navigation }) => {
             })}
         </View>
 
-
+        </KeyboardAwareScrollView>
 
          <View style={styles.row}>
           <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
@@ -67,7 +67,7 @@ const Search = ({ navigation }) => {
               source={require('../../../assets/House_picture.png')}
             />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight onPress={() => navigation.navigate('Search')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Search_picture.png')}
@@ -80,8 +80,7 @@ const Search = ({ navigation }) => {
             />
           </TouchableHighlight>
         </View>
-
-      </KeyboardAwareScrollView>
+     
     </View>
   );
 }
