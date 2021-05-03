@@ -48,18 +48,16 @@ export default StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-       // flex: 10,
+        flex: 10,
         flexWrap: "wrap",
         justifyContent: "space-between",
         backgroundColor: '#f9ad30',
-        
     },
     menuToolbar: {
         height: 40,
         width: 40,
         backgroundColor: '#f9ad30',
         marginTop:15,
-        marginBottom:15,
         marginLeft: 5,
         marginRight: 5
     }
