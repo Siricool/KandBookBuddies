@@ -6,12 +6,18 @@ export default StyleSheet.create({
     backgroundColor: '#fde3b7'
   },
   title: {
-
+    fontSize: 20,
+      fontWeight: "bold",
+      marginTop: 25,
+      marginLeft: 30,
+      marginRight: 30,
+      fontFamily: 'Helvetica', 
+      alignSelf: 'center',
   },
   text: {
     fontSize: 28,
     fontWeight: "bold",
-    color: '#f9ad30',
+   // color: '#f9ad30',
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 25,
@@ -23,14 +29,16 @@ export default StyleSheet.create({
     fontStyle: 'italic'
   },
   textLeft: {
-    fontSize: 20,
-    
-    
+    fontSize: 20,    
     marginTop: 10,
     marginLeft: 25,
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  smallerGreyText: {
+    fontSize: 13,
+    color: 'grey',
+  },  
   smallText: {
     fontSize: 17,
     color: 'grey',
@@ -40,9 +48,37 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  smallMiddleText: {
+    fontSize: 17,
+    color: 'grey',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 60,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
   middleText: {
     fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
+  middleTextOrange: {
+    fontSize: 18,
     color: 'orange',
+    fontWeight: "bold",
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
+    middleTextPink: {
+    fontSize: 18,
+    color: '#d679ae',
     fontWeight: "bold",
     marginTop: 5,
     marginBottom: 10,
@@ -57,18 +93,37 @@ export default StyleSheet.create({
     marginLeft: 230,
     marginBottom: 20
   },
+  capital: {
+    textTransform: 'capitalize'
+  },
   bookImage: {
     flex: 1,
-    width: 100,
-    height: 140,
+    width: 130,
+    height: 190,
     marginTop: 10,
+    marginBottom: 10,
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#fde3b7',
-    
   },
-  
+  bookImageSmall: {
+    width: 60,
+    height: 80,
+    marginTop: 10,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    alignSelf: 'center',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#fde3b7',
+  },
+  rowBooks: {
+    height: 100,
+    flexWrap: "wrap",
+    marginHorizontal: 50,
+    marginVertical: 10
+  },
   BBimage: {
     flex: 1,
     height: 50,
@@ -96,6 +151,7 @@ export default StyleSheet.create({
     paddingLeft: 16,
     fontFamily: 'Helvetica'
   },
+  
   button: {
     backgroundColor: '#f9ad30',
     marginLeft: 30,
@@ -107,11 +163,38 @@ export default StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'Helvetica'
   },
+  coolButton: {
+    backgroundColor: '#FFF7E0',
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 25,
+    height: 70,
+    width: 200,
+    //center button and text
+    alignItems: "center", 
+    alignSelf: "center", 
+    justifyContent: 'center', 
+    //rounded corners
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#FFF7E0',
+    //shadow
+    shadowOffset:{ width: 8, height: 8, },
+    shadowColor: '#f9ad30',
+    shadowOpacity: 0.5,
+},
   buttonTitle: {
     color: 'white',
     fontSize: 16,
     fontWeight: "bold",
     fontFamily: 'Helvetica'
+  },
+  whiteSquare: {
+    backgroundColor: '#FFF7E0',
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
   },
   footerView: {
     flex: 1,
@@ -139,8 +222,7 @@ export default StyleSheet.create({
     flex: 10,
     flexWrap: "wrap",
     justifyContent: "space-between",
-    backgroundColor: '#f9ad30',
-
+    backgroundColor: '#FFF7E0',
   },
   buddietext: {
     flexDirection: "row",
@@ -155,15 +237,14 @@ export default StyleSheet.create({
     marginRight: 25,
     alignSelf: "center",
     fontFamily: 'Helvetica'
-
   },
   menuToolbar: {
     height: 40,
     width: 40,
-    backgroundColor: '#f9ad30',
+    backgroundColor: '#FFF7E0',
     marginTop: 15,
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 20,
+    marginRight: 20,
   },
   center: {
     alignContent: 'center'

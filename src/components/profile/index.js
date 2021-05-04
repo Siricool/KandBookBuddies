@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styles from './styles';
+import styles from '../styles';
 
 import { Image, TouchableHighlight, View, Text } from 'react-native';
 
@@ -15,9 +15,9 @@ const MyProfile = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <KeyboardAwareScrollView style={{ width: '100%', height: '88%' }}>
+            <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
                 <Text style={styles.text}>My Profile</Text>
-                <Text style={styles.smallText}>{currentUser.fullName}</Text>
+                <Text style={styles.smallText}>{currentUser.fullName}</Text> 
                 <Text style={styles.middleText}>My Stats</Text>
                 <Text style={styles.middleText}>My Book Clubs</Text>
                 <Text style={styles.middleText}>My Books</Text>
@@ -41,7 +41,7 @@ const MyProfile = ({navigation}) => {
                             source={require('../../../assets/House_picture.png')}
                         />
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+                    <TouchableHighlight onPress={() => navigation.navigate('Search')}>
                         <Image
                             style={styles.menuToolbar}
                             source={require('../../../assets/Search_picture.png')}
