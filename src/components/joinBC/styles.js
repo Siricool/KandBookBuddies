@@ -19,14 +19,29 @@ export default StyleSheet.create({
         fontFamily: 'Helvetica' 
     },
 
+    middleText: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginTop: 5,
+        marginBottom: 10,
+        marginLeft: 25,
+        marginRight: 25,
+        fontFamily: 'Helvetica',
+       
+      },
+
+    smallText: {
+        fontSize: 15,
+        fontWeight: "bold",
+        fontFamily: 'Helvetica'
+      },
+
     input: {
         backgroundColor: 'white'
     },
 
     inputcontainer: {
         backgroundColor: '#fde3b7',
-        borderWidth: 0, 
-        borderRadius: 0, 
         borderBottomColor: 'transparent',
         borderTopColor: 'transparent'
     },
@@ -36,12 +51,27 @@ export default StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,
-        height: 48,
-        borderRadius: 5,
+        height: 50,
+        width: 80,
+        borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center',
         fontFamily: 'Helvetica' 
     },
+
+    row: {
+        flexDirection: "row",
+        flex: 10,
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: '#FFF7E0',
+        marginBottom: 10,
+        marginHorizontal: 10,
+        borderRadius: 10
+        
+        
+      },
 
 
 
