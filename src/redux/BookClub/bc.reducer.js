@@ -2,6 +2,7 @@ import bcTypes from './bc.types';
 
 const INITIAL_STATE = {
     currentBC: null,
+    bc: [],
 };
 
 const bcReducer = (state = INITIAL_STATE, action) => {
@@ -11,8 +12,13 @@ const bcReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentBC: action.payload
             }
-            default:
-                return state;
+        case bcTypes.SET_BC:
+            return {
+                ...state,
+                bc: action.payload
+            }
+        default:
+            return state;
     }
 };
 

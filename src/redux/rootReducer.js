@@ -7,6 +7,6 @@ import bookReducer from './Books/book.reducer';
 export default combineReducers({
   user: userReducer,
   bookclub: bcReducer,
-  booksData: bookReducer 
+  booksData: bookReducer ,
 })
 
