@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-native';
 import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { emailSignInStart } from './../../redux/User/user.actions';
 
 import AuthWrapper from './../AuthWrapper';
+import { emailSignInStart } from './../../redux/User/user.actions';
 import { signUpUserStart } from './../../redux/User/user.actions';
-
 import styles from './styles';
-
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -28,8 +26,6 @@ const Signup = ({ navigation }) => {
   const groupID = [];
   const [errors, setErrors] = useState([]);
 
-  
-
   useEffect(() => {
     if (currentUser){
       navigation.navigate('ChooseBC');
@@ -46,6 +42,10 @@ const Signup = ({ navigation }) => {
   };
 
   const handleFormSubmit = event => {
+    if (password !== confirmPassword) {
+      alert("Passwords don't match.")
+      return
+    }
     event.preventDefault();
     dispatch(signUpUserStart({
       displayName,
@@ -57,7 +57,6 @@ const Signup = ({ navigation }) => {
     dispatch(emailSignInStart({ email, password }))
     
   }
-
 
   const onFooterLinkPress = () => {
     navigation.navigate('SignIn')
