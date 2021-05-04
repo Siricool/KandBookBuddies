@@ -10,5 +10,6 @@ export default combineReducers({
   bookclub: bcReducer,
   booksData: bookReducer,
   cartData: cartReducer 
+  
 })
 
