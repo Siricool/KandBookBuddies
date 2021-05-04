@@ -48,6 +48,16 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  smallerText: {
+    fontSize: 15,
+    color: 'grey',
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica',
+    textAlign: 'center'
+  },
   smallMiddleText: {
     fontSize: 17,
     color: 'grey',
@@ -61,7 +71,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginTop: 5,
-    marginBottom: 10,
+    marginBottom: 5,
     marginLeft: 25,
     marginRight: 25,
     fontFamily: 'Helvetica'
@@ -70,6 +80,17 @@ export default StyleSheet.create({
     fontSize: 18,
     color: 'orange',
     fontWeight: "bold",
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
+  smallTextOrange: {
+    fontSize: 15,
+    color: 'orange',
+    fontWeight: "bold",
+    textAlign: 'center',
     marginTop: 5,
     marginBottom: 10,
     marginLeft: 25,
@@ -112,7 +133,7 @@ export default StyleSheet.create({
     height: 80,
     marginTop: 10,
     marginBottom: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 30,
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
@@ -163,6 +184,20 @@ export default StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'Helvetica'
   },
+  smallButton: {
+    backgroundColor: '#FFF7E0',
+    height: 30,
+    width: 120,
+    alignItems: "center", 
+    alignSelf: "center", 
+    justifyContent: 'center', 
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#FFF7E0',
+    shadowOffset:{ width: 8, height: 8, },
+    shadowColor: '#f9ad30',
+    shadowOpacity: 0.5,
+},
   coolButton: {
     backgroundColor: '#FFF7E0',
     marginLeft: 30,
@@ -189,8 +224,25 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontFamily: 'Helvetica'
   },
+  whiteBigSquare: {
+    height: 300,
+    backgroundColor: '#FFF7E0',
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
   whiteSquare: {
     backgroundColor: '#FFF7E0',
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  orangeSquare: {
+    backgroundColor: '#fde3b7',
+    alignItems: "center", 
+    justifyContent: 'center', 
     marginHorizontal: 20,
     marginTop: 10,
     marginBottom: 10,
@@ -248,6 +300,9 @@ export default StyleSheet.create({
   },
   center: {
     alignContent: 'center'
+  },
+  left: {
+    alignContent: 'flex-start'
   }
 })
 

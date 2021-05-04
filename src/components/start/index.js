@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
+import {addBook} from '../../redux/Cart/cart.actions'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -23,9 +25,19 @@ const StartPage = ({ navigation }) => {
     );
   }, []);
 
+  const configAddToCart = (book) => {
+    if (!book) return;
+    dispatch(
+      addBook(book)
+      
+    )
+  };
+
   const recommendBook = () => {
     const numbOfBooks = books.length;
+    //console.log('ANTAL BÖCKER'+numbOfBooks)
     const randNumb = Math.floor(Math.random() * (numbOfBooks)) + 1;
+    //console.log('RANDOM  BÖCKER'+randNumb)
     let chosenBook = books.find(book => book.id === randNumb);
     if (chosenBook) {
       console.log('random chosen BOOK '+chosenBook.title)
@@ -36,6 +48,11 @@ const StartPage = ({ navigation }) => {
           <Text style={styles.smallText}> by {chosenBook.author}</Text>
           <Image source={bookurl}
             style={styles.bookImage} />
+          <TouchableOpacity
+          style={styles.smallButton}
+           onPress={() => configAddToCart(chosenBook)} >
+            <Text > Add to My List </Text>
+          </TouchableOpacity>
         </View>
       )
     }
