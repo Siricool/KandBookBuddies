@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+/*import { StyleSheet, Text, View } from 'react-native';
  
 export default StyleSheet.create({
     container: {
@@ -22,3 +22,5 @@ export default StyleSheet.create({
         backgroundColor: '#fde3b7',
     }
 })
+
+*/

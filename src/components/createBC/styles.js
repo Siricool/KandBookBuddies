@@ -40,6 +40,4 @@ export default StyleSheet.create({
         fontFamily: 'Helvetica' 
     },
 
-
-
 })

@@ -4,7 +4,7 @@ import { Text, View, TouchableHighlight, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './styles.js'
+import styles from '../styles.js'
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -20,7 +20,7 @@ const Search = ({ navigation }) => {
   return (
     <View style={styles.container}>
         <KeyboardAwareScrollView
-        style={{width: '100%', height: '88%'}}
+        style={{width: '100%', height: '90%'}}
         >
          <Text style={styles.text}> Search </Text>
        
@@ -28,7 +28,7 @@ const Search = ({ navigation }) => {
         </KeyboardAwareScrollView>
 
          <View style={styles.row}>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
             <Image
               style={styles.menuToolbar}
               source={require('../../../assets/Profile_picture.png')}

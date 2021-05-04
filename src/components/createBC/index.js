@@ -6,7 +6,7 @@ import AuthWrapper from '../AuthWrapper';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBCStart } from '../../redux/BookClub/bc.actions';
-import {updateGroupsForUser} from '../../redux/User/user.actions';
+import { updateGroupsForUser } from '../../redux/User/user.actions';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
@@ -14,7 +14,7 @@ const mapState = ({ user }) => ({
     userErr: user.userErr
 });
 
-const mapClub = ({bookclub}) => ({
+const mapClub = ({ bookclub }) => ({
     currentBC: bookclub.currentBC
 })
 
@@ -23,30 +23,30 @@ const CreateBC = ({ navigation }) => {
     const { currentUser, useErr, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
-    const { currentBC} = useSelector(mapClub);
+    const { currentBC } = useSelector(mapClub);
 
     useEffect(() => {
-       /* if (currentBC)
-         { updateUserInfo()   
-        }*/
-        if (updatedUser){
+        /* if (currentBC)
+          { updateUserInfo()   
+         }*/
+        if (updatedUser) {
             navigation.navigate('StartPage')
         }
 
-        },[updatedUser]
+    }, [updatedUser]
     );
 
-    
+
 
     const handleCreateBC = () => {
         // event.preventDefault();
-        
+
         dispatch(createBCStart({
             groupName,
             members
         }));
-        
-        dispatch(updateGroupsForUser({groupName}));
+
+        dispatch(updateGroupsForUser({ groupName }));
     }
 
     return (
@@ -57,7 +57,7 @@ const CreateBC = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         placeholder="Name of Book Club"
-                        
+
                         placeholderTextColor='#aaaaaa'
                         onChangeText={(text) => setGroupName(text)}
                         underlineColorAndroid='transparent'

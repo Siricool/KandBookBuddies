@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.js';
+import styles from '../styles';
 import { useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image } from 'react-native';
 
@@ -14,18 +14,7 @@ const mapState = ({ user }) => ({
 const BCOverview = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
-  /* const fetchUser = {};
- 
-   if (updatedUser) {
-     fetchUser = updatedUser;
-     console.log('FETCH 1 '+fetchUser)
-   }
-   else {
-     fetchUser = currentUser;
-     console.log('FETCH 2 '+fetchUser);
-   }
- {fetchUser.groupID}
- */
+
   const renderElement = () => {
     if (updatedUser != null) {
       return <Text> {updatedUser.groupID} </Text>;
@@ -37,10 +26,11 @@ const BCOverview = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView style={{ width: '100%', height: '88%' }}>
-        <Text style={styles.title}> My Book Clubs </Text>
+      <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
+        <Text style={styles.text}> My Book Clubs </Text>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.coolButton}
+        onPress={() => navigation.navigate('BCView')}> 
           <Text style={styles.buttonText}>
             {renderElement()}
           </Text>
