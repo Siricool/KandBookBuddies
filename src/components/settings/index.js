@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, View, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useSelector } from 'react-redux';
+import { Icon } from 'react-native-elements'
 
 import styles from '../styles.js'
 
@@ -34,34 +35,44 @@ const Settings= ({ navigation }) => {
 
          <View style={styles.row}>
           <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
-            <Image
-              style={styles.menuToolbar}
-              source={require('../../../assets/Profile_picture.png')}
-            />
+          <Icon
+                        reverse
+                        name='ios-person'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-            <Image
-              style={styles.menuToolbar}
-              source={require('../../../assets/BookClubs_picture.png')}
-            />
+          <Icon
+                        reverse
+                        name='ios-book'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
-            <Image
-              style={styles.menuToolbar}
-              source={require('../../../assets/House_picture.png')}
-            />
+          <Icon
+                        reverse
+                        name='ios-home'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => navigation.navigate('Search')}>
-            <Image
-              style={styles.menuToolbar}
-              source={require('../../../assets/Search_picture.png')}
-            />
+          <Icon
+                        reverse
+                        name='ios-search'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
-            <Image
-              style={styles.menuToolbar}
-              source={require('../../../assets/Settings_picture.png')}
-            />
+          <Icon
+                        reverse
+                        name='ios-settings'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
           </TouchableHighlight>
         </View>
 

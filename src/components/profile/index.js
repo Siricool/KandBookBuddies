@@ -80,7 +80,8 @@ const MyProfile = ({ navigation }) => {
                         reverse
                         name='ios-person'
                         type='ionicon'
-                        color='#f9ad30'
+                        color='#fde3b7'
+
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
@@ -88,7 +89,7 @@ const MyProfile = ({ navigation }) => {
                         reverse
                         name='ios-book'
                         type='ionicon'
-                        color='#f9ad30'
+                        color='#fde3b7'
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
@@ -96,7 +97,7 @@ const MyProfile = ({ navigation }) => {
                         reverse
                         name='ios-home'
                         type='ionicon'
-                        color='#f9ad30'
+                        color='#fde3b7'
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('Search')}>
@@ -104,7 +105,7 @@ const MyProfile = ({ navigation }) => {
                         reverse
                         name='ios-search'
                         type='ionicon'
-                        color='#f9ad30'
+                        color='#fde3b7'
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
@@ -112,7 +113,7 @@ const MyProfile = ({ navigation }) => {
                         reverse
                         name='ios-settings'
                         type='ionicon'
-                        color='#f9ad30'
+                        color='#fde3b7'
                     />
                 </TouchableHighlight>
             </View>
