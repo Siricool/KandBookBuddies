@@ -292,10 +292,12 @@ export default StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    flex: 10,
+    //flex: 10,
     flexWrap: "wrap",
     justifyContent: "space-between",
     backgroundColor: 'white',
+    borderTopWidth: 1,
+    borderTopColor: '#fde3b7',
     
   },
   buddietext: {
