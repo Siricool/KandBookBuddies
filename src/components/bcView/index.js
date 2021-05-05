@@ -59,18 +59,22 @@ const BCView = ({ navigation }) => {
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
         <Text style={styles.text}> {bookClub} </Text>
-        <Text style={styles.textLeft}> Buddies in {bookClub} </Text>
-        <Text style={styles.middleTextPink}>    Test </Text><Text style={styles.middleTextPink}>    Julia </Text><Text style={styles.middleTextPink}>    Siri </Text>
-         
-       <Text style={styles.textLeft}> Current Reading </Text>
-       <Text style={styles.middleTextOrange}>A Key to Treehouse Living</Text>
-        <Text style={styles.smallText}> by  Elliot Reed </Text>
+        
+        <Text style={styles.textLeft}>Currently Reading </Text>
+       <Text style={styles.smallBlackText}>A Key to Treehouse Living by Elliot Reed</Text>
+        
         <Image
           style={styles.bookImage}
           source={ bookUrlTest}/>
-     
-       <Text style={styles.textLeft}> History </Text>
-       <Text style={styles.smallText}> Books you've read together: </Text>
+
+        <View style={styles.whiteSquare}>
+        <Text style={styles.textLeft}>Buddies in {bookClub} </Text>
+        <Text style={styles.middleTextPink}>    Test </Text><Text style={styles.middleTextPink}>    Julia </Text><Text style={styles.middleTextPink}>    Siri </Text>
+        </View>
+
+       
+       <Text style={styles.textLeft}>History </Text>
+       <Text style={styles.smallBlackText}>Books you've read together: </Text>
        <SafeAreaView>
        <ScrollView horizontal={true} 
        vertical={true}
@@ -114,6 +118,10 @@ const BCView = ({ navigation }) => {
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Siri</Text>: Yeahh, me too :D <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Julia</Text>: Meeting next friday?? <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
        </View>
+       <Image
+            style={styles.bookLogo}
+            source={require('../../../assets/whiteicon.png')}
+          />
 
       </ImageBackground>
       </KeyboardAwareScrollView>

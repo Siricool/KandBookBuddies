@@ -45,7 +45,7 @@ const StartPage = ({ navigation }) => {
       return (
         <View>
           <Text style={styles.middleTextOrange}>{chosenBook.title}</Text>
-          <Text style={styles.smallText}> by {chosenBook.author}</Text>
+          <Text style={styles.smallText}>by {chosenBook.author}</Text>
           <Image source={bookurl}
             style={styles.bookImage} />
           <TouchableOpacity
@@ -69,22 +69,22 @@ const StartPage = ({ navigation }) => {
        <Text style={styles.whiteText}>Buddies Updates</Text>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}><Text style={styles.capital}> {currentUser.displayName}</Text>, check out this book!  </Text>
+        <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
         <Text > {recommendBook()} </Text>
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}> Book Buddy of the Week  </Text>
-        <Text style={styles.smallText}> Your friend Carola has read a lot! </Text>
+        <Text style={styles.textLeft}>Book Buddy of the Week  </Text>
+        <Text style={styles.smallText}>Your friend Carola has read a lot! </Text>
         <Image
           style={styles.userImage}
           source={require('../../../assets/carola.jpg')}/>
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}> STS book club is currently reading </Text>
+        <Text style={styles.textLeft}>STS book club is currently reading </Text>
         <Text style={styles.middleTextOrange}>The Adventures of Sherlock Holmes</Text>
-        <Text style={styles.smallText}> by Sir Arthur Conan Doyle </Text>
+        <Text style={styles.smallText}>by Sir Arthur Conan Doyle </Text>
         <Image
           style={styles.bookImage}
           source={require('../../../assets/sherlock.jpg')}/>

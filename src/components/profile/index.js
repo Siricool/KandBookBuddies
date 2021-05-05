@@ -32,51 +32,101 @@ const MyProfile = ({ navigation }) => {
             return <Text> {currentUser.groupID} </Text>;
         }
     };
-
+    const bookUrlTest = { uri: 'https://images-na.ssl-images-amazon.com/images/I/41gznIDw41L._SX326_BO1,204,203,200_.jpg' }
     return (
         <View>
-            <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
-            <ImageBackground
-        style={styles.fillPhoto}
-          source={require('../../../assets/backg.png')}>
-                <Text style={styles.text}><Text style={styles.capital}>{currentUser.displayName}</Text></Text>
-                <Text style={styles.middleTextOrange}></Text> 
-                <Text style={styles.middleText}>My Stats</Text>
-                <Text style={styles.middleText}>My Book Clubs</Text>
-                <View style={styles.left}>
-                    <TouchableOpacity style={styles.coolButton}
-                        onPress={() => navigation.navigate('BCView')}>
-                        <Text style={styles.buttonText}>
-                            {renderElement()}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+            <KeyboardAwareScrollView style={{ width: '100%', height: '95%' }}>
+                <ImageBackground
+                    style={styles.fillPhoto}
+                    source={require('../../../assets/backg.png')}>
+                    <Text style={styles.text}><Text style={styles.capital}>{currentUser.displayName}</Text></Text>
+                    <Text style={styles.middleTextOrange}></Text>
+                    <View style={styles.whiteSquare}>
+                        <Text style={styles.textLeft}>My Stats</Text>
+                        <Text style={styles.smallText}>Read books:   Clubs: </Text>
+                        <Text style={styles.middleTextPink}>       34               1</Text>
+                    </View>
 
-                <Text style={styles.middleText}>My Read Books</Text>
+                    <View style={styles.whiteSquare}>
+                        <Text style={styles.textLeft}>My Book Clubs</Text>
+                        <View style={styles.left}>
+                            <TouchableOpacity style={styles.coolButton}
+                                onPress={() => navigation.navigate('BCView')}>
+                                <Text style={styles.buttonText}>
+                                    {renderElement()}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
 
-                <SafeAreaView style={styles.whiteBigSquare}>
-                    <Text style={styles.middleText}>My Wish List </Text>
-                    <ScrollView vertical={true} style={styles.rowBooks}>
-                        {cartItems.map((cartItem, index) => {
-                            const bookurl = { uri: cartItem.picture }
-                            return (
-                                <View key={cartItem.title} style={styles.orangeSquare}>
-                                    <Text style={styles.smallTextOrange}> {cartItem.title} </Text>
-                                    <Image
-                                        style={styles.bookImageSmall}
-                                        source={bookurl} />
-                                    <Text style={styles.smallerText}> {cartItem.author} </Text>
-                                </View>
-                            )
-                        })}
-                    </ScrollView>
-                </SafeAreaView>
+                    <View style={styles.whiteSquare}>
+                        <Text style={styles.textLeft}>My Read Books</Text>
+                        <SafeAreaView>
+                            <ScrollView horizontal={true}
+                                vertical={true}
+                                style={styles.rowBooks}>
+                                <Image //här får vi kanske loopa igenom de böcker som klubben har läst?
+                                    style={styles.bookImageSmall}
+                                    source={bookUrlTest} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={require('../../../assets/sherlock.jpg')} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={bookUrlTest} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={require('../../../assets/sherlock.jpg')} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={bookUrlTest} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={bookUrlTest} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={bookUrlTest} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={require('../../../assets/sherlock.jpg')} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={require('../../../assets/sherlock.jpg')} />
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={bookUrlTest} />
+                            </ScrollView>
+                        </SafeAreaView>
+                    </View>
+                    <SafeAreaView style={styles.whiteBigSquare}>
 
-            </ImageBackground>            
+                        <Text style={styles.textLeft}>My Wish List </Text>
+                        <ScrollView vertical={true} style={styles.rowBooks}>
+                            {cartItems.map((cartItem, index) => {
+                                const bookurl = { uri: cartItem.picture }
+                                return (
+                                    <View key={cartItem.title} style={styles.orangeSquare}>
+
+                                        <Image
+                                            style={styles.bookImageSmall}
+                                            source={bookurl} />
+                                        <Text style={styles.smallTextOrange}> {cartItem.title} </Text>
+                                        <Text style={styles.smallerText}> {cartItem.author} </Text>
+                                    </View>
+                                )
+                            })}
+                        </ScrollView>
+                    </SafeAreaView>
+
+                    <Image
+                        style={styles.bookLogo}
+                        source={require('../../../assets/whiteicon.png')}
+                    />
+                </ImageBackground>
             </KeyboardAwareScrollView>
             <View style={styles.row}>
                 <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
-                <Icon
+                    <Icon
                         reverse
                         name='ios-person'
                         type='ionicon'
@@ -84,7 +134,7 @@ const MyProfile = ({ navigation }) => {
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-                <Icon
+                    <Icon
                         reverse
                         name='ios-book'
                         type='ionicon'
@@ -100,7 +150,7 @@ const MyProfile = ({ navigation }) => {
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('Search')}>
-                <Icon
+                    <Icon
                         reverse
                         name='ios-search'
                         type='ionicon'
@@ -108,7 +158,7 @@ const MyProfile = ({ navigation }) => {
                     />
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
-                <Icon
+                    <Icon
                         reverse
                         name='ios-settings'
                         type='ionicon'
@@ -132,7 +182,7 @@ export default MyProfile;
                         source={require('../../../assets/BookClubs_picture.png')}
                     />
                         />
-                        
+
                          <Image
                         style={styles.menuToolbar}
                         source={require('../../../assets/Settings_picture.png')}
