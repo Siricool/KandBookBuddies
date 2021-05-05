@@ -43,7 +43,7 @@ export function* isUserAuthenticated() {
     yield getSnapshotFromUserAuth(userAuth);
 
   } catch (err) {
-    // alert(err)
+     //alert(err)
      console.log(err);
   }
 }

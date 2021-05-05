@@ -7,6 +7,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { emailSignInStart } from './../../redux/User/user.actions';
 import AuthWrapper from './../AuthWrapper/index';
 import styles from './styles.js';
+import { Icon } from 'react-native-elements'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser
@@ -80,13 +82,18 @@ const SignIn = ({ navigation }) => {
           <View style={styles.footerView}>
             <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
           </View>
+      
         </KeyboardAwareScrollView>
+        
+       
+                 
       </View>
     </AuthWrapper>
   );
 }
 
 export default SignIn;
+
 
 
 /*
