@@ -28,17 +28,21 @@ const BCOverview = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
-      <ImageBackground
-        style={styles.fillPhoto}
+        <ImageBackground
+          style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-        <Text style={styles.text}> My Book Clubs </Text>
+          <Text style={styles.text}> My Book Clubs </Text>
 
-        <TouchableOpacity style={styles.coolButton}
-        onPress={() => navigation.navigate('BCView')}> 
-          <Text style={styles.buttonText}>
-            {renderElement()}
-          </Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.coolButton}
+            onPress={() => navigation.navigate('BCView')}>
+            <Text style={styles.buttonText}>
+              {renderElement()}
+            </Text>
+          </TouchableOpacity>
+          <Image
+            style={styles.bookLogo}
+            source={require('../../../assets/whiteicon.png')}
+          />
         </ImageBackground>
       </KeyboardAwareScrollView>
 

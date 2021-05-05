@@ -61,6 +61,15 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  smallBlackText: {
+    fontSize: 17,
+    color: 'black',
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
   smallerText: {
     fontSize: 15,
     color: 'grey',
@@ -224,6 +233,7 @@ export default StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     marginTop: 25,
+    marginBottom: 25,
     height: 70,
     width: 200,
     //center button and text
@@ -233,7 +243,7 @@ export default StyleSheet.create({
     //rounded corners
     borderRadius:10,
     borderWidth: 1,
-    borderColor: '#FFF7E0',
+    borderColor: '#fde3b7',
     //shadow
     shadowOffset:{ width: 8, height: 8, },
     shadowColor: '#f9ad30',
@@ -264,7 +274,8 @@ export default StyleSheet.create({
     backgroundColor: '#fde3b7',
     alignItems: "center", 
     justifyContent: 'center', 
-    marginHorizontal: 20,
+    width: 600,
+    //marginHorizontal: '10%' ,
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 10,

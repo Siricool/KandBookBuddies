@@ -71,7 +71,7 @@ const StartPage = ({ navigation }) => {
        <Text style={styles.whiteText}>Buddies Updates</Text>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}><Text style={styles.capital}> {currentUser.displayName}</Text>, check out this book!  </Text>
+        <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
         <Text > {recommendBook()} </Text>
         </View>
 
