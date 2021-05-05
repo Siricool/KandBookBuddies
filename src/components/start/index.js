@@ -53,7 +53,7 @@ const StartPage = ({ navigation }) => {
           <TouchableOpacity
           style={styles.smallButton}
            onPress={() => configAddToCart(chosenBook)} >
-            <Text > Add to My List </Text>
+            <Text> Add to My List </Text>
           </TouchableOpacity>
         </View>
       )
@@ -72,12 +72,12 @@ const StartPage = ({ navigation }) => {
 
         <View style={styles.whiteSquare}>
         <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
-        <Text > {recommendBook()} </Text>
+        <Text>{recommendBook()}</Text>
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>Book Buddy of the Week  </Text>
-        <Text style={styles.smallText}>Your friend Carola has read a lot! </Text>
+        <Text style={styles.textLeft}>Book Buddy of the Week</Text>
+        <Text style={styles.smallText}>Your friend Carola has read a lot!</Text>
         <Image
           style={styles.userImage}
           source={require('../../../assets/carola.jpg')}/>
@@ -99,7 +99,7 @@ const StartPage = ({ navigation }) => {
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
         <Icon
                         reverse
                         name='ios-person'
@@ -107,7 +107,7 @@ const StartPage = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
         <Icon
                         reverse
                         name='ios-book'
@@ -115,7 +115,7 @@ const StartPage = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
         <Icon
                         reverse
                         name='ios-home'
@@ -123,7 +123,7 @@ const StartPage = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Search')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
         <Icon
                         reverse
                         name='ios-search'
@@ -131,7 +131,7 @@ const StartPage = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
         <Icon
                         reverse
                         name='ios-settings'
