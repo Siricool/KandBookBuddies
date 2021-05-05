@@ -23,7 +23,7 @@ const JoinBC = ({ navigation }) => {
     useEffect(() => {
     }, []);
 
-    console.log(bc)
+    console.log('I JOIN BC '+bc)
     const handleJoinBC = () => {
 
     }

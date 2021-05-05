@@ -1,32 +1,43 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from '../styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
+
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   updatedUser: user.updatedUser
 });
 
+const mapStateBC = ({ bookclub }) => ({
+  bc: bookclub.bc
+});
 
 const BCView = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
+  const { bc } = useSelector(mapStateBC);
+
+/*
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+  }, []); 
+  */
+  //console.log('BOOKCLUB'+bc)
 
   const getTime = () => {
     const timeStamp = Date.now();
-   // console.log(timeStamp)
     const fixedTime = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit', day: '2-digit', 
     hour: '2-digit', minute: '2-digit'}).format(timeStamp);
-    //console.log(fixedTime);
     return ( fixedTime )
   }
   
-
   const renderElement = () => {
     if (updatedUser != null) {
       return updatedUser.groupID
@@ -35,22 +46,42 @@ const BCView = ({ navigation }) => {
       return currentUser.groupID
     }
   };
-
+  console.log('I VIEW BC !!!!!!')
+  console.log(' I VEW BC : '+bc)
   const bookClub = renderElement();
+  console.log('BOOKCLUB HEJ'+bookClub)
+  bookClub.toString();
+  console.log(bookClub)
   //console.log('BOOKCLUB VIEW '+bookClub)
   //TA EJ BORT NEDAN Start på funktion TO DO SEN:
-  /*const mapClubToId = ({}) => {
-    //ta ut alla bokklubbar i en array
-    const clubArray = []
-    for (const club in clubArray.title) {
-    if (bookClub == club) {
-      return club
-    }
-  }
-}
-  const currentClub = mapClubToId();
-    */
+  //console.log(bc)
 
+  const mapClubToId = () => {
+    //ta ut alla bokklubbar i en array
+    //const currentClub = renderElement();
+    console.log('HEJ HEJ BOOK CLUB: '+bookClub)
+    let chosenClub = bc.find(club => club.groupName === bookClub.toString());
+    if (chosenClub) {
+      console.log('CLUB I FORLOOP'+chosenClub)
+      const members = chosenClub.members;
+      console.log('MEMBERS !!!!!!!!! '+members)
+      const memberName = members[0].displayName;
+      console.log(memberName)
+      //console.log('CLUB I FORLOOP'+chosenClub.members.displayName)
+      return (
+        
+        <Text>{memberName}</Text>
+      )
+    }
+    /*if (bookClub == club.groupName) {
+      console.log('CLUB från user'+bookClub)
+      console.log('CLUB från data'+club.groupName)
+      return club
+    } */
+  
+};
+  
+    
   const bookUrlTest = {uri : 'https://images-na.ssl-images-amazon.com/images/I/41gznIDw41L._SX326_BO1,204,203,200_.jpg'}
   return (
     <View style={styles.container}>
@@ -60,7 +91,7 @@ const BCView = ({ navigation }) => {
           source={require('../../../assets/backg.png')}>
         <Text style={styles.text}> {bookClub} </Text>
         
-        <Text style={styles.textLeft}>Currently Reading </Text>
+       <Text style={styles.textLeft}>Currently Reading </Text>
        <Text style={styles.smallBlackText}>A Key to Treehouse Living by Elliot Reed</Text>
         
         <Image
@@ -69,10 +100,9 @@ const BCView = ({ navigation }) => {
 
         <View style={styles.whiteSquare}>
         <Text style={styles.textLeft}>Buddies in {bookClub} </Text>
-        <Text style={styles.middleTextPink}>    Test </Text><Text style={styles.middleTextPink}>    Julia </Text><Text style={styles.middleTextPink}>    Siri </Text>
+        <Text style={styles.middleTextPink}><Text style={styles.capital}>{mapClubToId()} </Text></Text>
         </View>
 
-       
        <Text style={styles.textLeft}>History </Text>
        <Text style={styles.smallBlackText}>Books you've read together: </Text>
        <SafeAreaView>

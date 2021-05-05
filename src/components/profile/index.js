@@ -19,10 +19,21 @@ const mapStateCart = createStructuredSelector({
     cartItems: selectCartItems
 });
 
+const mapStateBC = ({ bookclub }) => ({
+    bc: bookclub.bc
+  })
+
 const MyProfile = ({ navigation }) => {
     const { currentUser } = useSelector(mapState);
     const { updatedUser } = useSelector(mapState);
     const { cartItems } = useSelector(mapStateCart);
+    const { bc } = useSelector(mapStateBC);
+
+    useEffect(() => {
+        dispatch(
+          fetchBCStart()
+        );
+      }, []); 
 
     const renderElement = () => {
         if (updatedUser != null) {
@@ -32,6 +43,11 @@ const MyProfile = ({ navigation }) => {
             return <Text> {currentUser.groupID} </Text>;
         }
     };
+
+    const handlePress = () => {
+        navigation.navigate('BCView');
+      }
+
     const bookUrlTest = { uri: 'https://images-na.ssl-images-amazon.com/images/I/41gznIDw41L._SX326_BO1,204,203,200_.jpg' }
     return (
         <View>
@@ -51,7 +67,7 @@ const MyProfile = ({ navigation }) => {
                         <Text style={styles.textLeft}>My Book Clubs</Text>
                         <View style={styles.left}>
                             <TouchableOpacity style={styles.coolButton}
-                                onPress={() => navigation.navigate('BCView')}>
+                                onPress={() => navigation.navigate('BCView') }>
                                 <Text style={styles.buttonText}>
                                     {renderElement()}
                                 </Text>

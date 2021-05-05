@@ -1,21 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from '../styles';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { Icon } from 'react-native-elements'
-
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   updatedUser: user.updatedUser
 });
 
+const mapStateBC = ({ bookclub }) => ({
+  bc: bookclub.bc
+})
+
 
 const BCOverview = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
+  const { bc } = useSelector(mapStateBC);
 
+  const dispatch = useDispatch();
   const renderElement = () => {
     if (updatedUser != null) {
       return <Text> {updatedUser.groupID} </Text>;
@@ -25,6 +32,18 @@ const BCOverview = ({ navigation }) => {
     }
   };
 
+  useEffect(() => {
+    dispatch(
+      fetchBCStart()
+    );
+  }, []); 
+
+  const handlePress = () => {
+    if (bc!=undefined && bc.length>0){  
+    navigation.navigate('BCView');
+   }
+  }
+  console.log('BC BC BC'+bc)
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
@@ -34,7 +53,7 @@ const BCOverview = ({ navigation }) => {
           <Text style={styles.text}> My Book Clubs </Text>
 
           <TouchableOpacity style={styles.coolButton}
-            onPress={() => navigation.navigate('BCView')}>
+            onPress={() => handlePress() }>
             <Text style={styles.buttonText}>
               {renderElement()}
             </Text>
