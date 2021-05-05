@@ -274,7 +274,7 @@ export default StyleSheet.create({
     backgroundColor: '#fde3b7',
     alignItems: "center", 
     justifyContent: 'center', 
-    width: 600,
+    width: 270,
     //marginHorizontal: '10%' ,
     marginTop: 10,
     marginBottom: 10,

@@ -50,8 +50,7 @@ const BCOverview = ({ navigation }) => {
         <ImageBackground
           style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-          <Text style={styles.text}> My Book Clubs </Text>
-
+          <Text style={styles.whiteText}>My Book Clubs</Text>
           <TouchableOpacity style={styles.coolButton}
             onPress={() => handlePress() }>
             <Text style={styles.buttonText}>
@@ -66,7 +65,7 @@ const BCOverview = ({ navigation }) => {
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
         <Icon
                         reverse
                         name='ios-person'
@@ -75,7 +74,7 @@ const BCOverview = ({ navigation }) => {
 
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
         <Icon
                         reverse
                         name='ios-book'
@@ -83,7 +82,7 @@ const BCOverview = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
         <Icon
                         reverse
                         name='ios-home'
@@ -91,7 +90,7 @@ const BCOverview = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Search')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
         <Icon
                         reverse
                         name='ios-search'
@@ -99,7 +98,7 @@ const BCOverview = ({ navigation }) => {
                         color='#fde3b7'
                     />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
         <Icon
                         reverse
                         name='ios-settings'

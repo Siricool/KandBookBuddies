@@ -8,6 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { fetchBCStart } from '../../redux/BookClub/bc.actions';
+import { Icon } from 'react-native-elements'
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -89,7 +90,7 @@ const BCView = ({ navigation }) => {
       <ImageBackground
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-        <Text style={styles.text}> {bookClub} </Text>
+        <Text style={styles.whiteText}>{bookClub}</Text>
         
        <Text style={styles.textLeft}>Currently Reading </Text>
        <Text style={styles.smallBlackText}>A Key to Treehouse Living by Elliot Reed</Text>
@@ -157,35 +158,50 @@ const BCView = ({ navigation }) => {
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Profile_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
+        <Icon
+                        reverse
+                        name='ios-person'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/BookClubs_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
+        <Icon
+                        reverse
+                        name='ios-book'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/House_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
+        <Icon
+                        reverse
+                        name='ios-home'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Search')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Search_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
+        <Icon
+                        reverse
+                        name='ios-search'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Settings_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
+        <Icon
+                        reverse
+                        name='ios-settings'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
       </View>
 
