@@ -27,13 +27,18 @@ const Search = ({ navigation }) => {
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
           
-         <Text style={styles.text}> Search </Text>
+         <Text style={styles.whiteText}>Search</Text>
+
+         <Image
+            style={styles.bookLogo}
+            source={require('../../../assets/whiteicon.png')}
+          />
        
          </ImageBackground>
         </KeyboardAwareScrollView>
 
          <View style={styles.row}>
-          <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
+          <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
           <Icon
                         reverse
                         name='ios-person'
@@ -42,7 +47,7 @@ const Search = ({ navigation }) => {
 
                     />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
+          <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
           <Icon
                         reverse
                         name='ios-book'
@@ -50,7 +55,7 @@ const Search = ({ navigation }) => {
                         color='#fde3b7'
                     />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
+          <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
           <Icon
                         reverse
                         name='ios-home'
@@ -58,7 +63,7 @@ const Search = ({ navigation }) => {
                         color='#fde3b7'
                     />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('Search')}>
+          <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
           <Icon
                         reverse
                         name='ios-search'
@@ -66,7 +71,7 @@ const Search = ({ navigation }) => {
                         color='#fde3b7'
                     />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
+          <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
           <Icon
                         reverse
                         name='ios-settings'
