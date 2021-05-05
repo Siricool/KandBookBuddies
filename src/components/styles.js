@@ -1,10 +1,12 @@
 
 import { StyleSheet } from 'react-native'
 
+// orange: #f9ad30 
+// beige: #fde3b7
+// rosa:
+
 export default StyleSheet.create({
-  container: {
-    backgroundColor: '#fde3b7'
-  },
+  
   title: {
     fontSize: 20,
       fontWeight: "bold",
@@ -16,8 +18,19 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 28,
-    fontWeight: "bold",
+    //fontWeight: "bold",
    // color: '#f9ad30',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    alignSelf: "center",
+    fontFamily: 'Helvetica'
+  },
+  whiteText: {
+    fontSize: 28,
+    //fontWeight: "bold",
+    color: 'white',
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 25,
@@ -109,10 +122,10 @@ export default StyleSheet.create({
   },
   bookLogo: {
     flex: 1,
-    height: 30,
-    width: 70,
-    marginLeft: 230,
-    marginBottom: 20
+        height: 120,
+        width: 120,
+        alignSelf: "center",
+        margin: 30
   },
   capital: {
     textTransform: 'capitalize'
@@ -126,7 +139,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#fde3b7',
+    borderColor: '#FFF7E0',
   },
   bookImageSmall: {
     width: 60,
@@ -137,7 +150,14 @@ export default StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#fde3b7',
+    borderColor: '#FFF7E0',
+  },
+  fillPhoto: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    height: '100%',
+        
   },
   rowBooks: {
     height: 100,
@@ -185,21 +205,22 @@ export default StyleSheet.create({
     fontFamily: 'Helvetica'
   },
   smallButton: {
-    backgroundColor: '#FFF7E0',
+    backgroundColor: '#fde3b7',
     height: 30,
     width: 120,
     alignItems: "center", 
+    marginBottom: 9,
     alignSelf: "center", 
     justifyContent: 'center', 
     borderRadius:10,
     borderWidth: 1,
-    borderColor: '#FFF7E0',
+    borderColor: '#fde3b7',
     shadowOffset:{ width: 8, height: 8, },
     shadowColor: '#f9ad30',
     shadowOpacity: 0.5,
 },
   coolButton: {
-    backgroundColor: '#FFF7E0',
+    backgroundColor: '#fde3b7',
     marginLeft: 30,
     marginRight: 30,
     marginTop: 25,
@@ -226,14 +247,14 @@ export default StyleSheet.create({
   },
   whiteBigSquare: {
     height: 300,
-    backgroundColor: '#FFF7E0',
+    backgroundColor: 'white',
     marginHorizontal: 20,
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 10,
   },
   whiteSquare: {
-    backgroundColor: '#FFF7E0',
+    backgroundColor: 'white',
     marginHorizontal: 20,
     marginTop: 10,
     marginBottom: 10,
@@ -266,7 +287,7 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fde3b7',
+    //backgroundColor: '#fde3b7',
     justifyContent: 'center',
   },
   row: {
@@ -274,7 +295,8 @@ export default StyleSheet.create({
     flex: 10,
     flexWrap: "wrap",
     justifyContent: "space-between",
-    backgroundColor: '#FFF7E0',
+    backgroundColor: 'white',
+    
   },
   buddietext: {
     flexDirection: "row",
@@ -291,12 +313,12 @@ export default StyleSheet.create({
     fontFamily: 'Helvetica'
   },
   menuToolbar: {
-    height: 40,
-    width: 40,
-    backgroundColor: '#FFF7E0',
+    height: 30,
+    width: 30,
+    backgroundColor: 'white',
     marginTop: 15,
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: 10,
+    marginRight: 10,
   },
   center: {
     alignContent: 'center'

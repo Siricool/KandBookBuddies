@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Image, TouchableHighlight, View, Text } from 'react-native';
+import { Image, TouchableHighlight, View, Text, ImageBackground } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
@@ -59,27 +59,41 @@ const StartPage = ({ navigation }) => {
   };
 
   return (
-    <View className="StartPage" style={styles.container}>
+    <View className="StartPage" >
       <KeyboardAwareScrollView
-        style={{ width: '100%', height: '90%' }}>        
-        <Text style={styles.text}> Buddies Updates  </Text>
-        <Text style={styles.smallText}>Hey <Text style={styles.middleTextOrange}><Text style={styles.capital}>{currentUser.displayName}</Text></Text>! Here are some updates from your buddies.</Text>
+        style={{ width: '100%', height: '95%' }}>        
+        <ImageBackground
+        style={styles.fillPhoto}
+          source={require('../../../assets/backg.png')}>
+        
+       <Text style={styles.whiteText}>Buddies Updates</Text>
 
+        <View style={styles.whiteSquare}>
         <Text style={styles.textLeft}><Text style={styles.capital}> {currentUser.displayName}</Text>, check out this book!  </Text>
         <Text > {recommendBook()} </Text>
+        </View>
 
+        <View style={styles.whiteSquare}>
         <Text style={styles.textLeft}> Book Buddy of the Week  </Text>
         <Text style={styles.smallText}> Your friend Carola has read a lot! </Text>
         <Image
           style={styles.userImage}
           source={require('../../../assets/carola.jpg')}/>
+        </View>
 
+        <View style={styles.whiteSquare}>
         <Text style={styles.textLeft}> STS book club is currently reading </Text>
         <Text style={styles.middleTextOrange}>The Adventures of Sherlock Holmes</Text>
         <Text style={styles.smallText}> by Sir Arthur Conan Doyle </Text>
         <Image
           style={styles.bookImage}
           source={require('../../../assets/sherlock.jpg')}/>
+        </View>
+        <Image
+            style={styles.bookLogo}
+            source={require('../../../assets/whiteicon.png')}
+          />
+</ImageBackground>
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>

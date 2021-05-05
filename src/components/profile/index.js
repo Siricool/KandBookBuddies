@@ -5,7 +5,7 @@ import { selectCartItems } from '../../redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image, TouchableHighlight, TouchableOpacity, View, Text } from 'react-native';
+import { Image, TouchableHighlight, TouchableOpacity, View, Text, ImageBackground } from 'react-native';
 import { Icon } from 'react-native-elements'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -34,10 +34,13 @@ const MyProfile = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <View>
             <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
-                <Text style={styles.text}><Text style={styles.capital}>{currentUser.displayName}</Text>'s Profile</Text>
-                <Text style={styles.middleTextOrange}></Text>
+            <ImageBackground
+        style={styles.fillPhoto}
+          source={require('../../../assets/backg.png')}>
+                <Text style={styles.text}><Text style={styles.capital}>{currentUser.displayName}</Text></Text>
+                <Text style={styles.middleTextOrange}></Text> 
                 <Text style={styles.middleText}>My Stats</Text>
                 <Text style={styles.middleText}>My Book Clubs</Text>
                 <View style={styles.left}>
@@ -69,7 +72,7 @@ const MyProfile = ({ navigation }) => {
                     </ScrollView>
                 </SafeAreaView>
 
-
+            </ImageBackground>            
             </KeyboardAwareScrollView>
             <View style={styles.row}>
                 <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>

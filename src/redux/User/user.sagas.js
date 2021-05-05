@@ -90,7 +90,7 @@ export function* signUpUser({ payload: {
     yield getSnapshotFromUserAuth(user, additionalData);
 
   } catch (err) {
-    alert(err)
+      alert(err)
     console.log(err);
 
   }

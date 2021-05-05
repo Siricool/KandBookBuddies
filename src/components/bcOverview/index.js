@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles';
 import { useSelector } from 'react-redux';
-import { View, Text, TouchableOpacity, TouchableHighlight, Image } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -27,6 +27,9 @@ const BCOverview = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
+      <ImageBackground
+        style={styles.fillPhoto}
+          source={require('../../../assets/backg.png')}>
         <Text style={styles.text}> My Book Clubs </Text>
 
         <TouchableOpacity style={styles.coolButton}
@@ -35,6 +38,7 @@ const BCOverview = ({ navigation }) => {
             {renderElement()}
           </Text>
         </TouchableOpacity>
+        </ImageBackground>
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>

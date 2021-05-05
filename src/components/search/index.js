@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Text, View, TouchableHighlight, Image } from 'react-native';
+import { Text, View, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -22,9 +22,13 @@ const Search = ({ navigation }) => {
         <KeyboardAwareScrollView
         style={{width: '100%', height: '90%'}}
         >
+           <ImageBackground
+        style={styles.fillPhoto}
+          source={require('../../../assets/backg.png')}>
+          
          <Text style={styles.text}> Search </Text>
        
-
+         </ImageBackground>
         </KeyboardAwareScrollView>
 
          <View style={styles.row}>

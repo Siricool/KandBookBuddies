@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles';
 import { useSelector } from 'react-redux';
-import { View, Text, TouchableOpacity, TouchableHighlight, Image } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -55,6 +55,9 @@ const BCView = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
+      <ImageBackground
+        style={styles.fillPhoto}
+          source={require('../../../assets/backg.png')}>
         <Text style={styles.text}> {bookClub} </Text>
         <Text style={styles.textLeft}> Buddies in {bookClub} </Text>
         <Text style={styles.middleTextPink}>    Test </Text><Text style={styles.middleTextPink}>    Julia </Text><Text style={styles.middleTextPink}>    Siri </Text>
@@ -112,6 +115,7 @@ const BCView = ({ navigation }) => {
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Julia</Text>: Meeting next friday?? <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
        </View>
 
+      </ImageBackground>
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
