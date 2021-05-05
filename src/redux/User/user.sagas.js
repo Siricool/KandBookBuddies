@@ -16,7 +16,7 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
     );
 
   } catch (err) {
-     alert(err)
+     //alert(err)
      console.log(err);
   }
 }
@@ -27,7 +27,7 @@ export function* emailSignIn({ payload: { email, password } }) {
     yield getSnapshotFromUserAuth(user);
 
   } catch (err) {
-     alert(err)
+     //alert(err)
      console.log(err);
   }
 }
@@ -43,7 +43,7 @@ export function* isUserAuthenticated() {
     yield getSnapshotFromUserAuth(userAuth);
 
   } catch (err) {
-     alert(err)
+    // alert(err)
      console.log(err);
   }
 }
@@ -90,7 +90,7 @@ export function* signUpUser({ payload: {
     yield getSnapshotFromUserAuth(user, additionalData);
 
   } catch (err) {
-    alert(err)
+      alert(err)
     console.log(err);
 
   }

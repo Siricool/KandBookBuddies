@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Text, View, TouchableHighlight, Image } from 'react-native';
+import { Text, View, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +18,9 @@ const Settings= ({ navigation }) => {
         <KeyboardAwareScrollView
         style={{width: '100%', height: '90%'}}
         >
+           <ImageBackground
+        style={styles.fillPhoto}
+          source={require('../../../assets/backg.png')}>
          <Text style={styles.text}> Settings </Text>
          <Text style={styles.smallText}> {currentUser.displayName}, feel free to update your settings! </Text>
          
@@ -26,6 +29,7 @@ const Settings= ({ navigation }) => {
          <Text style={styles.middleText}> Wanna switch to night mode? </Text>
          <Text style={styles.smallText}> This will take care of 
          your eyes when clubbing at night! </Text>
+         </ImageBackground>
          </KeyboardAwareScrollView>
 
          <View style={styles.row}>
