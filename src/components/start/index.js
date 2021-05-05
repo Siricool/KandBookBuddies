@@ -6,7 +6,7 @@ import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
 import {addBook} from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 
 
 const mapState = ({ user }) => ({
