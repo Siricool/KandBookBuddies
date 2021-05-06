@@ -216,7 +216,7 @@ export default StyleSheet.create({
   smallButton: {
     backgroundColor: '#fde3b7',
     height: 30,
-    width: 120,
+    width: 140,
     alignItems: "center", 
     marginBottom: 9,
     alignSelf: "center", 
@@ -334,10 +334,16 @@ export default StyleSheet.create({
     marginRight: 10,
   },
   center: {
-    alignContent: 'center'
+    alignContent: 'center',
+    alignItems: "center", 
+    alignSelf: "center", 
+    justifyContent: 'center', 
   },
   left: {
     alignContent: 'flex-start'
+  },
+  width: {
+    width: 300
   }
 })
 
