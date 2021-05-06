@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import {addBook} from '../../redux/Cart/cart.actions'
+import {addBook, addBookRead} from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 
@@ -34,6 +34,12 @@ const StartPage = ({ navigation }) => {
       
     )
   };
+  const configAddToRead = (book) => {
+    if (!book) return;
+    dispatch(
+      addBookRead(book)
+    )
+  };
 
   const recommendBook = () => {
     const numbOfBooks = books.length;
@@ -54,6 +60,11 @@ const StartPage = ({ navigation }) => {
           style={styles.smallButton}
            onPress={() => configAddToCart(chosenBook)} >
             <Text> Add to My List </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          style={styles.smallButton}
+           onPress={() => configAddToRead(chosenBook)} >
+            <Text> Add to Read Books </Text>
           </TouchableOpacity>
         </View>
       )

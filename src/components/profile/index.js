@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from '../styles';
-import { selectCartItems } from '../../redux/Cart/cart.selectors';
+import { selectCartItems, selectReadingItems } from '../../redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,7 +17,8 @@ const mapState = ({ user }) => ({
 });
 
 const mapStateCart = createStructuredSelector({
-    cartItems: selectCartItems
+    cartItems: selectCartItems,
+    readingItems: selectReadingItems
 });
 
 const mapStateBC = ({ bookclub }) => ({
@@ -28,8 +29,9 @@ const MyProfile = ({ navigation }) => {
     const { currentUser } = useSelector(mapState);
     const { updatedUser } = useSelector(mapState);
     const { cartItems } = useSelector(mapStateCart);
+    const { readingItems } = useSelector(mapStateCart);
     const { bc } = useSelector(mapStateBC);
-
+    const numbOfRead = readingItems.length;    
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -51,7 +53,6 @@ const MyProfile = ({ navigation }) => {
         navigation.navigate('BCView');
       }
 
-    const bookUrlTest = { uri: 'https://images-na.ssl-images-amazon.com/images/I/41gznIDw41L._SX326_BO1,204,203,200_.jpg' }
     return (
         <View>
             <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
@@ -62,7 +63,7 @@ const MyProfile = ({ navigation }) => {
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>My Stats</Text>
                         <Text style={styles.smallText}>Read books:   Clubs: </Text>
-                        <Text style={styles.middleTextPink}>       34               1</Text>
+                        <Text style={styles.middleTextPink}>       {numbOfRead}               1</Text>
                     </View>
 
                     <View style={styles.whiteSquare}>
@@ -77,47 +78,28 @@ const MyProfile = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <View style={styles.whiteSquare}>
+                    <View style={styles.whiteBigSquare}>
                         <Text style={styles.textLeft}>My Read Books</Text>
-                        <SafeAreaView>
-                            <ScrollView horizontal={true}
-                                vertical={true}
-                                style={styles.rowBooks}>
-                                <Image //här får vi kanske loopa igenom de böcker som klubben har läst?
-                                    style={styles.bookImageSmall}
-                                    source={bookUrlTest} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={require('../../../assets/sherlock.jpg')} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={bookUrlTest} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={require('../../../assets/sherlock.jpg')} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={bookUrlTest} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={bookUrlTest} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={bookUrlTest} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={require('../../../assets/sherlock.jpg')} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={require('../../../assets/sherlock.jpg')} />
-                                <Image
-                                    style={styles.bookImageSmall}
-                                    source={bookUrlTest} />
-                            </ScrollView>
-                        </SafeAreaView>
-                    </View>
-                    <SafeAreaView style={styles.whiteBigSquare}>
 
+                        <ScrollView vertical={true} style={styles.rowBooks}>
+                            {readingItems.map((readingItem, index) => {
+                                const bookurl = { uri: readingItem.picture }
+                                
+                                return (
+                                    <View key={readingItem.title} style={styles.orangeSquare}>
+                                            
+                                        <Image
+                                            style={styles.bookImageSmall}
+                                            source={bookurl} />
+                                        <Text style={styles.smallTextOrange}> {readingItem.title} </Text>
+                                        <Text style={styles.smallerText}> {readingItem.author} </Text>
+                                    </View>
+                                )
+                            })}
+                        </ScrollView>
+                    </View>
+
+                    <SafeAreaView style={styles.whiteBigSquare}>
                         <Text style={styles.textLeft}>My Wish List </Text>
                         <ScrollView vertical={true} style={styles.rowBooks}>
                             {cartItems.map((cartItem, index) => {
