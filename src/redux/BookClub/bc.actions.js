@@ -5,6 +5,11 @@ export const createBCStart = bcCredentials => ({
     payload: bcCredentials
 });
 
+export const joinBCStart = bcAndUserCredentials => ({
+  type: bcTypes.JOIN_BC_START,
+  payload: bcAndUserCredentials
+});
+
 export const createdBCSuccess = bookclub => ({
     type: bcTypes.CREATED_BC_SUCCESS,
     payload: bookclub
@@ -12,11 +17,15 @@ export const createdBCSuccess = bookclub => ({
 
   export const fetchBCStart = () => ({
     type: bcTypes.FETCH_BC_START,
-    //payload: filters
   });
   
   export const setBC = bc => ({
     type: bcTypes.SET_BC,
     payload: bc
   });
+
+  export const updatedBCSuccess = bc => ({
+    type: bcTypes.UPDATED_BC_SUCCESS,
+    payload: bc
+  })
 
