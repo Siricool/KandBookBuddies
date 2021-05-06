@@ -149,6 +149,15 @@ const BCView = ({ navigation }) => {
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Siri</Text>: Yeahh, me too :D <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Julia</Text>: Meeting next friday?? <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
        </View>
+       <Text style={styles.textLeft}> Questions </Text>
+       <View style={styles.whiteSquare}>
+          <Text style={styles.smallMiddleText}>- What is the significance of the title? Did you find it meaningful, why or why not?
+</Text>
+          <Text style={styles.smallMiddleText}>- What did you think of the writing style and content structure of the book?</Text>
+          <Text style={styles.smallMiddleText}>- How did the book make you feel? What emotions did it evoke?</Text>
+          <Text style={styles.smallMiddleText}>- What did you learn from this book?</Text>
+          <Text style={styles.smallMiddleText}>- Was the book satisfying to read? Why or why not?</Text>
+       </View>
        <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
