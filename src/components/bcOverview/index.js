@@ -57,6 +57,44 @@ const BCOverview = ({ navigation }) => {
               {renderElement()}
             </Text>
           </TouchableOpacity>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
+          <Text>
+          </Text>
           <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
