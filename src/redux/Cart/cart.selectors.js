@@ -15,3 +15,19 @@ export const selectCartItemsCount = createSelector(
             quantity + cartItem.quantity
         , 0)
 );
+
+//export const selectReadingData = state => state.readingData;
+
+export const selectReadingItems = createSelector(
+    [selectCartData],
+    cartData => cartData.readingItems
+);
+
+export const selectReadingItemsCount = createSelector(
+    [selectReadingItems],
+    readingItems => 
+        readingItems.reduce(
+            (quantity, readingItem) =>
+            quantity + readingItem.quantity
+        , 0)
+);

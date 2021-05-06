@@ -1,8 +1,9 @@
 import cartTypes from './cart.types';
-import { handleAddToCart } from './cart.utils'
+import { handleAddToCart, handleAddToReading } from './cart.utils'
 
 const INITIAL_STATE = {
-    cartItems: []
+    cartItems: [],
+    readingItems: []
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 })
 
             };
+        case cartTypes.ADD_TO_READING:
+            return {
+                ...state,
+                readingItems: handleAddToReading({ //detta gör man för att inte adda samma bok flera ggr
+                    prevReadingItems: state.readingItems,
+                    nextReadingItem: action.payload
+                })
+            };            
             default:
                 return state;
     }

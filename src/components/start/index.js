@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import {addBook} from '../../redux/Cart/cart.actions'
+import {addBook, addBookRead} from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Icon } from 'react-native-elements';
+
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -32,6 +34,12 @@ const StartPage = ({ navigation }) => {
       
     )
   };
+  const configAddToRead = (book) => {
+    if (!book) return;
+    dispatch(
+      addBookRead(book)
+    )
+  };
 
   const recommendBook = () => {
     const numbOfBooks = books.length;
@@ -45,13 +53,18 @@ const StartPage = ({ navigation }) => {
       return (
         <View>
           <Text style={styles.middleTextOrange}>{chosenBook.title}</Text>
-          <Text style={styles.smallText}> by {chosenBook.author}</Text>
+          <Text style={styles.smallText}>by {chosenBook.author}</Text>
           <Image source={bookurl}
             style={styles.bookImage} />
           <TouchableOpacity
           style={styles.smallButton}
            onPress={() => configAddToCart(chosenBook)} >
-            <Text > Add to My List </Text>
+            <Text> Add to My List </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          style={styles.smallButton}
+           onPress={() => configAddToRead(chosenBook)} >
+            <Text> Add to Read Books </Text>
           </TouchableOpacity>
         </View>
       )
@@ -61,7 +74,7 @@ const StartPage = ({ navigation }) => {
   return (
     <View className="StartPage" >
       <KeyboardAwareScrollView
-        style={{ width: '100%', height: '95%' }}>        
+        style={{ width: '100%', height: '90%' }}>        
         <ImageBackground
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
@@ -69,22 +82,22 @@ const StartPage = ({ navigation }) => {
        <Text style={styles.whiteText}>Buddies Updates</Text>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}><Text style={styles.capital}> {currentUser.displayName}</Text>, check out this book!  </Text>
-        <Text > {recommendBook()} </Text>
+        <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
+        <Text>{recommendBook()}</Text>
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}> Book Buddy of the Week  </Text>
-        <Text style={styles.smallText}> Your friend Carola has read a lot! </Text>
+        <Text style={styles.textLeft}>Book Buddy of the Week</Text>
+        <Text style={styles.smallText}>Your friend Carola has read a lot!</Text>
         <Image
           style={styles.userImage}
           source={require('../../../assets/carola.jpg')}/>
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}> STS book club is currently reading </Text>
+        <Text style={styles.textLeft}>STS book club is currently reading </Text>
         <Text style={styles.middleTextOrange}>The Adventures of Sherlock Holmes</Text>
-        <Text style={styles.smallText}> by Sir Arthur Conan Doyle </Text>
+        <Text style={styles.smallText}>by Sir Arthur Conan Doyle </Text>
         <Image
           style={styles.bookImage}
           source={require('../../../assets/sherlock.jpg')}/>
@@ -97,35 +110,45 @@ const StartPage = ({ navigation }) => {
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Profile_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
+        <Icon
+                        reverse
+                        name='ios-person'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/BookClubs_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
+        <Icon
+                        reverse
+                        name='ios-book'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/House_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
+        <Icon
+                        reverse
+                        name='ios-home'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Search')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Search_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
+        <Icon
+                        reverse
+                        name='ios-search'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Settings_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
+        <Icon
+                        reverse
+                        name='ios-settings'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
         </TouchableHighlight>
       </View>
     </View>

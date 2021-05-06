@@ -1,32 +1,45 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from '../styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
+import { Icon } from 'react-native-elements'
+
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   updatedUser: user.updatedUser
 });
 
+const mapStateBC = ({ bookclub }) => ({
+  bc: bookclub.bc
+});
 
 const BCView = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
+  const { bc } = useSelector(mapStateBC);
+  const memberList = [];
+
+/*
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+  }, []); 
+  */
+  //console.log('BOOKCLUB'+bc)
 
   const getTime = () => {
     const timeStamp = Date.now();
-   // console.log(timeStamp)
     const fixedTime = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit', day: '2-digit', 
     hour: '2-digit', minute: '2-digit'}).format(timeStamp);
-    //console.log(fixedTime);
     return ( fixedTime )
   }
   
-
   const renderElement = () => {
     if (updatedUser != null) {
       return updatedUser.groupID
@@ -35,22 +48,55 @@ const BCView = ({ navigation }) => {
       return currentUser.groupID
     }
   };
-
+  console.log('I VIEW BC !!!!!!')
+  console.log(' I VEW BC : '+bc)
   const bookClub = renderElement();
+  console.log('BOOKCLUB HEJ'+bookClub)
+  bookClub.toString();
+  console.log(bookClub)
   //console.log('BOOKCLUB VIEW '+bookClub)
   //TA EJ BORT NEDAN Start på funktion TO DO SEN:
-  /*const mapClubToId = ({}) => {
-    //ta ut alla bokklubbar i en array
-    const clubArray = []
-    for (const club in clubArray.title) {
-    if (bookClub == club) {
-      return club
-    }
-  }
-}
-  const currentClub = mapClubToId();
-    */
+  //console.log(bc)
 
+  const mapClubToId = () => {
+    //ta ut alla bokklubbar i en array
+    //const currentClub = renderElement();
+    let chosenClub = bc.find(club => club.groupName === bookClub.toString());
+    if (chosenClub) {
+      const members = chosenClub.members;
+      return (
+      <ScrollView vertical={true} style={styles.rowBooks}>
+                            {members.map((member, index) => {
+                                return (
+                                    <View key={member.email}>
+                                        <Text style={styles.middleTextOrange}><Text style={styles.capital}>- {member.displayName}</Text></Text>          
+                                    </View>
+                                )})}
+    </ScrollView>)
+      
+      /*console.log('MEMBERS !!!!!!!!! '+members)
+      for (let i=0; i<members.length; i++) {
+        console.log(members[i].displayName)
+          memberList.push(members[i].displayName);
+          
+      }
+      return (
+        <Text>{memberList}</Text> )*/
+      //console.log('CLUB I FORLOOP'+chosenClub.members.displayName)
+     // return (
+        
+       // <Text>{memberList}</Text>
+      //)
+    }
+    /*if (bookClub == club.groupName) {
+      console.log('CLUB från user'+bookClub)
+      console.log('CLUB från data'+club.groupName)
+      return club
+    } */
+  
+};
+  
+    
   const bookUrlTest = {uri : 'https://images-na.ssl-images-amazon.com/images/I/41gznIDw41L._SX326_BO1,204,203,200_.jpg'}
   return (
     <View style={styles.container}>
@@ -58,19 +104,22 @@ const BCView = ({ navigation }) => {
       <ImageBackground
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-        <Text style={styles.text}> {bookClub} </Text>
-        <Text style={styles.textLeft}> Buddies in {bookClub} </Text>
-        <Text style={styles.middleTextPink}>    Test </Text><Text style={styles.middleTextPink}>    Julia </Text><Text style={styles.middleTextPink}>    Siri </Text>
-         
-       <Text style={styles.textLeft}> Current Reading </Text>
-       <Text style={styles.middleTextOrange}>A Key to Treehouse Living</Text>
-        <Text style={styles.smallText}> by  Elliot Reed </Text>
+        <Text style={styles.whiteText}><Text style={styles.capital}>{bookClub}</Text></Text>
+        
+       <Text style={styles.textLeft}>Currently Reading </Text>
+       <Text style={styles.smallBlackText}>A Key to Treehouse Living by Elliot Reed</Text>
+        
         <Image
           style={styles.bookImage}
           source={ bookUrlTest}/>
-     
-       <Text style={styles.textLeft}> History </Text>
-       <Text style={styles.smallText}> Books you've read together: </Text>
+
+        <View style={styles.whiteSquare}>
+        <Text style={styles.textLeft}>Buddies in {bookClub}</Text>
+        <Text>{mapClubToId()}</Text>
+        </View>
+
+       <Text style={styles.textLeft}>History </Text>
+       <Text style={styles.smallBlackText}>Books you've read together: </Text>
        <SafeAreaView>
        <ScrollView horizontal={true} 
        vertical={true}
@@ -114,40 +163,68 @@ const BCView = ({ navigation }) => {
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Siri</Text>: Yeahh, me too :D <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
          <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Julia</Text>: Meeting next friday?? <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
        </View>
+       <Text style={styles.textLeft}> Questions </Text>
+       <View style={styles.whiteSquare}>
+          <Text style={styles.smallMiddleText}>- What is the significance of the title? Did you find it meaningful, why or why not?
+</Text>
+          <Text style={styles.smallMiddleText}>- What did you think of the writing style and content structure of the book?</Text>
+          <Text style={styles.smallMiddleText}>- How did the book make you feel? What emotions did it evoke?</Text>
+          <Text style={styles.smallMiddleText}>- What did you learn from this book?</Text>
+          <Text style={styles.smallMiddleText}>- Was the book satisfying to read? Why or why not?</Text>
+       </View>
+       <Image
+            style={styles.bookLogo}
+            source={require('../../../assets/whiteicon.png')}
+          />
 
       </ImageBackground>
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Profile_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
+        <Icon
+                        reverse
+                        name='ios-person'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/BookClubs_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
+        <Icon
+                        reverse
+                        name='ios-book'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('StartPage')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/House_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
+        <Icon
+                        reverse
+                        name='ios-home'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Search')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Search_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
+        <Icon
+                        reverse
+                        name='ios-search'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate('Settings')}>
-          <Image
-            style={styles.menuToolbar}
-            source={require('../../../assets/Settings_picture.png')}
-          />
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
+        <Icon
+                        reverse
+                        name='ios-settings'
+                        type='ionicon'
+                        color='#fde3b7'
+
+                    />
         </TouchableHighlight>
       </View>
 
