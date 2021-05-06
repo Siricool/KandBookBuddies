@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
 
 import styles from '../styles.js'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -23,14 +24,23 @@ const Settings= ({ navigation }) => {
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
          <Text style={styles.whiteText}>Settings </Text>
-         <Text style={styles.smallText}>{currentUser.displayName}, feel free to update your settings! </Text>
-         
-         <Text style={styles.middleText}>Time to update your profile pic? </Text>
-
-         <Text style={styles.middleText}>Wanna switch to night mode? </Text>
-         <Text style={styles.smallText}>This will take care of 
-         your eyes when clubbing at night! </Text>
-
+         <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, feel free to update your settings! </Text>
+         <View style={styles.whiteSquare}>
+         <Text style={styles.smallText}>Time to update your profile pic? </Text>
+         <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
+         </View>
+         <View style={styles.whiteSquare}>
+         <Text style={styles.smallText}>Wanna switch to night mode? </Text>
+         <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
+         </View>
+         <View style={styles.whiteSquare}>
+         <Text style={styles.smallText}>This will take care of your eyes when clubbing at night! </Text>
+         <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
+         </View>
+         <Text></Text>
+         <Text></Text>
+         <Text></Text>
+         <Text></Text> 
          <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}

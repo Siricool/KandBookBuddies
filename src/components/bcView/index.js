@@ -23,6 +23,7 @@ const BCView = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
+  const memberList = [];
 
 /*
   const dispatch = useDispatch();
@@ -60,19 +61,32 @@ const BCView = ({ navigation }) => {
   const mapClubToId = () => {
     //ta ut alla bokklubbar i en array
     //const currentClub = renderElement();
-    console.log('HEJ HEJ BOOK CLUB: '+bookClub)
     let chosenClub = bc.find(club => club.groupName === bookClub.toString());
     if (chosenClub) {
-      console.log('CLUB I FORLOOP'+chosenClub)
       const members = chosenClub.members;
-      console.log('MEMBERS !!!!!!!!! '+members)
-      const memberName = members[0].displayName;
-      console.log(memberName)
-      //console.log('CLUB I FORLOOP'+chosenClub.members.displayName)
       return (
+      <ScrollView vertical={true} style={styles.rowBooks}>
+                            {members.map((member, index) => {
+                                return (
+                                    <View key={member.email}>
+                                        <Text style={styles.middleTextOrange}><Text style={styles.capital}>- {member.displayName}</Text></Text>          
+                                    </View>
+                                )})}
+    </ScrollView>)
+      
+      /*console.log('MEMBERS !!!!!!!!! '+members)
+      for (let i=0; i<members.length; i++) {
+        console.log(members[i].displayName)
+          memberList.push(members[i].displayName);
+          
+      }
+      return (
+        <Text>{memberList}</Text> )*/
+      //console.log('CLUB I FORLOOP'+chosenClub.members.displayName)
+     // return (
         
-        <Text>{memberName}</Text>
-      )
+       // <Text>{memberList}</Text>
+      //)
     }
     /*if (bookClub == club.groupName) {
       console.log('CLUB från user'+bookClub)
@@ -90,7 +104,7 @@ const BCView = ({ navigation }) => {
       <ImageBackground
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-        <Text style={styles.whiteText}>{bookClub}</Text>
+        <Text style={styles.whiteText}><Text style={styles.capital}>{bookClub}</Text></Text>
         
        <Text style={styles.textLeft}>Currently Reading </Text>
        <Text style={styles.smallBlackText}>A Key to Treehouse Living by Elliot Reed</Text>
@@ -100,8 +114,8 @@ const BCView = ({ navigation }) => {
           source={ bookUrlTest}/>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>Buddies in {bookClub} </Text>
-        <Text style={styles.middleTextPink}><Text style={styles.capital}>{mapClubToId()} </Text></Text>
+        <Text style={styles.textLeft}>Buddies in {bookClub}</Text>
+        <Text>{mapClubToId()}</Text>
         </View>
 
        <Text style={styles.textLeft}>History </Text>
