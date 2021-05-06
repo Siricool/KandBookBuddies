@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../styles';
 import { selectCartItems } from '../../redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
@@ -9,6 +9,7 @@ import { Image, TouchableHighlight, TouchableOpacity, View, Text, ImageBackgroun
 import { Icon } from 'react-native-elements'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
@@ -28,6 +29,8 @@ const MyProfile = ({ navigation }) => {
     const { updatedUser } = useSelector(mapState);
     const { cartItems } = useSelector(mapStateCart);
     const { bc } = useSelector(mapStateBC);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(
