@@ -20,15 +20,12 @@ const mapClub = ({ bookclub }) => ({
 
 const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
-    const { currentUser, useErr, updatedUser } = useSelector(mapState);
+    const { currentUser, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
-    const { currentBC } = useSelector(mapClub);
+
 
     useEffect(() => {
-        /* if (currentBC)
-          { updateUserInfo()   
-         }*/
         if (updatedUser) {
             navigation.navigate('StartPage')
         }
@@ -39,8 +36,6 @@ const CreateBC = ({ navigation }) => {
 
 
     const handleCreateBC = () => {
-        // event.preventDefault();
-
         dispatch(createBCStart({
             groupName,
             members

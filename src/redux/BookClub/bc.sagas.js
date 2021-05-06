@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { firestore } from './../../firebase/utils';
-import { createdBCSuccess, fetchBCStart, setBC } from "./bc.actions";
+import { createdBCSuccess, setBC} from "./bc.actions";
 import bcTypes from './bc.types'
 import { handleFetchBC } from './bc.helpers'
 
@@ -41,7 +41,7 @@ export function* onCreateBCStart() {
 export function* fetchBC() {
     try {
       const bc = yield handleFetchBC();
-      console.log(bc)
+      
       yield put(
         setBC(bc) 
       );
@@ -55,10 +55,40 @@ export function* fetchBC() {
     yield takeLatest(bcTypes.FETCH_BC_START, fetchBC);
   }
 
+
+
+  export function* joinBC({ payload:{
+      club,
+      currentUser }})
+       {
+      
+    try {
+        //UPDATERA BOOKKLUBBENS MEDLEMSLISTA
+        const snapshot = yield firestore.collection('bookclubs').doc(club).get();
+        const tempsArr = snapshot.data().members
+        tempsArr.push(currentUser);
+        
+
+        yield firestore.collection('bookclubs').doc(club).update({members: tempsArr });
+        
+        const updatedBCRef = yield firestore.collection('bookclubs').doc(club);
+
+        yield getSnapshotFromBC(updatedBCRef);
+  }
+    catch (err){
+
+  }}
+
+ 
+  export function* onJoinBCStart() {
+      yield takeLatest(bcTypes.JOIN_BC_START, joinBC);
+  }
+
 export default function* bcSagas(){
     yield all([
         call(onCreateBCStart),
-        call(onFetchBCStart)
+        call(onFetchBCStart),
+        call(onJoinBCStart),
     ])
 }
 
