@@ -15,8 +15,9 @@ import JoinBC from './src/components/joinBC';
 import JoinBCInside from './src/components/joinBCInside';
 import BCView from './src/components/bcView';
 
-import { store } from './src/redux/createStore';
+import { store, persistor } from './src/redux/createStore'; // 7/5 persistor
 import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { decode, encode } from 'base-64'
 if (!global.btoa) { global.btoa = encode }
@@ -29,6 +30,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
+      
       <NavigationContainer>
         <Stack.Navigator>
               <Stack.Screen name="SignIn" component={SignIn} />
@@ -45,7 +47,12 @@ export default function App() {
               <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
       </NavigationContainer>
+      
     </Provider>
   );
 }
 
+
+/* Behövs om persist store:
+<PersistGate persistor={persistor}></PersistGate>
+*/

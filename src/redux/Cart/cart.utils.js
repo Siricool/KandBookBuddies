@@ -1,3 +1,4 @@
+//WISH 
 export const existingCartItem = ({
     prevCartItems,
     nextCartItem
@@ -31,6 +32,7 @@ export const handleAddToCart = ({
     ];
 };
 
+// USER READ
 export const existingReadingItem = ({
     prevReadingItems,
     nextReadingItem
@@ -59,6 +61,40 @@ export const handleAddToReading = ({
         ...prevReadingItems,
         {
             ...nextReadingItem,
+            quantity: quantityIncrement
+        }
+    ];
+};
+
+//CLUB READ
+export const existingClubItem = ({
+    prevClubItems,
+    nextClubItem
+}) => {
+    return prevClubItems.find( 
+        clubItem => clubItem.documentID === nextClubItem.documentID
+    ); 
+};
+
+export const handleAddToClub = ({
+    prevClubItems,
+    nextClubItem
+}) => {
+    const quantityIncrement = 1;
+    const clubItemExists = existingClubItem({ prevClubItems, nextClubItem });
+    if (clubItemExists) {
+        return prevClubItems.map(clubItem =>
+            clubItem.documentID == nextClubItem.documentID
+            ? {
+                ...clubItem,
+                quantity: clubItem.quantity + quantityIncrement
+            } : clubItem
+        );
+    }
+    return [ //when adding a new book
+        ...prevClubItems,
+        {
+            ...nextClubItem,
             quantity: quantityIncrement
         }
     ];

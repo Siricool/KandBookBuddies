@@ -27,5 +27,9 @@ export const createdBCSuccess = bookclub => ({
   export const updatedBCSuccess = bc => ({
     type: bcTypes.UPDATED_BC_SUCCESS,
     payload: bc
-  })
+  });
 
+  export const bookInBC = bcbookAndClub => ({
+    type: bcTypes.BOOK_IN_BC,
+    payload: bcbookAndClub
+  });

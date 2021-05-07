@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 export const selectCartData = state => state.cartData;
 
+// user wish list
 export const selectCartItems = createSelector(
     [selectCartData],
     cartData => cartData.cartItems
@@ -16,8 +17,7 @@ export const selectCartItemsCount = createSelector(
         , 0)
 );
 
-//export const selectReadingData = state => state.readingData;
-
+// user has read books
 export const selectReadingItems = createSelector(
     [selectCartData],
     cartData => cartData.readingItems
@@ -29,5 +29,20 @@ export const selectReadingItemsCount = createSelector(
         readingItems.reduce(
             (quantity, readingItem) =>
             quantity + readingItem.quantity
+        , 0)
+);
+
+//club reading
+export const selectClubItems = createSelector(
+    [selectCartData],
+    cartData => cartData.clubItems
+);
+
+export const selectClubItemsCount = createSelector(
+    [selectClubItems],
+    clubItems => 
+        clubItems.reduce(
+            (quantity, clubItem) =>
+            quantity + clubItem.quantity
         , 0)
 );
