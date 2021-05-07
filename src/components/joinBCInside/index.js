@@ -31,11 +31,16 @@ const JoinBCInside = ({ navigation }) => {
 
 
 
-    useEffect(() => {
-       if (updatedUser.groupID.includes(clubNameSet)){
-            navigation.navigate('StartPage')
+    useEffect(() => {       
+        if (currentUser.groupID.includes(clubNameSet)) {
+            navigation.navigate('BCOverview')
         }
-    }, [updatedUser]);
+
+        if(updatedUser) {
+        if (updatedUser.groupID.includes(clubNameSet)){
+            navigation.navigate('BCOverview')
+        } }
+    }, [currentUser, updatedUser]);
 
 
     const handleJoinBC = ( club, clubName ) => {
@@ -47,7 +52,7 @@ const JoinBCInside = ({ navigation }) => {
 
     }
 
-    renderHeader = () => {
+  /*  renderHeader = () => {
         return (
 
             <SearchBar
@@ -59,7 +64,7 @@ const JoinBCInside = ({ navigation }) => {
                 onChangeText={(text) => setSearch(text)}
             />
         )
-    }
+    }*/
 
     return (
 
@@ -80,7 +85,7 @@ const JoinBCInside = ({ navigation }) => {
                     )
                     }
                     keyExtractor={(item) => item.documentID.toString()}
-                    ListHeaderComponent={renderHeader}
+                    //ListHeaderComponent={renderHeader}
 
                 />
 
