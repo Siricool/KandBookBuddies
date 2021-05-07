@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import styles from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -19,19 +20,14 @@ const mapStateBC = ({ bookclub }) => ({
   bc: bookclub.bc
 });
 
-const BCView = ({ navigation }) => {
+const BCView = ({ route, navigation}) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
   const memberList = [];
 
-/*
-  const dispatch = useDispatch();
+  const {groupName} = route.params;
   
-  useEffect(() => {
-  }, []); 
-  */
-  //console.log('BOOKCLUB'+bc)
 
   const getTime = () => {
     const timeStamp = Date.now();
@@ -48,20 +44,11 @@ const BCView = ({ navigation }) => {
       return currentUser.groupID
     }
   };
-  console.log('I VIEW BC !!!!!!')
-  console.log(' I VEW BC : '+bc)
-  const bookClub = renderElement();
-  console.log('BOOKCLUB HEJ'+bookClub)
-  bookClub.toString();
-  console.log(bookClub)
-  //console.log('BOOKCLUB VIEW '+bookClub)
-  //TA EJ BORT NEDAN Start på funktion TO DO SEN:
-  //console.log(bc)
+ 
 
   const mapClubToId = () => {
-    //ta ut alla bokklubbar i en array
-    //const currentClub = renderElement();
-    let chosenClub = bc.find(club => club.groupName === bookClub.toString());
+
+    let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
       const members = chosenClub.members;
       return (
@@ -74,25 +61,7 @@ const BCView = ({ navigation }) => {
                                 )})}
     </ScrollView>)
       
-      /*console.log('MEMBERS !!!!!!!!! '+members)
-      for (let i=0; i<members.length; i++) {
-        console.log(members[i].displayName)
-          memberList.push(members[i].displayName);
-          
-      }
-      return (
-        <Text>{memberList}</Text> )*/
-      //console.log('CLUB I FORLOOP'+chosenClub.members.displayName)
-     // return (
-        
-       // <Text>{memberList}</Text>
-      //)
-    }
-    /*if (bookClub == club.groupName) {
-      console.log('CLUB från user'+bookClub)
-      console.log('CLUB från data'+club.groupName)
-      return club
-    } */
+                                }
   
 };
   
@@ -104,9 +73,10 @@ const BCView = ({ navigation }) => {
       <ImageBackground
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-        <Text style={styles.whiteText}><Text style={styles.capital}>{bookClub}</Text></Text>
+        <Text style={styles.whiteText}><Text style={styles.capital}>{groupName}</Text></Text>
         
        <Text style={styles.textLeft}>Currently Reading </Text>
+      
        <Text style={styles.smallBlackText}>A Key to Treehouse Living by Elliot Reed</Text>
         
         <Image
@@ -114,7 +84,7 @@ const BCView = ({ navigation }) => {
           source={ bookUrlTest}/>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>Buddies in {bookClub}</Text>
+        <Text style={styles.textLeft}>Buddies in {groupName}</Text>
         <Text>{mapClubToId()}</Text>
         </View>
 

@@ -42,15 +42,52 @@ const MyProfile = ({ navigation }) => {
 
     const renderElement = () => {
         if (updatedUser != null) {
-            return <Text> {updatedUser.groupID} </Text>;
+            return updatedUser.groupID;
         }
         else {
-            return <Text> {currentUser.groupID} </Text>;
+            return currentUser.groupID;
         }
     };
 
-    const handlePress = () => {
-        navigation.navigate('BCView');
+    const handlePress = (club) => {
+        navigation.navigate('BCView', club);
+      }
+
+      const mapBC = () =>{
+        let arr = renderElement(); // användarens klubbar
+        
+        let saveClub = []
+        //JÄMFÖR MED BC O SPARA HELA CLUBINFON I NY ARRAY 
+        arr.map((name,index) => {
+          console.log('HEJ'+name)
+          
+          bc.forEach((club) => {
+            if (club.groupName == name){
+              saveClub.push(club)
+            }
+          })
+    
+          console.log(saveClub)
+    
+       
+        } )
+    
+        return(
+          saveClub.map((club, index) => {
+            return(
+              <View key = {club.documentID}> 
+              
+              <TouchableOpacity style={styles.coolButton}
+                onPress={() => handlePress(club) }>
+                <Text style={styles.buttonText}>
+                  {club.groupName}
+                </Text>
+              </TouchableOpacity>
+              
+              </View>
+            );
+          })
+        )
       }
 
     return (
@@ -69,12 +106,8 @@ const MyProfile = ({ navigation }) => {
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>My Book Clubs</Text>
                         <View style={styles.left}>
-                            <TouchableOpacity style={styles.coolButton}
-                                onPress={() => navigation.navigate('BCView') }>
-                                <Text style={styles.buttonText}>
-                                    {renderElement()}
-                                </Text>
-                            </TouchableOpacity>
+                        <View>{mapBC()}</View>
+                            
                         </View>
                     </View>
 
@@ -199,4 +232,12 @@ export default MyProfile;
                         style={styles.menuToolbar}
                         source={require('../../../assets/Profile_picture.png')}
                     />
+
+                    <TouchableOpacity style={styles.coolButton}
+                                onPress={() => navigation.navigate('BCView') }>
+
+                                <Text style={styles.buttonText}>
+                                    {renderElement()}
+                                </Text>
+                            </TouchableOpacity>
                         */

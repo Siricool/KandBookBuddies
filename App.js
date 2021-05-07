@@ -12,6 +12,7 @@ import CreateBC from './src/components/createBC';
 import ChooseBC from './src/components/chooseBC';
 import Search from './src/components/search';
 import JoinBC from './src/components/joinBC';
+import JoinBCInside from './src/components/joinBCInside';
 import BCView from './src/components/bcView';
 
 import { store } from './src/redux/createStore';
@@ -39,6 +40,7 @@ export default function App() {
               <Stack.Screen name="MyProfile" component={MyProfile} />
               <Stack.Screen name="CreateBC" component={CreateBC} />
               <Stack.Screen name="JoinBC" component={JoinBC} />
+              <Stack.Screen name="JoinBCInside" component={JoinBCInside} />
               <Stack.Screen name="ChooseBC" component={ChooseBC} />
               <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
