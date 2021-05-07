@@ -60,15 +60,6 @@ const Search = ({ navigation }) => {
   const bookClub = renderElement();
   bookClub.toString();
 
-  console.log('BOOKCLUB' + bookClub.toString())
-  console.log('bc' + bc)
-/*
-  const mapClubToBC = () => {
-
-  }
-  const currentClub = mapClubToBC();
-  console.log('CURRENTCLUB INNAN CONFIG' + currentClub)
-*/
   const configAddToClub = (book) => {
     const clubName = (bookClub.toString())
     console.log(clubName)
@@ -89,13 +80,11 @@ const Search = ({ navigation }) => {
           dispatch(
             bookInBC( {club, book} )
           )
-
         }
       })
     }
-
   };
-
+  
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
@@ -107,7 +96,6 @@ const Search = ({ navigation }) => {
 
           <Text style={styles.whiteText}>Look for Books</Text>
           
-          <Text> hej </Text>
           {books.map((book, index) => {
             const bookurl = { uri: book.picture }
             return (
@@ -139,6 +127,150 @@ const Search = ({ navigation }) => {
               </View>
             )
           })}
+         
+    <Text style = {styles.textLeft}> Drama </Text>
+     {books.map((book, index) => {
+      if (book.genre == 'Drama') {
+        const bookurl = { uri: book.picture }
+      return (
+        <View style={styles.center}>
+          <View style={styles.width}>
+            <View style={styles.whiteSquare}>
+              <Text style={styles.smallTextOrange}> {book.title} </Text>
+              <Text style={styles.smallerText}> {book.author} </Text>
+              <Image
+                style={styles.bookImageSmall}
+                source={bookurl} />
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToCart(book)} >
+                <Text> Add to Wish List </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToRead(book)} >
+                <Text> Add to Read Books </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                      style={styles.smallButton}
+                      onPress={() => configAddToClub(book)} >
+                      <Text> Add to Club </Text>
+                    </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )
+      }
+    })}
+
+      <Text style = {styles.textLeft}> Fantasy </Text>
+            {books.map((book, index) => {
+      console.log('BOOK GENRE'+ book.genre)
+      if (book.genre == 'Fantasy') {
+        console.log('HEJ')
+        const bookurl = { uri: book.picture }
+      return (
+        <View style={styles.center}>
+          <View style={styles.width}>
+            <View style={styles.whiteSquare}>
+              <Text style={styles.smallTextOrange}> {book.title} </Text>
+              <Text style={styles.smallerText}> {book.author} </Text>
+              <Image
+                style={styles.bookImageSmall}
+                source={bookurl} />
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToCart(book)} >
+                <Text> Add to Wish List </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToRead(book)} >
+                <Text> Add to Read Books </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                      style={styles.smallButton}
+                      onPress={() => configAddToClub(book)} >
+                      <Text> Add to Club </Text>
+                    </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )
+      }
+    })}
+    <Text style = {styles.textLeft}> Mystery </Text>
+            {books.map((book, index) => {
+      console.log('BOOK GENRE'+ book.genre)
+      if (book.genre == 'Mystery') {
+        console.log('HEJ')
+        const bookurl = { uri: book.picture }
+      return (
+        <View style={styles.center}>
+          <View style={styles.width}>
+            <View style={styles.whiteSquare}>
+              <Text style={styles.smallTextOrange}> {book.title} </Text>
+              <Text style={styles.smallerText}> {book.author} </Text>
+              <Image
+                style={styles.bookImageSmall}
+                source={bookurl} />
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToCart(book)} >
+                <Text> Add to Wish List </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToRead(book)} >
+                <Text> Add to Read Books </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                      style={styles.smallButton}
+                      onPress={() => configAddToClub(book)} >
+                      <Text> Add to Club </Text>
+                    </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )
+      }
+    })}
+    <Text style = {styles.textLeft}> Romance </Text>
+            {books.map((book, index) => {
+      console.log('BOOK GENRE'+ book.genre)
+      if (book.genre == 'Romance') {
+        console.log('HEJ')
+        const bookurl = { uri: book.picture }
+      return (
+        <View style={styles.center}>
+          <View style={styles.width}>
+            <View style={styles.whiteSquare}>
+              <Text style={styles.smallTextOrange}> {book.title} </Text>
+              <Text style={styles.smallerText}> {book.author} </Text>
+              <Image
+                style={styles.bookImageSmall}
+                source={bookurl} />
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToCart(book)} >
+                <Text> Add to Wish List </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToRead(book)} >
+                <Text> Add to Read Books </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                      style={styles.smallButton}
+                      onPress={() => configAddToClub(book)} >
+                      <Text> Add to Club </Text>
+                    </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )
+      }
+    })}
 
           <Image
             style={styles.bookLogo}

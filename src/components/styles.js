@@ -239,6 +239,24 @@ export default StyleSheet.create({
     shadowColor: '#f9ad30',
     shadowOpacity: 0.5,
 },
+
+smallButtonBC: {
+  backgroundColor: '#fde3b7',
+  height: 30,
+  width: 140,
+  alignItems: "center", 
+  marginBottom: 9,
+  alignSelf: "center", 
+  justifyContent: 'center', 
+  borderRadius:10,
+  borderWidth: 1,
+  borderColor: '#fde3b7',
+  shadowOffset:{ width: 8, height: 8, },
+  shadowColor: '#f9ad30',
+  shadowOpacity: 0.5,
+  marginTop: 25,
+  marginBottom: 25
+},
   coolButton: {
     backgroundColor: '#fde3b7',
     marginLeft: 30,
@@ -320,6 +338,14 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: '#fde3b7',
+    
+  },
+
+  rowBC: {
+    flexDirection: "row",
+    //flex: 10,
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
     
   },
   buddietext: {
