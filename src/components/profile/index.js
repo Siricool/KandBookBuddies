@@ -65,9 +65,7 @@ const MyProfile = ({ navigation }) => {
             if (club.groupName == name){
               saveClub.push(club)
             }
-          })
-    
-          console.log(saveClub)
+          })        
     
        
         } )
@@ -97,20 +95,13 @@ const MyProfile = ({ navigation }) => {
                     style={styles.fillPhoto}
                     source={require('../../../assets/backg.png')}>
                     <Text style={styles.whiteText}><Text style={styles.capital}>{currentUser.displayName}</Text></Text>
+
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>My Stats</Text>
                         <Text style={styles.smallText}>Read books:   Clubs: </Text>
-                        <Text style={styles.middleTextPink}>       {numbOfRead}               1</Text>
+                        <Text style={styles.middleTextPink}>       {numbOfRead}               {mapBC().length}</Text>
                     </View>
-
-                    <View style={styles.whiteSquare}>
-                        <Text style={styles.textLeft}>My Book Clubs</Text>
-                        <View style={styles.left}>
-                        <View>{mapBC()}</View>
-                            
-                        </View>
-                    </View>
-
+                    
                     <View style={styles.whiteBigSquare}>
                         <Text style={styles.textLeft}>My Read Books</Text>
 
@@ -150,6 +141,13 @@ const MyProfile = ({ navigation }) => {
                             })}
                         </ScrollView>
                     </SafeAreaView>
+
+                    <View style={styles.whiteSquare}>
+                        <Text style={styles.textLeft}>My Book Clubs</Text>
+                        <View style={styles.left}>
+                        <View>{mapBC()}</View>
+                        </View>
+                    </View>
 
                     <Image
                         style={styles.bookLogo}
