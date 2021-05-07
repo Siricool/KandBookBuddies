@@ -3,6 +3,7 @@ import bcTypes from './bc.types';
 const INITIAL_STATE = {
     currentBC: null,
     bc: [],
+    bcbooks: []
 };
 
 const bcReducer = (state = INITIAL_STATE, action) => {
@@ -17,6 +18,12 @@ const bcReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 bc: action.payload
             }
+        case bcTypes.BOOK_IN_BC:
+            return {
+                ...state,
+                bcbooks: action.payload
+            }
+            
         default:
             return state;
     }

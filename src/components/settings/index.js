@@ -1,10 +1,10 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
-
+import { signOutUserStart } from './../../redux/User/user.actions';
 import styles from '../styles.js'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -13,8 +13,16 @@ const mapState = ({ user }) => ({
   });
 
 const Settings= ({ navigation }) => {
+  const { currentUser } = useSelector(mapState); //OBS SKRIV EJ UT CURRENTUSER PÅ SIDAN, BLIR FUCKAT MED SIGNOUT
+  const dispatch = useDispatch();
 
-  const { currentUser } = useSelector(mapState);
+  
+
+  const handleSignOut = () => { 
+    dispatch(signOutUserStart()) ;
+    navigation.navigate('SignIn');
+  }
+
   return (
     <View style={styles.container}>
         <KeyboardAwareScrollView
@@ -24,7 +32,7 @@ const Settings= ({ navigation }) => {
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
          <Text style={styles.whiteText}>Settings </Text>
-         <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, feel free to update your settings! </Text>
+         <Text style={styles.textLeft}><Text style={styles.capital}></Text> Feel free to update your settings! </Text>
          <View style={styles.whiteSquare}>
          <Text style={styles.smallText}>Time to update your profile pic? </Text>
          <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
@@ -41,6 +49,13 @@ const Settings= ({ navigation }) => {
          <Text></Text>
          <Text></Text>
          <Text></Text> 
+
+         <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleSignOut()}>
+            <Text>Sign Out </Text>
+          </TouchableOpacity>
+
          <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
