@@ -150,6 +150,17 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#FFF7E0',
   },
+  bookImageMedium: {
+    flex: 1,
+    width: 100,
+    height: 150,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: 'center',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#FFF7E0',
+  },
   bookImageSmall: {
     width: 60,
     height: 80,

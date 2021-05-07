@@ -1,9 +1,10 @@
 import cartTypes from './cart.types';
-import { handleAddToCart, handleAddToReading } from './cart.utils'
+import { handleAddToCart, handleAddToReading, handleAddToClub } from './cart.utils'
 
 const INITIAL_STATE = {
     cartItems: [],
-    readingItems: []
+    readingItems: [],
+    clubItems: [],
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -24,10 +25,19 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                     prevReadingItems: state.readingItems,
                     nextReadingItem: action.payload
                 })
-            };            
-            default:
-                return state;
+            };
+        case cartTypes.ADD_TO_CLUB:
+            return {
+                ...state,
+                clubItems: handleAddToClub({ //detta gör man för att inte adda samma bok flera ggr
+                    prevClubItems: state.clubItems,
+                    nextClubItem: action.payload
+                })
+
+            };
+        default:
+            return state;
     }
 };
 
-export default cartReducer; 
+export default cartReducer;

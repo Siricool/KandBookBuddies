@@ -5,20 +5,28 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import { addBook, addBookRead } from '../../redux/Cart/cart.actions'
+import { addBook, addBookClub, addBookRead } from '../../redux/Cart/cart.actions'
+import { bookInBC } from '../../redux/BookClub/bc.actions';
+
 import styles from '../styles.js'
 
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  updatedUser: user.updatedUser
 });
-
+const mapStateBC = ({ bookclub }) => ({
+  bc: bookclub.bc
+})
 const mapStateBook = ({ booksData }) => ({
   books: booksData.books
 });
 
 const Search = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
+  const { updatedUser } = useSelector(mapState);
   const { books } = useSelector(mapStateBook);
+  const { bc } = useSelector(mapStateBC);
+  console.log('BC I SEARCH' + bc)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +47,55 @@ const Search = ({ navigation }) => {
       addBookRead(book)
     )
   };
-  
+
+  const renderElement = () => {
+    if (updatedUser != null) {
+      return updatedUser.groupID
+    }
+    else {
+      return currentUser.groupID
+    }
+  };
+
+  const bookClub = renderElement();
+  bookClub.toString();
+
+  console.log('BOOKCLUB' + bookClub.toString())
+  console.log('bc' + bc)
+/*
+  const mapClubToBC = () => {
+
+  }
+  const currentClub = mapClubToBC();
+  console.log('CURRENTCLUB INNAN CONFIG' + currentClub)
+*/
+  const configAddToClub = (book) => {
+    const clubName = (bookClub.toString())
+    console.log(clubName)
+    {bc.map((club, index) => {
+        console.log('BC GROUPNAME ' + club.groupName)
+        if (club.groupName == clubName) {
+          console.log('KLUBBEN I NY IF ' + club.groupName)
+          console.log('KLUBBEN' + club)
+          //const clubName = club.groupName;
+          const clubID = club.documentID;
+          //const clubIDString = clubID.toString();
+          console.log('CLUBNAME I KLUBBEN'+club)
+          console.log('BOOK ' + book)
+          if (!book) return;
+          dispatch(
+            addBookClub(book)
+          )
+          dispatch(
+            bookInBC( {club, book} )
+          )
+
+        }
+      })
+    }
+
+  };
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView
@@ -50,7 +106,8 @@ const Search = ({ navigation }) => {
           source={require('../../../assets/backg.png')}>
 
           <Text style={styles.whiteText}>Look for Books</Text>
-
+          
+          <Text> hej </Text>
           {books.map((book, index) => {
             const bookurl = { uri: book.picture }
             return (
@@ -71,6 +128,11 @@ const Search = ({ navigation }) => {
                       style={styles.smallButton}
                       onPress={() => configAddToRead(book)} >
                       <Text> Add to Read Books </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.smallButton}
+                      onPress={() => configAddToClub(book)} >
+                      <Text> Add to Club </Text>
                     </TouchableOpacity>
                   </View>
                 </View>
