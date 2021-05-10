@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { createStructuredSelector } from 'reselect';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Icon } from 'react-native-elements'
 
 import { selectCartItems, selectReadingItems, selectClubItems } from '../../redux/Cart/cart.selectors';
-import { fetchBCStart } from '../../redux/BookClub/bc.actions';
+import { fetchBCStart, createCommentStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -33,10 +33,18 @@ const BCView = ({ route, navigation }) => {
   const { cartItems } = useSelector(mapStateCart);
   const { readingItems } = useSelector(mapStateCart);
   const { clubItems } = useSelector(mapStateCart);
-  console.log('Cart ITEMS ' + cartItems)
-  console.log('reading iTEMS ' + readingItems)
-  console.log('CLUBITEMS ' + clubItems)
+  const [comment, setComment] = useState('');
+  const dispatch = useDispatch();
+ 
+  //const [clubID, setClubID] = useState('');
+ 
   const { groupName } = route.params;
+
+  useEffect(() => {
+    mapClubToId();
+
+  }, [bc]
+  );
 
   const getTime = () => {
     const timeStamp = Date.now();
@@ -49,7 +57,9 @@ const BCView = ({ route, navigation }) => {
 
   const mapClubToId = () => {
     let chosenClub = bc.find(club => club.groupName === groupName);
+    
     if (chosenClub) {
+      
       const members = chosenClub.members;
       return (
         <ScrollView vertical={true} style={styles.rowBooks}>
@@ -63,6 +73,53 @@ const BCView = ({ route, navigation }) => {
         </ScrollView>)
     }
   };
+
+ 
+  const mapComment = () => {
+    let chosenClub = bc.find(club => club.groupName === groupName);
+    console.log(chosenClub)
+    if (chosenClub) {
+      
+      const comments = chosenClub.comments;
+      console.log('bajs'+comments)
+      return (
+        <ScrollView> 
+          {comments.map((comment, index) => {
+            return(     
+              <View key={comment.comment}>
+                
+                <Text style={styles.middleTextPink}> {comment.user}:
+                <Text style={styles.smallMiddleText}> {comment.comment} </Text>
+                <Text style={styles.smallerGreyText}> {comment.time} </Text> 
+                </Text>
+              </View>
+
+            )
+          })}
+        </ScrollView>
+
+      )
+    }
+
+
+  };
+
+  const handleCreateComment = () => {
+    const timeStamp = getTime();
+
+    let chosenClub = bc.find(club => club.groupName === groupName);
+    console.log(chosenClub.documentID)
+    if (chosenClub) {
+      const clubID = chosenClub.documentID;
+      dispatch(createCommentStart({
+        comment,
+        currentUser,
+        clubID,
+        timeStamp}
+      ))
+    }
+    
+  }
 
   const getBooks = () => {
     let chosenClub = bc.find(club => club.groupName === groupName);
@@ -147,17 +204,31 @@ const BCView = ({ route, navigation }) => {
                 source={bookUrlTest} />
 
             </ScrollView>
-          </SafeAreaView>
-          <Text style={styles.textLeft}> Discussion </Text>
-          <View style={styles.whiteSquare}>
-            <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Julia</Text>: I really liked Educated! <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
-            <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Siri</Text>: Yeahh, me too :D <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
-            <Text style={styles.smallMiddleText}><Text style={styles.middleTextPink}>Julia</Text>: Meeting next friday?? <Text style={styles.smallerGreyText}> {getTime()} </Text> </Text>
-          </View>
+            </SafeAreaView>
+            <Text style={styles.textLeft}> Discussion </Text>
+            <View style={styles.whiteSquare}>
+            <Text>{mapComment()}</Text>
+            </View>
+            <Text style={styles.smallText}>Make a comment</Text>
+            <TextInput
+              multiline
+              style={styles.inputComment}
+              placeholder="Make a comment"
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(text) => setComment(text)}
+              autoCapitalize="sentences"
+              />
+
+              <TouchableOpacity 
+              style={styles.smallButtonComment}
+              onPress={() => handleCreateComment()}>
+              <Text>Post comment</Text>
+              </TouchableOpacity>
+
+        
           <Text style={styles.textLeft}> Questions </Text>
           <View style={styles.whiteSquare}>
-            <Text style={styles.smallMiddleText}>- What is the significance of the title? Did you find it meaningful, why or why not?
-</Text>
+            <Text style={styles.smallMiddleText}>- What is the significance of the title? Did you find it meaningful, why or why not?</Text>
             <Text style={styles.smallMiddleText}>- What did you think of the writing style and content structure of the book?</Text>
             <Text style={styles.smallMiddleText}>- How did the book make you feel? What emotions did it evoke?</Text>
             <Text style={styles.smallMiddleText}>- What did you learn from this book?</Text>

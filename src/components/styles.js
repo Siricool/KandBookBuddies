@@ -222,6 +222,20 @@ export default StyleSheet.create({
     paddingLeft: 16,
     fontFamily: 'Helvetica'
   },
+
+  inputComment: {
+    height: 100,
+    borderRadius: 5,
+    overflow: 'hidden',
+    backgroundColor: 'white',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    paddingLeft: 16,
+    fontFamily: 'Helvetica'
+  },
+  
   
   button: {
     backgroundColor: '#f9ad30',
@@ -266,6 +280,18 @@ smallButtonBC: {
   shadowOpacity: 0.5,
   marginTop: 25,
   marginBottom: 25
+},
+
+smallButtonComment: {
+  backgroundColor: '#fde3b7',
+  height: 30,
+  width: 140,
+  alignItems: "center", 
+  alignSelf: "center", 
+  justifyContent: 'center', 
+  borderRadius:10,
+  borderWidth: 1,
+  borderColor: '#fde3b7',
 },
   coolButton: {
     backgroundColor: '#fde3b7',

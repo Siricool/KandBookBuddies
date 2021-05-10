@@ -23,12 +23,14 @@ export function* getSnapshotFromBC(bookclub = {}){
 export function* createBC({ payload:{
     groupName,
     members,
-    bcbooks   
+     
 }}) {
 
- try { 
+ try {
+     const bcbooks = [];
+     const comments = []; 
      const bookclub = yield firestore.collection('bookclubs')
-     .add({groupName, members, bcbooks});
+     .add({groupName, members, bcbooks, comments});
      yield getSnapshotFromBC(bookclub);
  } catch(err){
      console.log('error oups');
@@ -91,8 +93,7 @@ export function* bookInBC({ payload:{
     club,
     book }})
      {
- console.log('I SAGAS BOOKINBC')
- console.log('CLUB I SAGAS '+club)
+
     
   try {
       //UPDATERA BOOKKLUBBENS BOKLISTA
@@ -101,7 +102,7 @@ export function* bookInBC({ payload:{
       .doc(clubID).get();
       const bookArr = snapshot.data().bcbooks;
       bookArr.push(book);
-      console.log('sagas BOOKARR '+bookArr)
+      
 
       yield firestore.collection('bookclubs').doc(clubID).update({bcbooks: bookArr });
       
@@ -112,21 +113,56 @@ export function* bookInBC({ payload:{
 }
   catch (err){
 console.log('ERROR I SAGA')
-console.log('err ut: '+ clubID, book )
+
 }}
 
 
 export function* onBookInBC() {
     yield takeLatest(bcTypes.BOOK_IN_BC, bookInBC);
 }
-// slut 7/5   
+
+export function* createComment( {payload: {
+    comment,
+    currentUser,
+    clubID,
+    timeStamp}
+    }) {
+
+        try {
+            const userName = currentUser.displayName;
+            const snapshot = yield firestore.collection('bookclubs')
+            .doc(clubID).get();
+            const commentsArr = snapshot.data().comments;
+            commentsArr.push({comment: comment, user: userName, time: timeStamp});
+           
+      
+            yield firestore.collection('bookclubs').doc(clubID).update({comments: commentsArr });
+            
+            const updatedCommentsRef = yield firestore.collection('bookclubs')
+            .doc(clubID);
+      
+            yield getSnapshotFromBC(updatedCommentsRef);
+      }
+        catch (err){
+      console.log('ERROR I SAGA')
+       
+      }
+        
+
+
+}
+export function* onCreateCommentStart() {
+    yield takeLatest(bcTypes.CREATE_COMMENT_START, createComment)
+}
+
 
 export default function* bcSagas(){
     yield all([
         call(onCreateBCStart),
         call(onFetchBCStart),
         call(onJoinBCStart),
-        call(onBookInBC)
+        call(onBookInBC),
+        call(onCreateCommentStart)
     ])
 }
 
