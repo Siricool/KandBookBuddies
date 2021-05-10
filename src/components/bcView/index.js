@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
@@ -74,34 +74,34 @@ const BCView = ({ route, navigation }) => {
     }
   };
 
- 
   const mapComment = () => {
     let chosenClub = bc.find(club => club.groupName === groupName);
     console.log(chosenClub)
     if (chosenClub) {
-      
       const comments = chosenClub.comments;
-      console.log('bajs'+comments)
+      const scrollViewRef = useRef();
       return (
-        <ScrollView> 
+        <ScrollView  horizontal={false}
+          vertical={true}
+          style={styles.rowComments}
+          ref={scrollViewRef}
+          onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+          > 
           {comments.map((comment, index) => {
             return(     
-              <View key={comment.comment}>
-                
-                <Text style={styles.middleTextPink}> {comment.user}:
-                <Text style={styles.smallMiddleText}> {comment.comment} </Text>
+              <View key={comment.comment} 
+              marginTop = {5} >
                 <Text style={styles.smallerGreyText}> {comment.time} </Text> 
+                <Text style={styles.middleTextPink}> {comment.user}:
+                <Text style={styles.smallMiddleText}> {comment.comment} </Text>                
                 </Text>
+                <Text> </Text>
               </View>
-
             )
           })}
         </ScrollView>
-
       )
     }
-
-
   };
 
   const handleCreateComment = () => {
@@ -117,8 +117,8 @@ const BCView = ({ route, navigation }) => {
         clubID,
         timeStamp}
       ))
+      
     }
-    
   }
 
   const getBooks = () => {
@@ -206,7 +206,7 @@ const BCView = ({ route, navigation }) => {
             </ScrollView>
             </SafeAreaView>
             <Text style={styles.textLeft}> Discussion </Text>
-            <View style={styles.whiteSquare}>
+            <View style={styles.whiteMediumSquare}>
             <Text>{mapComment()}</Text>
             </View>
             <Text style={styles.smallText}>Make a comment</Text>
