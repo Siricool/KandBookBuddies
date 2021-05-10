@@ -21,7 +21,7 @@ const mapClub = ({ bookclub }) => ({
 
 const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
-    const bcbooks = [];
+   // const bcbooks = [];
     const { currentUser, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
@@ -38,7 +38,8 @@ const CreateBC = ({ navigation }) => {
         dispatch(createBCStart({
             groupName,
             members,
-            bcbooks
+           
+            
         }));
 
         dispatch(updateGroupsForUser({ groupName }));

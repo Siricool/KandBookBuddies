@@ -3,7 +3,8 @@ import bcTypes from './bc.types';
 const INITIAL_STATE = {
     currentBC: null,
     bc: [],
-    bcbooks: []
+    bcbooks: [],
+    comments: []
 };
 
 const bcReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,13 @@ const bcReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 bcbooks: action.payload
             }
+
+        case bcTypes.CREATE_COMMENT_START:
+            return {
+                ...state,
+                comments: action.payload
+                }
+                
             
         default:
             return state;

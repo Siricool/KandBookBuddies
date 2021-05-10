@@ -33,3 +33,8 @@ export const createdBCSuccess = bookclub => ({
     type: bcTypes.BOOK_IN_BC,
     payload: bcbookAndClub
   });
+
+  export const createCommentStart = commentCredentials => ({
+    type: bcTypes.CREATE_COMMENT_START,
+    payload: commentCredentials
+});
