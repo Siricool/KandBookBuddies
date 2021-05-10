@@ -119,6 +119,16 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  smallThinTextOrange: {
+    fontSize: 15,
+    width: 165,
+    color: 'orange',
+    fontWeight: "bold",
+    textAlign: 'center',
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
     middleTextPink: {
     fontSize: 18,
     color: '#d679ae',
@@ -166,7 +176,7 @@ export default StyleSheet.create({
     height: 80,
     marginTop: 10,
     marginBottom: 10,
-    marginHorizontal: 30,
+    marginHorizontal: 20,
     alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
@@ -182,8 +192,8 @@ export default StyleSheet.create({
   rowBooks: {
     height: 100,
     flexWrap: "wrap",
-    marginHorizontal: 50,
-    marginVertical: 10
+    marginHorizontal: 10,
+    marginVertical: 2
   },
   BBimage: {
     flex: 1,
@@ -311,7 +321,15 @@ smallButtonComment: {
     fontFamily: 'Helvetica'
   },
   whiteBigSquare: {
-    height: 300,
+    height: 320,
+    backgroundColor: 'white',
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  whiteMediumSquare: {
+    height: 220,
     backgroundColor: 'white',
     marginHorizontal: 20,
     marginTop: 10,
@@ -407,6 +425,12 @@ smallButtonComment: {
   },
   width: {
     width: 300
+  },
+  square: {
+    height: 60,
+    alignContent: 'center',
+    textAlign: 'center',
+    justifyContent: 'center'
   }
 })
 
