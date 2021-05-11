@@ -147,7 +147,8 @@ export default StyleSheet.create({
         margin: 30
   },
   capital: {
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    
   },
   bookImage: {
     flex: 1,
@@ -336,7 +337,7 @@ smallButtonComment: {
     borderRadius: 10,
   },
   whiteMediumSquare: {
-    height: 220,
+    height: 240,
     backgroundColor: 'white',
     marginHorizontal: 20,
     marginTop: 10,

@@ -65,9 +65,15 @@ const AddBookToBC = ({ route, navigation }) => {
     };
 
     const handlePress = (club) => {
-        dispatch(bookInBC({ club, book }))
-        //console.log('CHOSEN CLUB I ADD'+club.groupName)
-        navigation.navigate('Search');
+        const booksInClub = club.bcbooks; 
+        let bookExists = booksInClub.find(bcbook => bcbook.book.title === book.title);
+        if (bookExists != undefined) {
+            alert("The book is already in your club.")
+        }
+        else {
+            dispatch(bookInBC({ club, book }))
+        }
+     navigation.navigate('Search');
     };
 
     return (
