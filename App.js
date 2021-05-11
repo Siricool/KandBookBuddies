@@ -15,7 +15,7 @@ import JoinBC from './src/components/joinBC';
 import JoinBCInside from './src/components/joinBCInside';
 import BCView from './src/components/bcView';
 import AddBookToBC from './src/components/addBookToBC';
-import Rating from './src/components/rating'
+import RatingScreen from './src/components/ratingcomment'
 
 import { store, persistor } from './src/redux/createStore'; // 7/5 persistor
 import { Provider } from "react-redux";
@@ -48,7 +48,7 @@ export default function App() {
               <Stack.Screen name="ChooseBC" component={ChooseBC} />
               <Stack.Screen name="Search" component={Search} />
               <Stack.Screen name="AddBookToBC" component={AddBookToBC}/>
-              <Stack.Screen name="Rating" component={Rating}/>
+              <Stack.Screen name="RatingScreen" component={RatingScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
       

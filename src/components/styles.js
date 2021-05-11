@@ -403,6 +403,14 @@ smallButtonComment: {
     justifyContent: "space-evenly",
     
   },
+  rowRating: {
+    flexDirection: "row",
+    //flex: 10,
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    backgroundColor: 'white',
+    marginBottom: 10,
+  },
   buddietext: {
     flexDirection: "row",
     flex: 1,
@@ -445,6 +453,18 @@ smallButtonComment: {
   },
   marginB: {
     marginBottom: 10,
+  },
+  column: {
+    flexDirection: 'column',
+  },
+  star: {
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+  },
+  starClicked: {
+    borderWidth: 1,
+    borderColor: 'black'
   }
 })
 
