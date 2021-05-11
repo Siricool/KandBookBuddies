@@ -62,11 +62,14 @@ const Search = ({ navigation }) => {
   const bookClub = renderElement();
   bookClub.toString();
 
+  /*
   const configAddToClub = (book) => {
     const clubName = (bookClub.toString())
     console.log(clubName)
-    {
-      bc.map((club, index) => {
+    console.log('BC !!!!!!!!!!!!!!!!!!!!B ')
+    console.log(bc)
+    {bc.map((club, index) => {
+      console.log(bc)
         if (club.groupName == clubName) {
           if (!book) return;
           dispatch(
@@ -77,6 +80,13 @@ const Search = ({ navigation }) => {
           )
         }
       })
+    }
+  };
+  */
+  const configAddToClub = (book) => {
+    console.log('INNAN SKICKAD'+book)
+    if (book) {
+      navigation.navigate('AddBookToBC', book)
     }
   };
 
@@ -98,7 +108,7 @@ const Search = ({ navigation }) => {
               style={styles.rowBooks}>
               {books.map((book, index) => {
                 if (book.genre == 'Drama') {
-                  const bookurl = { uri: book.picture }
+                 
                   return (
                     <View key={book.id} >
                       <View style={styles.square}>
@@ -107,7 +117,7 @@ const Search = ({ navigation }) => {
                       </View>
                       <Image
                         style={styles.bookImageSmall}
-                        source={bookurl} />
+                        source={{ uri: book.picture }} />
                       <TouchableOpacity
                         style={styles.smallButton}
                         onPress={() => configAddToCart(book)} >
@@ -131,7 +141,89 @@ const Search = ({ navigation }) => {
             </ScrollView>
           </SafeAreaView>
 
-          <Text style={styles.textLeft}> Fantasy </Text>
+         
+
+
+
+
+
+          <Image
+            style={styles.bookLogo}
+            source={require('../../../assets/whiteicon.png')}
+          />
+        </ImageBackground>
+      </KeyboardAwareScrollView>
+
+      <View style={styles.row}>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
+          <Icon
+            reverse
+            name='ios-person'
+            type='ionicon'
+            color='#fde3b7'
+
+          />
+        </TouchableHighlight>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
+          <Icon
+            reverse
+            name='ios-book'
+            type='ionicon'
+            color='#fde3b7'
+          />
+        </TouchableHighlight>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
+          <Icon
+            reverse
+            name='ios-home'
+            type='ionicon'
+            color='#fde3b7'
+          />
+        </TouchableHighlight>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
+          <Icon
+            reverse
+            name='ios-search'
+            type='ionicon'
+            color='#fde3b7'
+          />
+        </TouchableHighlight>
+        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
+          <Icon
+            reverse
+            name='ios-settings'
+            type='ionicon'
+            color='#fde3b7'
+          />
+        </TouchableHighlight>
+      </View>
+
+    </View>
+  );
+}
+
+export default Search;
+
+
+/*
+{books.map((product, index) => {
+                const {
+                    bookAuthor,
+                    bookGenre,
+                    bookPicture,
+                    bookTitle,
+
+                } = book;
+                return (
+                    //<Image src = {bookPicture} />
+                    <Text> {bookTitle} </Text>
+                )
+            })}
+            */
+
+
+/*
+ <Text style={styles.textLeft}> Fantasy </Text>
           <SafeAreaView style={styles.whiteBigSquare}>
             <ScrollView horizontal={true}
               vertical={true}
@@ -252,79 +344,5 @@ const Search = ({ navigation }) => {
               })}
             </ScrollView>
           </SafeAreaView>
-
-          <Image
-            style={styles.bookLogo}
-            source={require('../../../assets/whiteicon.png')}
-          />
-        </ImageBackground>
-      </KeyboardAwareScrollView>
-
-      <View style={styles.row}>
-        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
-          <Icon
-            reverse
-            name='ios-person'
-            type='ionicon'
-            color='#fde3b7'
-
-          />
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
-          <Icon
-            reverse
-            name='ios-book'
-            type='ionicon'
-            color='#fde3b7'
-          />
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
-          <Icon
-            reverse
-            name='ios-home'
-            type='ionicon'
-            color='#fde3b7'
-          />
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
-          <Icon
-            reverse
-            name='ios-search'
-            type='ionicon'
-            color='#fde3b7'
-          />
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
-          <Icon
-            reverse
-            name='ios-settings'
-            type='ionicon'
-            color='#fde3b7'
-          />
-        </TouchableHighlight>
-      </View>
-
-    </View>
-  );
-}
-
-export default Search;
-
-
-/*
-{books.map((product, index) => {
-                const {
-                    bookAuthor,
-                    bookGenre,
-                    bookPicture,
-                    bookTitle,
-
-                } = book;
-                return (
-                    //<Image src = {bookPicture} />
-                    <Text> {bookTitle} </Text>
-                )
-            })}
-            */
-
+*/          
 
