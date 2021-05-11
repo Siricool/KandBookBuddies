@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
@@ -82,7 +82,6 @@ const BCView = ({ route, navigation }) => {
     
   };
 
- 
   const mapComment = () => {
     if (bcCom.groupName != undefined){
       let chosenClub = bcCom
@@ -150,6 +149,7 @@ const BCView = ({ route, navigation }) => {
         clubID,
         timeStamp}
       ))
+      
     }
   }
 
@@ -238,7 +238,7 @@ const BCView = ({ route, navigation }) => {
             </ScrollView>
             </SafeAreaView>
             <Text style={styles.textLeft}> Discussion </Text>
-            <View style={styles.whiteSquare}>
+            <View style={styles.whiteMediumSquare}>
             <Text>{mapComment()}</Text>
             </View>
             <Text style={styles.smallText}>Make a comment</Text>

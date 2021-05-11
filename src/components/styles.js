@@ -195,6 +195,13 @@ export default StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 2
   },
+  rowComments: {
+    height: 100,
+    resizeMode: 'cover',
+    flexWrap: 'wrap'    ,
+    marginHorizontal: 10,
+    marginVertical: 2
+  },
   BBimage: {
     flex: 1,
     height: 50,
