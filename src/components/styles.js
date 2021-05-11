@@ -391,6 +391,10 @@ smallButtonComment: {
     borderTopColor: '#fde3b7',
     
   },
+  rowSettings: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
 
   rowBC: {
     flexDirection: "row",
@@ -438,6 +442,9 @@ smallButtonComment: {
     alignContent: 'center',
     textAlign: 'center',
     justifyContent: 'center'
+  },
+  marginB: {
+    marginBottom: 10,
   }
 })
 

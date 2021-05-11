@@ -32,30 +32,55 @@ const Settings= ({ navigation }) => {
         style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
          <Text style={styles.whiteText}>Settings </Text>
-         <Text style={styles.textLeft}><Text style={styles.capital}></Text> Feel free to update your settings! </Text>
-         <View style={styles.whiteSquare}>
-         <Text style={styles.smallText}>Time to update your profile pic? </Text>
-         <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
-         </View>
-         <View style={styles.whiteSquare}>
-         <Text style={styles.smallText}>Wanna switch to night mode? </Text>
-         <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
-         </View>
-         <View style={styles.whiteSquare}>
-         <Text style={styles.smallText}>This will take care of your eyes when clubbing at night! </Text>
-         <TouchableOpacity style={styles.smallButton}><Text>Click here</Text></TouchableOpacity>
-         </View>
-         <Text></Text>
-         <Text></Text>
-         <Text></Text>
-         <Text></Text> 
 
+        
+          <View style={styles.whiteSquare}>
+          <View style={styles.rowSettings}>
+            <View>
+          <Text style={styles.textLeft}><Text style={styles.capital}></Text>Profile picture</Text>
+         
+         <Text style={styles.smallText}>Time to update your profile pic? </Text>
+         </View>
+         <TouchableHighlight underlayColor='none'>
+          <Icon
+                        reverse
+                        name='ios-camera'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
+          </TouchableHighlight>
+         </View>
+         </View>
+         <View style={styles.whiteSquare}>
+          <View style={styles.rowSettings}>
+            <View>
+          <Text style={styles.textLeft}><Text style={styles.capital}></Text>Night mode</Text>
+         
+         <Text style={styles.smallText}>Time to change to night mode?</Text>
+         </View>
+         <TouchableHighlight underlayColor='none'>
+          <Icon
+                        reverse
+                        name='ios-moon'
+                        type='ionicon'
+                        color='#fde3b7'
+                    />
+          </TouchableHighlight>
+         </View>
+         </View>
+         
+         <View style={styles.whiteSquare}>
+          <Text style={styles.textLeft}>Sign Out area</Text>
+         <Text style={styles.smallText}>We hope you are logging in soon! Best regards, Team Book Buddies.</Text>
+          <View style={styles.marginB}>
          <TouchableOpacity
             style={styles.button}
             onPress={() => handleSignOut()}>
             <Text>Sign Out </Text>
           </TouchableOpacity>
-
+          </View>
+          </View>
+          <Text></Text>
          <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
