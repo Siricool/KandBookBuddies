@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { firestore } from './../../firebase/utils';
-import { createdBCSuccess, setBC} from "./bc.actions";
+import { createdBCSuccess, createdCommentSuccess, setBC} from "./bc.actions";
 import bcTypes from './bc.types'
 import { handleFetchBC } from './bc.helpers'
 
@@ -20,6 +20,8 @@ export function* getSnapshotFromBC(bookclub = {}){
 
     }
 }
+
+
 export function* createBC({ payload:{
     groupName,
     members,
@@ -141,16 +143,30 @@ export function* createComment( {payload: {
             const updatedCommentsRef = yield firestore.collection('bookclubs')
             .doc(clubID);
       
-            yield getSnapshotFromBC(updatedCommentsRef);
+            yield getSnapshotFromBCComment(updatedCommentsRef);
       }
         catch (err){
       console.log('ERROR I SAGA')
        
       }
-        
-
-
 }
+export function* getSnapshotFromBCComment(bookclub = {}){
+
+    try{
+        const snapshot = yield bookclub.get();
+        console.log('hejsan nu är du här')
+        yield put(
+            createdCommentSuccess({
+                id: snapshot.id,
+                ...snapshot.data()
+            })
+        );
+
+    } catch (err){
+
+    }
+}
+
 export function* onCreateCommentStart() {
     yield takeLatest(bcTypes.CREATE_COMMENT_START, createComment)
 }

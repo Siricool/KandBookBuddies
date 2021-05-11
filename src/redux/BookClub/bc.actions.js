@@ -38,3 +38,9 @@ export const createdBCSuccess = bookclub => ({
     type: bcTypes.CREATE_COMMENT_START,
     payload: commentCredentials
 });
+
+export const createdCommentSuccess = bookclub => ({
+  type: bcTypes.CREATED_COMMENT_SUCCESS,
+  payload: bookclub
+});
+
