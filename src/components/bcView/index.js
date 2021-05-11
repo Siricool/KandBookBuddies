@@ -111,6 +111,10 @@ const BCView = ({ route, navigation }) => {
       }))}
   }
 
+  const goToRatingScreen = (book) => {
+    navigation.navigate('Rating', book)
+  }
+
   const getBooks = () => {
     let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
@@ -127,17 +131,19 @@ const BCView = ({ route, navigation }) => {
                   <View style={styles.square}>
                     <Text style={styles.smallThinTextOrange}> {book.title} </Text>
                   </View>
-                  <Text style={styles.smallerText}> {book.author} </Text>
-                  <Image
-                    style={styles.bookImageSmall}
-                    source={{ uri: book.picture }} />
-                  <TouchableOpacity
-                    style={styles.smallButton}
-                    onPress={() => navigation.navigate('Rating', book)}>
-                    <Text> Finished reading </Text>
-                  </TouchableOpacity>
-                </View>
-              )}})}
+                <Text style={styles.smallerText}> {book.author} </Text>
+                <Image
+                  style={styles.bookImageSmall}
+                  source={{ uri: book.picture }} />
+                 <TouchableOpacity
+                        style={styles.smallButton}
+                        onPress={() => goToRatingScreen(book)}>
+                        <Text> Finished reading </Text>
+                 </TouchableOpacity>  
+              </View>
+            )
+            }
+          })}
         </ScrollView>)
     }
   }
@@ -156,7 +162,7 @@ const BCView = ({ route, navigation }) => {
               return (
                 <View key={book.id}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Rating', book)}>
+                    onPress={() => goToRatingScreen(book)}>
                     <Image
                       style={styles.bookImageSmall}
                       source={{ uri: book.picture }} />
