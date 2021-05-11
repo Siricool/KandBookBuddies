@@ -154,6 +154,10 @@ const BCView = ({ route, navigation }) => {
     }
   }
 
+  const goToRatingScreen = (book) => {
+    navigation.navigate('Rating', book)
+  }
+
   const getBooks = () => {
     let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
@@ -176,7 +180,7 @@ const BCView = ({ route, navigation }) => {
                   source={{ uri: book.picture }} />
                  <TouchableOpacity
                         style={styles.smallButton}
-                        onPress={() => navigation.navigate('Rating', book)}>
+                        onPress={() => goToRatingScreen(book)}>
                         <Text> Finished reading </Text>
                  </TouchableOpacity>  
               </View>

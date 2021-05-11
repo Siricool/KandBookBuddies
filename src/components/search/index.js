@@ -198,7 +198,6 @@ const Search = ({ navigation }) => {
               {books.map((book, index) => {
                 if (book.genre == 'Romance') {
                   return (
-                    <View>
                       <View key={book.id} >
                         <Text style={styles.smallThinTextOrange}> {book.title} </Text>
                         <Text style={styles.smallerText}> {book.author} </Text>
@@ -221,7 +220,6 @@ const Search = ({ navigation }) => {
                           <Text> Add to Club </Text>
                         </TouchableOpacity>
                       </View>
-                    </View>
                   )
                 }
               })}
