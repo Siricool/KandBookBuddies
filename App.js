@@ -14,6 +14,7 @@ import Search from './src/components/search';
 import JoinBC from './src/components/joinBC';
 import JoinBCInside from './src/components/joinBCInside';
 import BCView from './src/components/bcView';
+import AddBookToBC from './src/components/addBookToBC';
 
 import { store, persistor } from './src/redux/createStore'; // 7/5 persistor
 import { Provider } from "react-redux";
@@ -45,6 +46,7 @@ export default function App() {
               <Stack.Screen name="JoinBCInside" component={JoinBCInside} />
               <Stack.Screen name="ChooseBC" component={ChooseBC} />
               <Stack.Screen name="Search" component={Search} />
+              <Stack.Screen name="AddBookToBC" component={AddBookToBC}/>
         </Stack.Navigator>
       </NavigationContainer>
       
