@@ -20,7 +20,7 @@ const bcReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 bc: action.payload
             }
-        case bcTypes.BOOK_IN_BC:
+        case bcTypes.BOOK_IN_BC: //eventuellt onödig
             return {
                 ...state,
                 bcbooks: action.payload

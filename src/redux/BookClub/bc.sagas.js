@@ -1,12 +1,12 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { firestore } from './../../firebase/utils';
-import { createdBCSuccess, createdCommentSuccess, setBC} from "./bc.actions";
+import { createdBCSuccess, createdCommentSuccess, setBC } from "./bc.actions";
 import bcTypes from './bc.types'
 import { handleFetchBC } from './bc.helpers'
 
-export function* getSnapshotFromBC(bookclub = {}){
+export function* getSnapshotFromBC(bookclub = {}) {
 
-    try{
+    try {
         const snapshot = yield bookclub.get();
 
         yield put(
@@ -16,27 +16,27 @@ export function* getSnapshotFromBC(bookclub = {}){
             })
         );
 
-    } catch (err){
+    } catch (err) {
 
     }
 }
 
 
-export function* createBC({ payload:{
+export function* createBC({ payload: {
     groupName,
     members,
-     
-}}) {
 
- try {
-     const bcbooks = [];
-     const comments = []; 
-     const bookclub = yield firestore.collection('bookclubs')
-     .add({groupName, members, bcbooks, comments});
-     yield getSnapshotFromBC(bookclub);
- } catch(err){
-     console.log('error oups');
- }
+} }) {
+
+    try {
+        const bcbooks = [];
+        const comments = [];
+        const bookclub = yield firestore.collection('bookclubs')
+            .add({ groupName, members, bcbooks, comments });
+        yield getSnapshotFromBC(bookclub);
+    } catch (err) {
+        console.log('error oups');
+    }
 }
 
 export function* onCreateBCStart() {
@@ -45,114 +45,110 @@ export function* onCreateBCStart() {
 
 export function* fetchBC() {
     try {
-      const bc = yield handleFetchBC();
-      
-      yield put(
-        setBC(bc) 
-      );
-  
+        const bc = yield handleFetchBC();
+
+        yield put(
+            setBC(bc)
+        );
+
     } catch (err) {
-      // console.log(err);
+        // console.log(err);
     }
-  }
-  
-  export function* onFetchBCStart() {
+}
+
+export function* onFetchBCStart() {
     yield takeLatest(bcTypes.FETCH_BC_START, fetchBC);
-  }
+}
 
 
 
-  export function* joinBC({ payload:{
-      club,
-      currentUser }})
-       {
-      
+export function* joinBC({ payload: {
+    club,
+    currentUser } }) {
+
     try {
         //UPDATERA BOOKKLUBBENS MEDLEMSLISTA
         const snapshot = yield firestore.collection('bookclubs')
-        .doc(club).get();
+            .doc(club).get();
         const tempsArr = snapshot.data().members
         tempsArr.push(currentUser);
-        
 
-        yield firestore.collection('bookclubs').doc(club).update({members: tempsArr });
-        
+
+        yield firestore.collection('bookclubs').doc(club).update({ members: tempsArr });
+
         const updatedBCRef = yield firestore.collection('bookclubs').doc(club);
 
         yield getSnapshotFromBC(updatedBCRef);
-  }
-    catch (err){
+    }
+    catch (err) {
 
-  }}
+    }
+}
 
- 
-  export function* onJoinBCStart() {
-      yield takeLatest(bcTypes.JOIN_BC_START, joinBC);
-  }
+
+export function* onJoinBCStart() {
+    yield takeLatest(bcTypes.JOIN_BC_START, joinBC);
+}
 
 // adda bok till bc 
-export function* bookInBC({ payload:{
+export function* bookInBC({ payload: {
     club,
-    book }})
-     {
+    book } }) {
+    try {
+        //UPDATERA BOOKKLUBBENS BOKLISTA
+        const clubID = club.documentID;
+        const snapshot = yield firestore.collection('bookclubs')
+            .doc(clubID).get();
+        const bookArr = snapshot.data().bcbooks;
+        bookArr.push({ book, read: false, comments: [], rating: [] });
 
-    
-  try {
-      //UPDATERA BOOKKLUBBENS BOKLISTA
-      const clubID = club.documentID;
-      const snapshot = yield firestore.collection('bookclubs')
-      .doc(clubID).get();
-      const bookArr = snapshot.data().bcbooks;
-      bookArr.push({book, read: false});
-      
+        yield firestore.collection('bookclubs').doc(clubID).update({ bcbooks: bookArr });
 
-      yield firestore.collection('bookclubs').doc(clubID).update({bcbooks: bookArr });
-      
-      const updatedBookRef = yield firestore.collection('bookclubs')
-      .doc(clubID);
+        const updatedBookRef = yield firestore.collection('bookclubs')
+            .doc(clubID);
 
-      yield getSnapshotFromBC(updatedBookRef);
+        yield getSnapshotFromBC(updatedBookRef);
+    }
+    catch (err) {
+        console.log('ERROR I SAGA')
+    }
 }
-  catch (err){
-console.log('ERROR I SAGA')
-
-}}
 
 
 export function* onBookInBC() {
     yield takeLatest(bcTypes.BOOK_IN_BC, bookInBC);
 }
 
-export function* createComment( {payload: {
+export function* createComment({ payload: {
     comment,
     currentUser,
     clubID,
-    timeStamp}
-    }) {
+    timeStamp }
+}) {
 
-        try {
-            const userName = currentUser.displayName;
-            const snapshot = yield firestore.collection('bookclubs')
+    try {
+        const userName = currentUser.displayName;
+        const snapshot = yield firestore.collection('bookclubs')
             .doc(clubID).get();
-            const commentsArr = snapshot.data().comments;
-            commentsArr.push({comment: comment, user: userName, time: timeStamp});
-           
-      
-            yield firestore.collection('bookclubs').doc(clubID).update({comments: commentsArr });
-            
-            const updatedCommentsRef = yield firestore.collection('bookclubs')
-            .doc(clubID);
-      
-            yield getSnapshotFromBCComment(updatedCommentsRef);
-      }
-        catch (err){
-      console.log('ERROR I SAGA')
-       
-      }
-}
-export function* getSnapshotFromBCComment(bookclub = {}){
+        const commentsArr = snapshot.data().comments;
+        commentsArr.push({ comment: comment, user: userName, time: timeStamp });
 
-    try{
+
+        yield firestore.collection('bookclubs').doc(clubID).update({ comments: commentsArr });
+
+        const updatedCommentsRef = yield firestore.collection('bookclubs')
+            .doc(clubID);
+
+        yield getSnapshotFromBCComment(updatedCommentsRef);
+    }
+    catch (err) {
+        console.log('ERROR I SAGA')
+
+    }
+}
+export function* getSnapshotFromBCComment(bookclub = {}) {
+
+    try {
         const snapshot = yield bookclub.get();
         console.log('hejsan nu är du här')
         yield put(
@@ -162,7 +158,7 @@ export function* getSnapshotFromBCComment(bookclub = {}){
             })
         );
 
-    } catch (err){
+    } catch (err) {
 
     }
 }
@@ -172,13 +168,44 @@ export function* onCreateCommentStart() {
 }
 
 
-export default function* bcSagas(){
+//rating saga preppad 11/5, kalla på denna funktion för att uppdatera rating: updateRating(club, rating)
+export function* updateRating({ payload: {
+    club,
+    rating } }) {
+
+    try {
+        const clubID = club.documentID;
+        const snapshot = yield firestore.collection('bookclubs')
+            .doc(clubID).get();
+        const ratingArr = snapshot.data().rating;
+        ratingArr.push(rating);
+
+        yield firestore.collection('bookclubs').doc(clubID).update({ rating: ratingArr });
+
+        const updatedRatingRef = yield firestore.collection('bookclubs')
+            .doc(clubID);
+
+        yield getSnapshotFromBC(updatedRatingRef); //vill vi kalla på denna snapshot????
+    }
+    catch (err) {
+
+    }
+}
+
+export function* onUpdateRating() {
+    yield takeLatest(bcTypes.UPDATE_RATING, updateRating)
+}
+
+
+
+export default function* bcSagas() {
     yield all([
         call(onCreateBCStart),
         call(onFetchBCStart),
         call(onJoinBCStart),
         call(onBookInBC),
-        call(onCreateCommentStart)
+        call(onCreateCommentStart),
+        call(onUpdateRating)
     ])
 }
 

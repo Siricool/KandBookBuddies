@@ -44,3 +44,8 @@ export const createdCommentSuccess = bookclub => ({
   payload: bookclub
 });
 
+export const updateRating = bookclub => ({
+  type: bcTypes.UPDATE_RATING,
+  payload: bookclub
+});
+
