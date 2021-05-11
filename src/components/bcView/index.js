@@ -112,7 +112,7 @@ const BCView = ({ route, navigation }) => {
   }
 
   const goToRatingScreen = (book) => {
-    navigation.navigate('Rating', book)
+    navigation.navigate('RatingScreen', book)
   }
 
   const getBooks = () => {
