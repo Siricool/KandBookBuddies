@@ -17,7 +17,9 @@ const mapState = ({ user }) => ({
 });
 
 const mapStateBC = ({ bookclub }) => ({
-  bc: bookclub.bc
+  bc: bookclub.bc,
+  bcCom: bookclub.comments
+ // currentBC: bookclub.currentBC
 });
 
 const mapStateCart = createStructuredSelector({
@@ -30,6 +32,7 @@ const BCView = ({ route, navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
+  const { bcCom } = useSelector(mapStateBC);
   const { cartItems } = useSelector(mapStateCart);
   const { readingItems } = useSelector(mapStateCart);
   const { clubItems } = useSelector(mapStateCart);
@@ -42,8 +45,10 @@ const BCView = ({ route, navigation }) => {
 
   useEffect(() => {
     mapClubToId();
+    
+    
 
-  }, [bc]
+  }, [bc, bcCom]
   );
 
   const getTime = () => {
@@ -56,6 +61,8 @@ const BCView = ({ route, navigation }) => {
   }
 
   const mapClubToId = () => {
+
+   
     let chosenClub = bc.find(club => club.groupName === groupName);
     
     if (chosenClub) {
@@ -72,42 +79,67 @@ const BCView = ({ route, navigation }) => {
           })}
         </ScrollView>)
     }
+    
   };
 
   const mapComment = () => {
-    let chosenClub = bc.find(club => club.groupName === groupName);
-    console.log(chosenClub)
-    if (chosenClub) {
-      const comments = chosenClub.comments;
-      const scrollViewRef = useRef();
-      return (
-        <ScrollView  horizontal={false}
-          vertical={true}
-          style={styles.rowComments}
-          ref={scrollViewRef}
-          onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
-          > 
-          {comments.map((comment, index) => {
-            return(     
-              <View key={comment.comment} 
-              marginTop = {5} >
-                <Text style={styles.smallerGreyText}> {comment.time} </Text> 
-                <Text style={styles.middleTextPink}> {comment.user}:
-                <Text style={styles.smallMiddleText}> {comment.comment} </Text>                
-                </Text>
-                <Text> </Text>
-              </View>
-            )
-          })}
-        </ScrollView>
-      )
+    if (bcCom.groupName != undefined){
+      let chosenClub = bcCom
+
+      if (chosenClub) {
+        const comments = chosenClub.comments;
+       
+        return (
+          <ScrollView> 
+            {comments.map((comment, index) => {
+              return(     
+                <View key={comment.comment}>
+                  
+                  <Text style={styles.middleTextPink}> {comment.user}:
+                  <Text style={styles.smallMiddleText}> {comment.comment} </Text>
+                  <Text style={styles.smallerGreyText}> {comment.time} </Text> 
+                  </Text>
+                </View>
+  
+              )
+            })}
+          </ScrollView>
+  
+        )
+      }
+
+    }
+    else{
+      let chosenClub = bc.find(club => club.groupName === groupName);  
+      if (chosenClub) {     
+        const comments = chosenClub.comments;
+
+        return (
+          <ScrollView> 
+            {comments.map((comment, index) => {
+              return(     
+                <View key={comment.comment}>                
+                  <Text style={styles.middleTextPink}> {comment.user}:
+                  <Text style={styles.smallMiddleText}> {comment.comment} </Text>
+                  <Text style={styles.smallerGreyText}> {comment.time} </Text> 
+                  </Text>
+                </View> 
+              )
+            })}
+          </ScrollView>
+  
+        )
+      }
     }
   };
 
+
+
   const handleCreateComment = () => {
     const timeStamp = getTime();
-
+  
     let chosenClub = bc.find(club => club.groupName === groupName);
+    
     console.log(chosenClub.documentID)
     if (chosenClub) {
       const clubID = chosenClub.documentID;

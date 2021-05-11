@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     currentBC: null,
     bc: [],
     bcbooks: [],
-    comments: []
+    comments: [],
+    
 };
 
 const bcReducer = (state = INITIAL_STATE, action) => {
@@ -25,7 +26,7 @@ const bcReducer = (state = INITIAL_STATE, action) => {
                 bcbooks: action.payload
             }
 
-        case bcTypes.CREATE_COMMENT_START:
+        case bcTypes.CREATED_COMMENT_SUCCESS:
             return {
                 ...state,
                 comments: action.payload
