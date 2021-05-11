@@ -103,7 +103,7 @@ export function* bookInBC({ payload:{
       const snapshot = yield firestore.collection('bookclubs')
       .doc(clubID).get();
       const bookArr = snapshot.data().bcbooks;
-      bookArr.push(book);
+      bookArr.push({book, read: false});
       
 
       yield firestore.collection('bookclubs').doc(clubID).update({bcbooks: bookArr });
