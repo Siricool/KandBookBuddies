@@ -137,6 +137,7 @@ const BCView = ({ route, navigation }) => {
 
   const handleCreateComment = () => {
     const timeStamp = getTime();
+    setComment('');
   
     let chosenClub = bc.find(club => club.groupName === groupName);
     
@@ -248,12 +249,14 @@ const BCView = ({ route, navigation }) => {
               placeholder="Make a comment"
               placeholderTextColor="#aaaaaa"
               onChangeText={(text) => setComment(text)}
+              value={comment}
               autoCapitalize="sentences"
               />
 
               <TouchableOpacity 
               style={styles.smallButtonComment}
-              onPress={() => handleCreateComment()}>
+              onPress={() => handleCreateComment()}
+              >
               <Text>Post comment</Text>
               </TouchableOpacity>
 
