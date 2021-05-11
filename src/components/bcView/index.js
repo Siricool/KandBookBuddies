@@ -161,22 +161,27 @@ const BCView = ({ route, navigation }) => {
       return (
         <ScrollView horizontal={true}
           vertical={true}
-          style={styles.rowBooks}>
-          {books.map((book, index) => {
-            const bookurl = { uri: book.picture }
+          style={styles.rowBooks}>  
+          {books.map((bookObject, index) => {
+            const book = bookObject.book;
+            if (bookObject.read === false) {
             return (
               <View key={book.id}>
                 <View style={styles.square}>
                 <Text style={styles.smallThinTextOrange}> {book.title} </Text>
                 </View>
                 <Text style={styles.smallerText}> {book.author} </Text>
-                
                 <Image
                   style={styles.bookImageSmall}
-                  source={bookurl} />
-                  
+                  source={{ uri: book.picture }} />
+                 <TouchableOpacity
+                        style={styles.smallButton}
+                        onPress={() => navigation.navigate('Rating', book)}>
+                        <Text> Finished reading </Text>
+                 </TouchableOpacity>  
               </View>
             )
+            }
           })}
         </ScrollView>)
     }
