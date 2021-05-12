@@ -49,3 +49,8 @@ export const updateRating = clubandstar => ({
   payload: clubandstar
 });
 
+export const updatedRatingSuccess = rating => ({
+  type: bcTypes.UPDATED_RATING_SUCCESS,
+  payload: rating
+});
+

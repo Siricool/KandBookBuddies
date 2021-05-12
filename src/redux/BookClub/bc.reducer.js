@@ -32,7 +32,7 @@ const bcReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 comments: action.payload
             }
-        case bcTypes.UPDATE_RATING:
+        case bcTypes.UPDATED_RATING_SUCCESS:
             return {
                 ...state,
                 rating: action.payload
