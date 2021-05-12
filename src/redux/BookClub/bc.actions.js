@@ -44,3 +44,13 @@ export const createdCommentSuccess = bookclub => ({
   payload: bookclub
 });
 
+export const updateRating = clubandstar => ({
+  type: bcTypes.UPDATE_RATING,
+  payload: clubandstar
+});
+
+export const updatedRatingSuccess = rating => ({
+  type: bcTypes.UPDATED_RATING_SUCCESS,
+  payload: rating
+});
+

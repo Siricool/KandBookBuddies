@@ -139,6 +139,17 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  bigTextPink: {
+    fontSize: 50,
+    color: '#d679ae',
+    fontWeight: "bold",
+    marginTop: 5,
+    alignSelf: "center",
+    marginBottom: 10,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
   bookLogo: {
     flex: 1,
         height: 120,
