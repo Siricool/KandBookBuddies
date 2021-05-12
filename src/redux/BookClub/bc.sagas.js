@@ -98,9 +98,15 @@ export function* bookInBC({ payload: {
         //UPDATERA BOOKKLUBBENS BOKLISTA
         const clubID = club.documentID;
         const snapshot = yield firestore.collection('bookclubs')
-            .doc(clubID).get();
+        .doc(clubID).get();
         const bookArr = snapshot.data().bcbooks;
-        bookArr.push({ book, read: false, comments: [], rating: [] });
+
+        const title = book.title;
+        const author = book.author;
+        const picture = book.picture;
+        const id = book.id;
+        const genre = book.genre;
+        bookArr.push({ title, picture, author, id, genre, read: false, comments: [], rating: [] });
 
         yield firestore.collection('bookclubs').doc(clubID).update({ bcbooks: bookArr });
 
@@ -170,25 +176,89 @@ export function* onCreateCommentStart() {
 
 //rating saga preppad 11/5, kalla på denna funktion för att uppdatera rating: updateRating(club, rating)
 export function* updateRating({ payload: {
-    club,
-    rating } }) {
-
+    documentID,
+    star,
+    counter,
+    bookObject 
+     } }) {
+        console.log('i sagas'+documentID)
+        console.log('star i saga'+star) 
+        console.log('bobj'+bookObject)
     try {
-        const clubID = club.documentID;
+        const clubID = documentID;
+        console.log('clubID i try'+clubID)
+        console.log('STAR I SAGA TRY' + star)
+        console.log('COUNTER I TRY'+counter)
         const snapshot = yield firestore.collection('bookclubs')
             .doc(clubID).get();
-        const ratingArr = snapshot.data().rating;
-        ratingArr.push(rating);
+        
+        console.log('efter snapshot')
+        const ratingArr = snapshot.data().bcbooks[counter].rating;
+        
+        console.log(snapshot.data())
+        const currentRate = ratingArr;
+        console.log('efter ratingArr tas ut: '+ratingArr)
+        console.log(ratingArr)
+        
+        ratingArr.push(star);
 
-        yield firestore.collection('bookclubs').doc(clubID).update({ rating: ratingArr });
+        console.log('test efter push')
+        console.log(ratingArr)
 
-        const updatedRatingRef = yield firestore.collection('bookclubs')
-            .doc(clubID);
+       // console.log(bcbooks[counter].title)
+        //console.log(book.title)
+        console.log('tjenatjena siri id: '+bookObject.id)
+       //const heoo = yield firestore.collection('bookclubs').doc(clubID).where('bcbooks'[counter], '==',  bookOject).get();
+/*
+       const hej = yield firestore.collection('bookclubs/'+clubID+'/bcbooks').where('title', '==', bookObject.title).get() 
+       const hejhej = hej.data().title;
+       console.log('hejhej')
+       console.log(hejhej)
+       */
+       const booksInBC = yield firestore.collection('bookclubs').doc(clubID).get() //.where('title', '==', bookObject.title).collection('bcbooks')
+       console.log('efter where')
+       const bookbcarr = booksInBC.data().bcbooks;
+       console.log(bookbcarr)
+       const newBookList = [];
+       bookbcarr.map((bcBook, index) => {
+           console.log('i map')
+           console.log(bcBook)
+           console.log(bcBook.title)
+           console.log(bookObject.title)
+           console.log('slut på logs')
+           if (bcBook.title == bookObject.title) {
+               console.log('boken')
+               console.log(bcBook)
+               const newBook = {
+                author: bcBook.author,
+                comments: bcBook.comments,
+                genre: bcBook.genre,
+                id: bcBook.id,
+                picture: bcBook.picture,
+                rating: ratingArr,
+                read: bcBook.read,
+                title: bcBook.title,
+               }
+               newBookList.push(newBook)
+           } 
+           else {
+               newBookList.push(bcBook)
+           }
+         }
+       )
+       yield firestore.collection('bookclubs').doc(clubID).update({bcbooks: newBookList})     
+       console.log('NEDAN STRING ?:')  
+       console.log('efter yield')
+       const updatedRatingRef = yield firestore.collection('bookclubs')
+            .doc(documentID);
 
-        yield getSnapshotFromBC(updatedRatingRef); //vill vi kalla på denna snapshot????
+        yield getSnapshotFromBC(updatedRatingRef);
     }
     catch (err) {
-
+        console.log('ERROR ')
+        console.log(star)
+        console.log(documentID)
+        
     }
 }
 

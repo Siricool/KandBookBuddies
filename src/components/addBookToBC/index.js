@@ -66,7 +66,7 @@ const AddBookToBC = ({ route, navigation }) => {
 
     const handlePress = (club) => {
         const booksInClub = club.bcbooks; 
-        let bookExists = booksInClub.find(bcbook => bcbook.book.title === book.title);
+        let bookExists = booksInClub.find(bcbook => bcbook.title === book.title);
         if (bookExists != undefined) {
             alert("The book is already in your club.")
         }

@@ -44,8 +44,8 @@ export const createdCommentSuccess = bookclub => ({
   payload: bookclub
 });
 
-export const updateRating = bookclub => ({
+export const updateRating = clubandstar => ({
   type: bcTypes.UPDATE_RATING,
-  payload: bookclub
+  payload: clubandstar
 });
 

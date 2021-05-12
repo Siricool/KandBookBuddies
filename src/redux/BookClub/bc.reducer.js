@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     bc: [],
     bcbooks: [],
     comments: [],
-    
+    rating: []
+
 };
 
 const bcReducer = (state = INITIAL_STATE, action) => {
@@ -30,9 +31,14 @@ const bcReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 comments: action.payload
-                }
-                
-            
+            }
+        case bcTypes.UPDATE_RATING:
+            return {
+                ...state,
+                rating: action.payload
+            }
+
+
         default:
             return state;
     }

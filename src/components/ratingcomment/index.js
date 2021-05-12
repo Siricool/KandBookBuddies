@@ -7,6 +7,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Icon, Rating } from 'react-native-elements'
+import {updateRating} from '../../redux/BookClub/bc.actions';
 
 const mapStateBC = ({ bookclub }) => ({
     bc: bookclub.bc,
@@ -17,15 +18,48 @@ const mapStateBC = ({ bookclub }) => ({
 const RatingScreen = ({ route, navigation }) => {
     //const Rating = ({ navigation }) => {
     const { bc } = useSelector(mapStateBC);
-    const book = route.params;
+    const { book, documentID } = route.params;
+    //const {documentID} = route.params;
+    
     const [ star, setRating] = useState('');
+    const dispatch = useDispatch();
 
     console.log(star)
-
+    
     useEffect(() => {
         //mapClubToId();
     }, [bc]
     );
+
+    /*
+    const handleReview = () => {
+        console.log('docID i review'+documentID)
+        console.log('star i review'+star)
+        console.log('book'+book.title)
+        
+      }*/
+
+      const handleReview = () => {
+        let chosenClub = bc.find(club => club.documentID === documentID);
+        console.log('CHISENCLUB'+chosenClub)
+        let counter = -1;
+        if (chosenClub) {
+          const books = chosenClub.bcbooks;
+          return (
+            
+              books.map((bookObject, index) => {
+                counter = counter + 1;   
+                if (bookObject.id == book.id) {
+                    dispatch(
+                        updateRating({documentID, star, counter, bookObject})     
+                  )
+                  
+                  navigation.navigate('BCView', chosenClub)
+                }
+            }  
+          )) 
+        }
+      }  
 
     return (
         <View>
@@ -65,7 +99,7 @@ const RatingScreen = ({ route, navigation }) => {
 
                     <TouchableOpacity
                         style={styles.smallButtonComment}
-                        onPress={() => handleCreateComment()}
+                        onPress={() => handleReview()}
                     >
                         <Text>Send review</Text>
                     </TouchableOpacity>

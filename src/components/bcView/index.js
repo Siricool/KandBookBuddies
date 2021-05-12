@@ -25,6 +25,7 @@ const BCView = ({ route, navigation }) => {
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
   const { groupName } = route.params;
+  const { documentID } = route.params;
 
   useEffect(() => {
     mapClubToId();
@@ -112,7 +113,7 @@ const BCView = ({ route, navigation }) => {
   }
 
   const goToRatingScreen = (book) => {
-    navigation.navigate('RatingScreen', book)
+    navigation.navigate('RatingScreen', {book, documentID} )
   }
 
   const getBooks = () => {
@@ -123,9 +124,9 @@ const BCView = ({ route, navigation }) => {
         <ScrollView horizontal={true}
           vertical={true}
           style={styles.rowBooks}>
-          {books.map((bookObject, index) => {
-            const book = bookObject.book;
-            if (bookObject.read === false) {
+          {books.map((book, index) => {
+            
+            if (book.read === false) {
               return (
                 <View key={book.id}>
                   <View style={styles.square}>
@@ -156,9 +157,8 @@ const BCView = ({ route, navigation }) => {
         <ScrollView horizontal={true}
           vertical={true}
           style={styles.rowBooks}>
-          {books.map((bookObject, index) => {
-            const book = bookObject.book;
-            if (bookObject.read === true) {
+          {books.map((book, index) => {
+            if (book.read === true) {
               return (
                 <View key={book.id}>
                   <TouchableOpacity
