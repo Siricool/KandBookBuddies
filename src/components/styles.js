@@ -103,7 +103,6 @@ export default StyleSheet.create({
     color: 'orange',
     fontWeight: "bold",
     marginTop: 5,
-    marginBottom: 10,
     marginLeft: 25,
     marginRight: 25,
     fontFamily: 'Helvetica'
@@ -180,8 +179,6 @@ export default StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'center',
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#FFF7E0',
   },
   bookImageSmall: {
     width: 60,
@@ -191,8 +188,7 @@ export default StyleSheet.create({
     marginHorizontal: 20,
     alignSelf: 'center',
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#FFF7E0',
+  
   },
   fillPhoto: {
     flex: 1,
@@ -346,6 +342,7 @@ smallButtonComment: {
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 10,
+  
   },
   whiteMediumSquare: {
     height: 240,
@@ -365,7 +362,12 @@ smallButtonComment: {
   orangeSquare: {
     backgroundColor: '#fde3b7',
     alignItems: "center", 
+    alignSelf: "center", 
+    alignContent: "center",
+    textAlign: "center",
     justifyContent: 'center', 
+    marginHorizontal: 20,
+   
     width: 270,
     //marginHorizontal: '10%' ,
     marginTop: 10,

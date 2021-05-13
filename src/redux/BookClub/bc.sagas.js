@@ -106,7 +106,8 @@ export function* createComment({ payload: {
     comment,
     currentUser,
     clubID,
-    timeStamp }
+    timeStamp,
+     }
 }) {
     try {
         const userName = currentUser.displayName;
@@ -146,26 +147,32 @@ export function* updateRating({ payload: {
     documentID,
     star,
     counter,
-    bookObject
+    bookObject,
+    comment,
+    currentUser
 } }) {
     try {
         const clubID = documentID;
         const snapshot = yield firestore.collection('bookclubs').doc(clubID).get();
         const ratingArr = snapshot.data().bcbooks[counter].rating;
+        const commentArr = snapshot.data().bcbooks[counter].comments;
         ratingArr.push(star);
+        commentArr.push({comment: comment, user: currentUser.displayName})
+
         const booksInBC = yield firestore.collection('bookclubs').doc(clubID).get()
         const bookbcarr = booksInBC.data().bcbooks;
         const newBookList = [];
+        
         bookbcarr.map((bcBook, index) => {
             if (bcBook.title == bookObject.title) {
                 const newBook = {
                     author: bcBook.author,
-                    comments: bcBook.comments,
+                    comments: commentArr,
                     genre: bcBook.genre,
                     id: bcBook.id,
                     picture: bcBook.picture,
                     rating: ratingArr,
-                    read: bcBook.read,
+                    read: true,
                     title: bcBook.title,
                 }
                 newBookList.push(newBook)

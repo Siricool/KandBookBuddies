@@ -16,11 +16,18 @@ const mapStateBC = ({ bookclub }) => ({
     // currentBC: bookclub.currentBC
 });
 
+const mapState = ({ user }) => ({
+    currentUser: user.currentUser
+    
+  });
+
 const RatingScreen = ({ route, navigation }) => {
     //const Rating = ({ navigation }) => {
     const { bc, updatedRatingClub } = useSelector(mapStateBC);
+    const { currentUser} = useSelector(mapState);
     const { book, documentID } = route.params;
     const [star, setRating] = useState('');
+    const [comment, setComment] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,6 +39,7 @@ const RatingScreen = ({ route, navigation }) => {
     const handleReview = () => {
         let chosenClub = bc.find(club => club.documentID === documentID);
         let counter = -1;
+
         if (chosenClub) {
             const books = chosenClub.bcbooks;
             return (
@@ -39,13 +47,65 @@ const RatingScreen = ({ route, navigation }) => {
                     counter = counter + 1;
                     if (bookObject.id == book.id) {
                         dispatch(
-                            updateRating({ documentID, star, counter, bookObject })
+                            updateRating({ documentID, star, counter, bookObject, comment, currentUser })
                         )
+                        setComment('');
                     }
                 }
                 ))
         }
     };
+
+    const mapComment = () => {
+        const scrollViewRef = useRef();
+        if (updatedRatingClub.groupName != undefined) {
+          let chosenClub = updatedRatingClub
+          if (chosenClub) {
+
+            let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
+
+            if (chosenBook){
+            const comments = chosenBook.comments;
+            return (
+              <ScrollView
+                ref={scrollViewRef}
+                onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
+                {comments.map((comment, index) => {
+                  return (
+                    <View key={comment.comment}>
+                        <Text style={styles.smallText}>
+                      <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
+                      <Text> {comment.comment} </Text>
+                      </Text>
+                    </View>
+                  )})}
+              </ScrollView>
+            )}}}
+        else {
+          let chosenClub = bc.find(club => club.groupName === groupName);
+          if (chosenClub) {
+
+            let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
+
+            if (chosenBook){
+
+            const comments = chosenBook.comments;
+            return (
+              <ScrollView
+                ref={scrollViewRef}
+                onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
+                {comments.map((comment, index) => {
+                  return (
+                    <View key={comment.comment}>
+                      <Text style={styles.smallText}>
+                      <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
+                      <Text> {comment.comment} </Text>
+                      </Text>
+                    </View>
+                  )})}
+              </ScrollView>
+            )}}}
+      };
 
     const averageRating = () => {
         let average = 0;
@@ -110,18 +170,24 @@ const RatingScreen = ({ route, navigation }) => {
                     style={styles.fillPhoto}
                     source={require('../../../assets/backg.png')}
                 >
-                    <Text style={styles.whiteText}>Rate book</Text>
+                    <Text style={styles.whiteText}>Club Discussion</Text>
+                    <Image style={styles.bookImageMedium} source={{uri: book.picture}} />
 
                     <View style={styles.whiteSquare}>
-                        <Text style={styles.textLeft}>Average Rating</Text>
-                        <Text style={styles.smallText}>Here is your club's average rating for {book.title}:</Text>
+                        <Text style={styles.textLeft}>Club Average Rating</Text>
+                       
                         <Text style={styles.bigTextPink}>{getAverage()} </Text>
                     </View>
 
-                    
                     <View style={styles.whiteSquare}>
-                        <Text style={styles.textLeft}>Rate</Text>
-                        <Text style={styles.smallText}>What did you think about the book {book.title}?</Text>
+                        <Text style={styles.textLeft}>Club Reviews</Text>
+                        <Text>{mapComment()}</Text>
+                    </View>
+
+                    <Text style={styles.textLeft}>What did you think?</Text>
+                    <View style={styles.whiteSquare}>
+                        <Text></Text>
+                        <Text style={styles.smallText}>Give <Text style={styles.middleTextPink}>{book.title} </Text>a star rating!</Text>
                         <Rating
                             ratingCount={5}
                             imageSize={40}
@@ -130,10 +196,10 @@ const RatingScreen = ({ route, navigation }) => {
                             startingValue={0}
                             onFinishRating={(ratingCount) => setRating(ratingCount)}
                         />
-                    </View>
-                    <View style={styles.whiteSquare}>
-                        <Text style={styles.textLeft}>Review</Text>
-                        <Text style={styles.smallText}>Write your review on {book.title} in the area below.</Text>
+                    
+                    
+                         <Text></Text>
+                        <Text style={styles.smallText}>Leave a comment about the book.</Text>
                         <TextInput
                             multiline
                             style={styles.inputComment}
@@ -141,8 +207,8 @@ const RatingScreen = ({ route, navigation }) => {
                             placeholderTextColor="#aaaaaa"
                             borderWidth='2'
                             borderColor="#fde3b7"
-                            //onChangeText={(text) /*=> setComment(text)*/}
-                            //value={comment}
+                            onChangeText={(text) => setComment(text)}
+                            value={comment}
                             autoCapitalize="sentences"
                         />
                     </View>
