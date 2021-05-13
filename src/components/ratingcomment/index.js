@@ -82,7 +82,7 @@ const RatingScreen = ({ route, navigation }) => {
               </ScrollView>
             )}}}
         else {
-          let chosenClub = bc.find(club => club.groupName === groupName);
+          let chosenClub = bc.find(club => club.documentID === documentID);
           if (chosenClub) {
 
             let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
@@ -158,9 +158,21 @@ const RatingScreen = ({ route, navigation }) => {
 
     const getAverage = () => {
         let average = averageRating();
+        console.log('averageee' + average)
+        if (average.length >= 0){
         return (
-            <Text>{average}</Text>
+            <View>
+            <Text style={styles.bigTextPink}>{average}</Text>
+            </View>
         )
+        }
+        else{
+            return(
+            <View>
+            <Text style= {styles.smallText}>No ratings yet</Text>
+            </View>
+            )
+        }
     }
 
     return (
@@ -176,7 +188,7 @@ const RatingScreen = ({ route, navigation }) => {
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>Club Average Rating</Text>
                        
-                        <Text style={styles.bigTextPink}>{getAverage()} </Text>
+                        <Text  style={styles.center} >{getAverage()} </Text>
                     </View>
 
                     <View style={styles.whiteSquare}>
