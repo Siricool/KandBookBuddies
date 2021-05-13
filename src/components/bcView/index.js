@@ -49,7 +49,7 @@ const BCView = ({ route, navigation }) => {
           {members.map((member, index) => {
             return (
               <View key={member.email}>
-                <Text style={[styles.middleTextOrange, styles.capital]}>- {member.displayName}</Text>
+                <Text style={[styles.middleTextOrange, styles.capital]}>{member.displayName}</Text>
               </View>
             )
           })}
@@ -71,9 +71,10 @@ const BCView = ({ route, navigation }) => {
               return (
                 <View key={comment.comment}>
                   <Text style={styles.smallerGreyText}> {comment.time} </Text>
-                  <Text style={[styles.middleTextPink, styles.capital]}> {comment.user}:
-                  <Text style={styles.smallMiddleText}> {comment.comment} </Text>
-                    </Text>
+                  <Text style={styles.smallText}>
+                      <Text style={[styles.middleTextPink, styles.capital]}> {comment.user}: </Text>
+                      <Text> {comment.comment} </Text>
+                      </Text>
                 </View>
               )})}
           </ScrollView>
@@ -90,8 +91,10 @@ const BCView = ({ route, navigation }) => {
               return (
                 <View key={comment.comment}>
                   <Text style={styles.smallerGreyText}> {comment.time} </Text>
-                  <Text style={[styles.middleTextPink, styles.capital]}> {comment.user}:
-                  <Text style={styles.smallMiddleText}> {comment.comment} </Text></Text>
+                  <Text style={styles.smallText}>
+                  <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
+                  <Text> {comment.comment} </Text>
+                  </Text>
                 </View>
               )})}
           </ScrollView>
@@ -100,7 +103,7 @@ const BCView = ({ route, navigation }) => {
 
   const handleCreateComment = () => {
     const timeStamp = getTime();
-    setComment('');
+    
     let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
       const clubID = chosenClub.documentID;
@@ -109,7 +112,9 @@ const BCView = ({ route, navigation }) => {
         currentUser,
         clubID,
         timeStamp
-      }))}
+      }))
+      setComment('');
+    }
   }
 
   const goToRatingScreen = (book) => {
