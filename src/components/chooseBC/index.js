@@ -38,7 +38,7 @@ const ChooseBC = ({ navigation }) => {
                 style={{ width: '100%', height: '100%' }}>
         
         <Text style={styles.text}>Create or Join Book Club</Text>
-        <Text style={styles.smallText}>Hey Buddie! Please choose to Create new book club or Join book club with the buttons below.</Text>
+        <Text style={styles.smallText}>Hey Buddy! Please choose to Create new book club or Join book club with the buttons below.</Text>
         <TouchableOpacity
             style={styles.button}
             onPress={() => handleCreate()}>

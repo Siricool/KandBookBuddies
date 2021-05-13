@@ -87,21 +87,13 @@ const StartPage = ({ navigation }) => {
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>Book Buddy of the Week</Text>
-        <Text style={styles.smallText}>Your friend Carola has read a lot!</Text>
-        <Image
-          style={styles.userImage}
-          source={require('../../../assets/carola.jpg')}/>
+        <Text style={styles.textLeft}>Book Buddy of the Week  - under development</Text>
         </View>
 
         <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>STS book club is currently reading </Text>
-        <Text style={styles.middleTextOrange}>The Adventures of Sherlock Holmes</Text>
-        <Text style={styles.smallText}>by Sir Arthur Conan Doyle </Text>
-        <Image
-          style={styles.bookImage}
-          source={require('../../../assets/sherlock.jpg')}/>
+        <Text style={styles.textLeft}>See other clubs - under development</Text>
         </View>
+        
         <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
