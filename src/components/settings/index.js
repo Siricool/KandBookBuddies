@@ -34,12 +34,13 @@ const Settings= ({ navigation }) => {
          <Text style={styles.whiteText}>Settings </Text>
 
         
-          <View style={styles.whiteSquare}>
+         <View style={styles.whiteSquare}>
           <View style={styles.rowSettings}>
+          
             <View>
           <Text style={styles.textLeft}><Text style={styles.capital}></Text>Profile picture</Text>
          
-         <Text style={styles.smallText}>Time to update your profile pic? </Text>
+         <Text style={styles.smallText}>Time to update your profile pic?</Text>
          </View>
          <TouchableHighlight underlayColor='none'>
           <Icon
@@ -85,7 +86,13 @@ const Settings= ({ navigation }) => {
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
           />
+        <Text> </Text>
+        <Text> </Text>
+        <Text> </Text>
+        <Text> </Text>
+        <Text> </Text>
          </ImageBackground>
+        
          </KeyboardAwareScrollView>
 
          <View style={styles.row}>

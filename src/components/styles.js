@@ -410,6 +410,8 @@ smallButtonComment: {
     justifyContent: "space-between"
   },
 
+  
+
   rowBC: {
     flexDirection: "row",
     //flex: 10,
