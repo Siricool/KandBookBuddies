@@ -25,7 +25,7 @@ const RatingScreen = ({ route, navigation }) => {
     //const Rating = ({ navigation }) => {
     const { bc, updatedRatingClub } = useSelector(mapStateBC);
     const { currentUser} = useSelector(mapState);
-    const { book, documentID } = route.params;
+    const { book, documentID, groupName } = route.params;
     const [star, setRating] = useState('');
     const [comment, setComment] = useState('');
     const dispatch = useDispatch();
@@ -58,7 +58,11 @@ const RatingScreen = ({ route, navigation }) => {
 
     const mapComment = () => {
         const scrollViewRef = useRef();
-        if (updatedRatingClub.groupName != undefined) {
+        console.log(groupName+"dokID")
+        console.log(updatedRatingClub.groupName+"updateddokID")
+        let name = groupName;
+        console.log(name)
+        if (updatedRatingClub.groupName != undefined && updatedRatingClub.groupName == groupName) {
           let chosenClub = updatedRatingClub
           if (chosenClub) {
 

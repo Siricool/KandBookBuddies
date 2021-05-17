@@ -59,7 +59,7 @@ const BCView = ({ route, navigation }) => {
 
   const mapComment = () => {
     const scrollViewRef = useRef();
-    if (bcCom.groupName != undefined) {
+    if (bcCom.groupName != undefined && bcCom.groupName == groupName)  {
       let chosenClub = bcCom
       if (chosenClub) {
         const comments = chosenClub.comments;
@@ -118,7 +118,7 @@ const BCView = ({ route, navigation }) => {
   }
 
   const goToRatingScreen = (book) => {
-    navigation.navigate('RatingScreen', {book, documentID} )
+    navigation.navigate('RatingScreen', {book, documentID, groupName} )
   }
 
   const getBooks = () => {
