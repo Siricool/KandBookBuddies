@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import styles from '../styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useNavigation } from '@react-navigation/native';
+
 import { fetchBCStart } from '../../redux/BookClub/bc.actions';
+import styles from '../styles';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -20,7 +20,6 @@ const BCOverview = ({ navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { updatedUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
-  //const navigation = useNavigation();
   const dispatch = useDispatch();
   const renderElement = () => {
     if (updatedUser != null) {
@@ -38,17 +37,13 @@ const BCOverview = ({ navigation }) => {
   }, []);
 
   const mapBC = () => {
-    let arr = renderElement(); // användarens klubbar
+    let arr = renderElement(); 
     let saveClub = []
-    //JÄMFÖR MED BC O SPARA HELA CLUBINFON I NY ARRAY 
     arr.map((name, index) => {
-      console.log('HEJ' + name)
       bc.forEach((club) => {
         if (club.groupName == name) {
-          saveClub.push(club)
-        }
-      })
-      console.log(saveClub)
+          saveClub.push(club)}
+        })
     })
     return (
       saveClub.map((club, index) => {
@@ -62,24 +57,16 @@ const BCOverview = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         );
-      })
-    )
+      }))
   }
 
   const handlePress = (club) => {
-    console.log('TJABBA')
-    console.log(club)
     if (bc != undefined && bc.length > 0) {
       navigation.navigate('BCView', club);
-    }
-  }
+    }}
 
   const handleJoin = () => {
     navigation.navigate('JoinBCInside');
-  }
-
-  const handleCreate = () => {
-    navigation.navigate('CreateBC');
   }
 
   return (
@@ -103,10 +90,27 @@ const BCOverview = ({ navigation }) => {
             </View>
           </View>
 
+          <Text> </Text>
+          <Text> </Text>
+
+
           <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
           />
+
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
         </ImageBackground>
       </KeyboardAwareScrollView>
 
@@ -158,21 +162,3 @@ const BCOverview = ({ navigation }) => {
 }
 
 export default BCOverview;
-
-
-/*
-<View >
-          <TouchableOpacity style={styles.coolButton}
-            onPress={() => handlePress() }>
-            <Text style={styles.buttonText}>
-              {renderElement()}
-            </Text>
-          </TouchableOpacity>
-          </View>
-
-TouchableOpacity style={styles.smallButtonBC}
-            onPress={() => handleCreate() }>
-            <Text style={styles.buttonText}>
-              Create a bookclub
-            </Text>
-          </TouchableOpacity>          */

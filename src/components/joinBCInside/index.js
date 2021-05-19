@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, View, Text, FlatList} from 'react-native';
-import { SearchBar} from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux'
 
 import AuthWrapper from '../AuthWrapper';
@@ -16,13 +15,10 @@ const mapStateBC = ({ bookclub }) => ({
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
-   
     updatedUser: user.updatedUser,
-
 });
 
 const JoinBCInside = ({ navigation }) => {
-    const [searching, setSearch] = useState('');
     const { bc } = useSelector(mapStateBC);
     const { currentUser, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
@@ -47,30 +43,17 @@ const JoinBCInside = ({ navigation }) => {
         setClubName(clubName)
         const groupName = clubName.toString();
         dispatch(joinBCStart({club, currentUser}));
-        
         dispatch(updateGroupsForUser({groupName}));
-
     }
 
-  /*  renderHeader = () => {
+    renderHeader = () => {
         return (
-
-            <SearchBar
-                round
-                inputContainerStyle={styles.input}
-                containerStyle={styles.inputcontainer}
-                lightTheme
-                placeholder="Search bookclub to join..."
-                onChangeText={(text) => setSearch(text)}
-            />
-        )
-    }*/
+            <Text style={styles.titleText}>Join a Bookclub</Text>)
+    }
 
     return (
-
         <AuthWrapper>
-
-            <View style={styles.container}>
+            <View style={styles.container}> 
                 <FlatList
                     data={bc}
                     renderItem={({ item }) => (
@@ -85,15 +68,12 @@ const JoinBCInside = ({ navigation }) => {
                     )
                     }
                     keyExtractor={(item) => item.documentID.toString()}
-                    //ListHeaderComponent={renderHeader}
-
+                    ListHeaderComponent={renderHeader}
                 />
 
             </View>
         </AuthWrapper>
-
     );
-
 }
 
 export default JoinBCInside;

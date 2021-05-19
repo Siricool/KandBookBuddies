@@ -19,6 +19,16 @@ export default StyleSheet.create({
         fontFamily: 'Helvetica' 
     },
 
+    titleText: {
+        fontSize: 28,
+        marginTop: 25,
+        marginBottom: 25,
+        marginLeft: 25,
+        marginRight: 25,
+        alignSelf: "center",
+        fontFamily: 'Helvetica'
+      },
+
     middleText: {
         fontSize: 20,
         fontWeight: "bold",
