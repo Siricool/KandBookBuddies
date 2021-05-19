@@ -1,20 +1,17 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    container:{
+    container: {
         backgroundColor: '#fde3b7'
     },
-
     text: {
         fontSize: 30,
-        fontWeight: "bold",
         marginTop: 30,
         marginBottom: 10,
         marginLeft: 30,
         marginRight: 30,
-        fontFamily: 'Helvetica' 
+        fontFamily: 'Helvetica'
     },
-
     input: {
         height: 48,
         borderRadius: 5,
@@ -25,9 +22,8 @@ export default StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         paddingLeft: 16,
-        fontFamily: 'Helvetica' 
+        fontFamily: 'Helvetica'
     },
-
     button: {
         backgroundColor: '#f9ad30',
         marginLeft: 30,
@@ -37,7 +33,13 @@ export default StyleSheet.create({
         borderRadius: 5,
         alignItems: "center",
         justifyContent: 'center',
-        fontFamily: 'Helvetica' 
+        fontFamily: 'Helvetica'
+    },
+    logo: {
+        height: 120,
+        width: 120,
+        alignSelf: "center",
+        margin: 30
     },
 
 })

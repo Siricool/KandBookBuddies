@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import AuthWrapper from '../AuthWrapper';
@@ -21,27 +21,22 @@ const mapClub = ({ bookclub }) => ({
 
 const CreateBC = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
-   // const bcbooks = [];
     const { currentUser, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
-    
+
     useEffect(() => {
         if (updatedUser) {
             navigation.navigate('StartPage')
         }
-
     }, [updatedUser]
     );
 
     const handleCreateBC = () => {
         dispatch(createBCStart({
             groupName,
-            members,
-           
-            
+            members
         }));
-
         dispatch(updateGroupsForUser({ groupName }));
     }
 
@@ -49,23 +44,36 @@ const CreateBC = ({ navigation }) => {
         <AuthWrapper>
             <View style={styles.container}>
                 <KeyboardAwareScrollView style={{ width: '100%', height: '100%' }}>
+                    <Text></Text><Text></Text>
                     <Text style={styles.text}>Create Book Club</Text>
+                    <Text></Text>
+                    <Text></Text>
                     <TextInput
                         style={styles.input}
-                        placeholder="Name of Book Club"
+                        placeholder="Enter Name of Book Club"
 
                         placeholderTextColor='#aaaaaa'
                         onChangeText={(text) => setGroupName(text)}
                         underlineColorAndroid='transparent'
                         autoCapitalize='none'
                     />
-
                     <TouchableOpacity
                         style={styles.button}
                         onPress={handleCreateBC}>
-                        <Text>Create Book Club</Text>
+                        <Text>Create!</Text>
                     </TouchableOpacity>
+                    <Text></Text>
+                    <Text></Text>
+                    <Text></Text>
+                    <Text></Text><Text></Text>
+                    <Text></Text><Text></Text>
+                    <Text></Text><Text></Text>
+                    <Text></Text><Text></Text>
 
+                    <Image
+                        style={styles.logo}
+                        source={require('../../../assets/BBicon.png')}
+                    />
                 </KeyboardAwareScrollView>
             </View>
         </AuthWrapper>

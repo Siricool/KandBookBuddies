@@ -9,9 +9,7 @@ export default StyleSheet.create({
         backgroundColor: '#fde3b7'
     },
     text: {
-        fontSize: 28,
-        //fontWeight: "bold",
-       // color: '#f9ad30',
+        fontSize: 30,
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 25,
