@@ -21,6 +21,7 @@ const BCOverview = ({ navigation }) => {
   const { updatedUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
   const dispatch = useDispatch();
+
   const renderElement = () => {
     if (updatedUser != null) {
       return updatedUser.groupID;
@@ -34,7 +35,7 @@ const BCOverview = ({ navigation }) => {
     dispatch(
       fetchBCStart()
     );
-  }, []);
+  }, [updatedUser, currentUser]);
 
   const mapBC = () => {
     let arr = renderElement(); 
@@ -69,6 +70,10 @@ const BCOverview = ({ navigation }) => {
     navigation.navigate('JoinBCInside');
   }
 
+  const handleCreate = () => {
+    navigation.navigate('CreateBCInside');
+  }
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
@@ -85,6 +90,13 @@ const BCOverview = ({ navigation }) => {
                 onPress={() => handleJoin()}>
                 <Text style={styles.buttonText}>
                   Join a bookclub
+            </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.smallButtonBC}
+                onPress={() => handleCreate()}>
+                <Text style={styles.buttonText}>
+                  Create a bookclub
             </Text>
               </TouchableOpacity>
             </View>

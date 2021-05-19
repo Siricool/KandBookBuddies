@@ -96,6 +96,25 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+
+  discussionText: {
+    fontSize: 20,
+    marginTop: 20,
+    marginBottom: 5,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
+
+  historyText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginTop: 10,
+    marginBottom: 5,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
   middleTextOrange: {
     fontSize: 18,
     color: 'orange',
