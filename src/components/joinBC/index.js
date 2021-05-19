@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, View, Text, FlatList} from 'react-native';
-import { SearchBar} from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux'
 
 import AuthWrapper from '../AuthWrapper';
@@ -21,14 +20,9 @@ const mapState = ({ user }) => ({
 });
 
 const JoinBC = ({ navigation }) => {
-    const [searching, setSearch] = useState('');
     const { bc } = useSelector(mapStateBC);
     const { currentUser, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
-
-
-
-
 
     useEffect(() => {
         if (updatedUser){
@@ -39,32 +33,19 @@ const JoinBC = ({ navigation }) => {
 
     const handleJoinBC = ( club, clubName ) => {
         console.log(clubName)
-
         const groupName = clubName.toString();
         dispatch(joinBCStart({club, currentUser}));
-        
         dispatch(updateGroupsForUser({groupName}));
-
     }
 
     renderHeader = () => {
         return (
-
-            <SearchBar
-                round
-                inputContainerStyle={styles.input}
-                containerStyle={styles.inputcontainer}
-                lightTheme
-                placeholder="Search bookclub to join..."
-                onChangeText={(text) => setSearch(text)}
-            />
+            <Text style={styles.titleText}>Join a Bookclub</Text>
         )
     }
 
     return (
-
         <AuthWrapper>
-
             <View style={styles.container}>
                 <FlatList
                     data={bc}
@@ -77,18 +58,13 @@ const JoinBC = ({ navigation }) => {
                                 <Text style={styles.smallText}>Join</Text>
                             </TouchableOpacity>
                         </View>
-                    )
-                    }
+                    )}
                     keyExtractor={(item) => item.documentID.toString()}
                     ListHeaderComponent={renderHeader}
-
                 />
-
             </View>
         </AuthWrapper>
-
     );
-
 }
 
 export default JoinBC;
