@@ -10,56 +10,63 @@ const mapStateBC = ({ bookclub }) => ({
 })
 
 const ChooseBC = ({ navigation }) => {
-    const { bc } = useSelector(mapStateBC);
+  const { bc } = useSelector(mapStateBC);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-      if(bc!=undefined && bc.length>0) {
-          navigation.navigate('JoinBC')
-      }
+  useEffect(() => {
+    if (bc != undefined && bc.length > 0) {
+      navigation.navigate('JoinBC')
+    }
 
-   }, [bc]
+  }, [bc]
+  )
+
+  const handleCreate = () => {
+    navigation.navigate('CreateBC')
+  }
+  const handleJoin = () => {
+    dispatch(
+      fetchBCStart()
     )
+  }
 
-    const handleCreate = () => {
-        navigation.navigate('CreateBC')
-      }
-    const handleJoin = () => {
-        dispatch(
-          fetchBCStart()
-        )
-      }
-    
-    return (
+  return (
 
-        <View style={styles.container} >
-            <KeyboardAwareScrollView
-                style={{ width: '100%', height: '100%' }}>
-        
+    <View style={styles.container} >
+      <KeyboardAwareScrollView
+        style={{ width: '100%', height: '100%' }}>
+        <Text></Text><Text></Text>
+        <Text></Text><Text></Text>
+
         <Text style={styles.text}>Create or Join Book Club</Text>
-        <Text style={styles.smallText}>Hey Buddy! Please choose to Create new book club or Join book club with the buttons below.</Text>
+        <Text></Text>
+        <Text style={styles.smallText}>Hey Buddy! Please choose to create or join a book club with the buttons below.</Text>
         <TouchableOpacity
-            style={styles.button}
-            onPress={() => handleCreate()}>
-            <Text>Create new book club </Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handleJoin()}>
-            <Text>Join book club </Text>
-          </TouchableOpacity>
+          style={styles.button}
+          onPress={() => handleCreate()}>
+          <Text>Create Club </Text>
+        </TouchableOpacity>
 
-          <Image
-            style={styles.logo}
-            source={require('../../../assets/BBicon.png')}
-          />
-            </KeyboardAwareScrollView>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => handleJoin()}>
+          <Text>Join Club </Text>
+        </TouchableOpacity>
+        <Text></Text><Text></Text>
+        <Text></Text><Text></Text>
+        <Text></Text><Text></Text>
+        <Text></Text><Text></Text>
 
-            
-        </View>
-    )
+        <Image
+          style={styles.logo}
+          source={require('../../../assets/BBicon.png')}
+        />
+      </KeyboardAwareScrollView>
+
+
+    </View>
+  )
 };
 
 export default ChooseBC;

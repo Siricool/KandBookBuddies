@@ -3,7 +3,7 @@ export const existingCartItem = ({
     prevCartItems,
     nextCartItem
 }) => {
-    return prevCartItems.find( //funkar denna i native?
+    return prevCartItems.find( 
         cartItem => cartItem.documentID === nextCartItem.documentID
     ); 
 };
@@ -98,4 +98,8 @@ export const handleAddToClub = ({
             quantity: quantityIncrement
         }
     ];
+};
+
+export const handleNextBook = () => {
+    //supposed to do nothing in order to update new recommended book
 };

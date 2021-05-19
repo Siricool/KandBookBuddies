@@ -26,15 +26,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                     nextReadingItem: action.payload
                 })
             };
-        case cartTypes.ADD_TO_CLUB:
-            return {
-                ...state,
-                clubItems: handleAddToClub({ //detta gör man för att inte adda samma bok flera ggr
-                    prevClubItems: state.clubItems,
-                    nextClubItem: action.payload
-                })
 
-            };
         default:
             return state;
     }

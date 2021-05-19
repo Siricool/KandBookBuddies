@@ -4,7 +4,6 @@ import styles from '../styles';
 import { selectCartItems, selectReadingItems } from '../../redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image, TouchableHighlight, TouchableOpacity, View, Text, ImageBackground } from 'react-native';
 import { Icon } from 'react-native-elements'
 
@@ -23,7 +22,7 @@ const mapStateCart = createStructuredSelector({
 
 const mapStateBC = ({ bookclub }) => ({
     bc: bookclub.bc
-  })
+})
 
 const MyProfile = ({ navigation }) => {
     const { currentUser } = useSelector(mapState);
@@ -31,14 +30,14 @@ const MyProfile = ({ navigation }) => {
     const { cartItems } = useSelector(mapStateCart);
     const { readingItems } = useSelector(mapStateCart);
     const { bc } = useSelector(mapStateBC);
-    const numbOfRead = readingItems.length;    
+    const numbOfRead = readingItems.length;
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(
-          fetchBCStart()
+            fetchBCStart()
         );
-      }, []); 
+    }, []);
 
     const renderElement = () => {
         if (updatedUser != null) {
@@ -51,42 +50,35 @@ const MyProfile = ({ navigation }) => {
 
     const handlePress = (club) => {
         navigation.navigate('BCView', club);
-      }
+    }
 
-      const mapBC = () =>{
-        let arr = renderElement(); // användarens klubbar
-        
+    const mapBC = () => {
+        let arr = renderElement();
+
         let saveClub = []
-        //JÄMFÖR MED BC O SPARA HELA CLUBINFON I NY ARRAY 
-        arr.map((name,index) => {
-          console.log('HEJ'+name)
-          
-          bc.forEach((club) => {
-            if (club.groupName == name){
-              saveClub.push(club)
-            }
-          })        
-    
-       
-        } )
-    
-        return(
-          saveClub.map((club, index) => {
-            return(
-              <View key = {club.documentID}> 
-              
-              <TouchableOpacity style={styles.coolButton}
-                onPress={() => handlePress(club) }>
-                <Text style={styles.buttonText}>
-                  {club.groupName}
-                </Text>
-              </TouchableOpacity>
-              
-              </View>
-            );
-          })
+        arr.map((name, index) => {
+            bc.forEach((club) => {
+                if (club.groupName == name) {
+                    saveClub.push(club)
+                }
+            })
+        })
+
+        return (
+            saveClub.map((club, index) => {
+                return (
+                    <View key={club.documentID}>
+                        <TouchableOpacity style={styles.coolButton}
+                            onPress={() => handlePress(club)}>
+                            <Text style={styles.buttonText}>
+                                {club.groupName}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                );
+            })
         )
-      }
+    }
 
     return (
         <View>
@@ -101,17 +93,16 @@ const MyProfile = ({ navigation }) => {
                         <Text style={styles.smallText}>Read books:   Clubs: </Text>
                         <Text style={styles.middleTextPink}>       {numbOfRead}               {mapBC().length}</Text>
                     </View>
-                    
+
                     <View style={styles.whiteBigSquare}>
                         <Text style={styles.textLeft}>My Read Books</Text>
 
                         <ScrollView vertical={true} style={styles.rowBooks}>
                             {readingItems.map((readingItem, index) => {
                                 const bookurl = { uri: readingItem.picture }
-                                
+
                                 return (
                                     <View key={readingItem.title} style={styles.orangeSquare}>
-                                            
                                         <Image
                                             style={styles.bookImageSmall}
                                             source={bookurl} />
@@ -123,8 +114,8 @@ const MyProfile = ({ navigation }) => {
                         </ScrollView>
                     </View>
 
-                    <SafeAreaView style={styles.whiteBigSquare}>
-                        <Text style={styles.textLeft}>My Wish List </Text>
+                    <View style={styles.whiteBigSquare}>
+                        <Text style={styles.textLeft}>My Wish List</Text>
                         <ScrollView vertical={true} style={styles.rowBooks}>
                             {cartItems.map((cartItem, index) => {
                                 const bookurl = { uri: cartItem.picture }
@@ -140,12 +131,12 @@ const MyProfile = ({ navigation }) => {
                                 )
                             })}
                         </ScrollView>
-                    </SafeAreaView>
+                    </View>
 
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>My Book Clubs</Text>
                         <View style={styles.left}>
-                        <View>{mapBC()}</View>
+                            <View>{mapBC()}</View>
                         </View>
                     </View>
 
@@ -201,41 +192,9 @@ const MyProfile = ({ navigation }) => {
                     />
                 </TouchableHighlight>
             </View>
-
         </View>
     );
 }
 
 export default MyProfile;
 
-/*<Image
-                            style={styles.menuToolbar}
-                            source={require('../../../assets/House_picture.png')}
-
-                            <Image
-                        style={styles.menuToolbar}
-                        source={require('../../../assets/BookClubs_picture.png')}
-                    />
-                        />
-
-                         <Image
-                        style={styles.menuToolbar}
-                        source={require('../../../assets/Settings_picture.png')}
-                    />
-                    <Image
-                        style={styles.menuToolbar}
-                        source={require('../../../assets/Search_picture.png')}
-                    />
-                    <Image
-                        style={styles.menuToolbar}
-                        source={require('../../../assets/Profile_picture.png')}
-                    />
-
-                    <TouchableOpacity style={styles.coolButton}
-                                onPress={() => navigation.navigate('BCView') }>
-
-                                <Text style={styles.buttonText}>
-                                    {renderElement()}
-                                </Text>
-                            </TouchableOpacity>
-                        */

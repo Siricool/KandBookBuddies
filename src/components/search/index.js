@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import { addBook, addBookClub, addBookRead } from '../../redux/Cart/cart.actions'
+import { addBook, addBookRead } from '../../redux/Cart/cart.actions'
 import { bookInBC } from '../../redux/BookClub/bc.actions';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
