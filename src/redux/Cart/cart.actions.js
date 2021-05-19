@@ -10,7 +10,7 @@ export const addBookRead = (nextReadItem) => ({
     payload: nextReadItem
 });
 
-export const addBookClub = (nextClubItem) => ({
-    type: cartTypes.ADD_TO_CLUB,
-    payload: nextClubItem
+export const nextBook = () => ({
+    type: cartTypes.NEXT_BOOK
+    
 });

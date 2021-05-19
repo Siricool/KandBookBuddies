@@ -38,6 +38,7 @@ export default StyleSheet.create({
   textItalic: {
     fontStyle: 'italic'
   },
+
   textLeft: {
     fontSize: 20,    
     marginTop: 10,
@@ -98,7 +99,7 @@ export default StyleSheet.create({
   },
   middleTextOrange: {
     fontSize: 18,
-    color: 'orange',
+    color: '#f9ad30',
     fontWeight: "bold",
     marginTop: 5,
     marginLeft: 25,
@@ -107,7 +108,7 @@ export default StyleSheet.create({
   },
   smallTextOrange: {
     fontSize: 15,
-    color: 'orange',
+    color: '#f9ad30',
     fontWeight: "bold",
     textAlign: 'center',
     marginTop: 5,
@@ -119,7 +120,7 @@ export default StyleSheet.create({
   smallThinTextOrange: {
     fontSize: 15,
     width: 165,
-    color: 'orange',
+    color: '#f9ad30',
     fontWeight: "bold",
     textAlign: 'center',
     marginLeft: 25,
@@ -156,15 +157,16 @@ export default StyleSheet.create({
   },
   capital: {
     textTransform: 'capitalize',
-    
   },
   bookImage: {
     flex: 1,
     width: 130,
-    height: 190,
+    height: 200,
     marginTop: 10,
     marginBottom: 10,
-    alignSelf: 'center',
+    marginLeft: 45,
+    marginRight: 10,
+    //alignSelf: 'center',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#FFF7E0',
@@ -248,8 +250,6 @@ export default StyleSheet.create({
     paddingLeft: 16,
     fontFamily: 'Helvetica'
   },
-  
-  
   button: {
     backgroundColor: '#f9ad30',
     marginLeft: 30,
@@ -276,7 +276,22 @@ export default StyleSheet.create({
     shadowColor: '#f9ad30',
     shadowOpacity: 0.5,
 },
-
+smallButtonSquare: {
+  backgroundColor: '#fde3b7',
+  height: 90,
+  width: 90,
+  alignItems: "center", 
+  textAlign: 'center',
+  alignContent: 'center',
+  marginTop: 20,
+  marginBottom: 15,
+  alignSelf: "center", 
+  justifyContent: 'center', 
+  borderRadius: 70,
+  borderWidth: 1,
+  borderColor: '#fde3b7',
+ 
+},
 smallButtonBC: {
   backgroundColor: '#fde3b7',
   height: 30,
@@ -381,10 +396,8 @@ coolButtonTwo: {
     alignContent: "center",
     textAlign: "center",
     justifyContent: 'center', 
-    marginHorizontal: 20,
-   
+    marginHorizontal: 40,
     width: 270,
-    //marginHorizontal: '10%' ,
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 10,
@@ -407,36 +420,32 @@ coolButtonTwo: {
   },
   container: {
     flex: 1,
-    //backgroundColor: '#fde3b7',
     justifyContent: 'center',
   },
   row: {
     flexDirection: "row",
-    //flex: 10,
     flexWrap: "wrap",
     justifyContent: "space-between",
     backgroundColor: 'white',
     borderTopWidth: 1,
-    borderTopColor: '#fde3b7',
-    
+    borderTopColor: '#fde3b7', 
   },
   rowSettings: {
     flexDirection: "row",
     justifyContent: "space-between"
   },
-
-  
-
   rowBC: {
     flexDirection: "row",
-    //flex: 10,
     flexWrap: "wrap",
     justifyContent: "space-evenly",
-    
+  },
+  column: {
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
   },
   rowRating: {
     flexDirection: "row",
-    //flex: 10,
     flexWrap: "wrap",
     justifyContent: "space-between",
     backgroundColor: 'white',

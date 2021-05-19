@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import {addBook, addBookRead} from '../../redux/Cart/cart.actions'
+import { addBook, addBookRead, nextBook } from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 
@@ -31,7 +31,7 @@ const StartPage = ({ navigation }) => {
     if (!book) return;
     dispatch(
       addBook(book)
-      
+
     )
   };
   const configAddToRead = (book) => {
@@ -41,31 +41,51 @@ const StartPage = ({ navigation }) => {
     )
   };
 
+  const changeBook = (book) => {
+    dispatch(
+      nextBook(book)
+    );
+  };
+
   const recommendBook = () => {
     const numbOfBooks = books.length;
-    //console.log('ANTAL BÖCKER'+numbOfBooks)
     const randNumb = Math.floor(Math.random() * (numbOfBooks)) + 1;
-    //console.log('RANDOM  BÖCKER'+randNumb)
     let chosenBook = books.find(book => book.id === randNumb);
     if (chosenBook) {
-      console.log('random chosen BOOK '+chosenBook.title)
+      console.log('random chosen BOOK ' + chosenBook.title)
       const bookurl = { uri: chosenBook.picture }
       return (
         <View>
           <Text style={styles.middleTextOrange}>{chosenBook.title}</Text>
           <Text style={styles.smallText}>by {chosenBook.author}</Text>
-          <Image source={bookurl}
-            style={styles.bookImage} />
-          <TouchableOpacity
-          style={styles.smallButton}
-           onPress={() => configAddToCart(chosenBook)} >
-            <Text> Add to My List </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-          style={styles.smallButton}
-           onPress={() => configAddToRead(chosenBook)} >
-            <Text> Add to Read Books </Text>
-          </TouchableOpacity>
+
+          <View style={styles.rowSettings}>
+            <View>
+            <Image source={bookurl}
+              style={styles.bookImage} />
+              </View>
+            <View style={styles.column}>
+              <View>
+              <TouchableOpacity
+                style={styles.smallButtonSquare}
+                onPress={() => changeBook(chosenBook)} >
+                <Text style={styles.smallTextOrange}>Next</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToCart(chosenBook)} >
+                <Text> Add to My List </Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity
+                style={styles.smallButton}
+                onPress={() => configAddToRead(chosenBook)} >
+                <Text> Add to Read Books </Text>
+              </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
       )
     }
@@ -74,73 +94,74 @@ const StartPage = ({ navigation }) => {
   return (
     <View className="StartPage" >
       <KeyboardAwareScrollView
-        style={{ width: '100%', height: '90%' }}>        
+        style={{ width: '100%', height: '90%' }}>
         <ImageBackground
-        style={styles.fillPhoto}
+          style={styles.fillPhoto}
           source={require('../../../assets/backg.png')}>
-        
-       <Text style={styles.whiteText}>Buddies Updates</Text>
 
-        <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
-        <Text>{recommendBook()}</Text>
-        </View>
+          <Text style={styles.whiteText}>Buddies Updates</Text>
 
-        <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>Book Buddy of the Week  - under development</Text>
-        </View>
+          <View style={styles.whiteBigSquare}>
+            <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
+            <Text>{recommendBook()}</Text>
 
-        <View style={styles.whiteSquare}>
-        <Text style={styles.textLeft}>See other clubs - under development</Text>
-        </View>
-        
-        <Image
+          </View>
+
+          <View style={styles.whiteSquare}>
+            <Text style={styles.textLeft}>Book Buddy of the Week<Text style={styles.textItalic}> - under development  </Text></Text>
+          </View>
+
+          <View style={styles.whiteSquare}>
+            <Text style={styles.textLeft}>See other clubs<Text style={styles.textItalic}> - under development  </Text></Text>
+          </View>
+
+          <Image
             style={styles.bookLogo}
             source={require('../../../assets/whiteicon.png')}
           />
-</ImageBackground>
+        </ImageBackground>
       </KeyboardAwareScrollView>
 
       <View style={styles.row}>
         <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('MyProfile')}>
-        <Icon
-                        reverse
-                        name='ios-person'
-                        type='ionicon'
-                        color='#fde3b7'
-                    />
+          <Icon
+            reverse
+            name='ios-person'
+            type='ionicon'
+            color='#fde3b7'
+          />
         </TouchableHighlight>
         <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('BCOverview')}>
-        <Icon
-                        reverse
-                        name='ios-book'
-                        type='ionicon'
-                        color='#fde3b7'
-                    />
+          <Icon
+            reverse
+            name='ios-book'
+            type='ionicon'
+            color='#fde3b7'
+          />
         </TouchableHighlight>
         <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('StartPage')}>
-        <Icon
-                        reverse
-                        name='ios-home'
-                        type='ionicon'
-                        color='#fde3b7'
-                    />
+          <Icon
+            reverse
+            name='ios-home'
+            type='ionicon'
+            color='#fde3b7'
+          />
         </TouchableHighlight>
         <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Search')}>
-        <Icon
-                        reverse
-                        name='ios-search'
-                        type='ionicon'
-                        color='#fde3b7'
-                    />
+          <Icon
+            reverse
+            name='ios-search'
+            type='ionicon'
+            color='#fde3b7'
+          />
         </TouchableHighlight>
         <TouchableHighlight underlayColor='none' onPress={() => navigation.navigate('Settings')}>
-        <Icon
-                        reverse
-                        name='ios-settings'
-                        type='ionicon'
-                        color='#fde3b7'
-                    />
+          <Icon
+            reverse
+            name='ios-settings'
+            type='ionicon'
+            color='#fde3b7'
+          />
         </TouchableHighlight>
       </View>
     </View>
@@ -151,58 +172,3 @@ export default StartPage;
 
 
 
-
-
-/*
-
-<View>
-            {books.map((book, index) => {
-                const bookurl = {uri: book.picture}
-
-                return (
-                    <View key = {book.id}>
-                         <Image  source = {bookurl}
-                        style = {{height: 200, width: 150, margin: 10 }} />
-                         <Text > {book.title}, {book.author} </Text>
-                    </View>
-                )
-            })}
-        </View>
-
-
-
-
-
-        <View style={styles.row}>
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-            <Image
-                style={styles.menuToolbar}
-                source={require('../../../assets/Profile_picture.png')}
-            />
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-            <Image
-                style={styles.menuToolbar}
-                source={require('../../../assets/Profile_picture.png')}
-            />
-        </TouchableHighlight>
-
-        <TouchableHighlight onPress={() => navigation.navigate('BCOverview')}>
-            <Image
-                style={styles.menuToolbar}
-                source={require('../../../assets/Profile_picture.png')}
-            />
-        </TouchableHighlight>
-</View>
-
-
-{currentUser.fullName}
-
-<TouchableOpacity
-              style = {styles.button}
-              onPress={() => goBackPressed()}>
-                <Text> Go back </Text>
-          </TouchableOpacity>
-
-*/
