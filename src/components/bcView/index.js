@@ -83,6 +83,15 @@ const BCView = ({ route, navigation }) => {
       let chosenClub = bc.find(club => club.groupName === groupName);
       if (chosenClub) {
         const comments = chosenClub.comments;
+        
+        if (comments.length<1){
+          return(
+          <View>
+            <Text style={styles.discussionText}>Let's start a discussion! </Text>
+          </View>
+          )
+        }
+        else{
         return (
           <ScrollView
             ref={scrollViewRef}
@@ -98,7 +107,7 @@ const BCView = ({ route, navigation }) => {
                 </View>
               )})}
           </ScrollView>
-        )}}
+        )}}}
   };
 
   const handleCreateComment = () => {
@@ -125,13 +134,25 @@ const BCView = ({ route, navigation }) => {
     let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
       const books = chosenClub.bcbooks;
+      let counter = 0;
+
+      if (books.length < 1){
+        return(
+          <View>
+          <Text style={styles.historyText}>You are not reading anything yet</Text>
+          </View>
+        )
+      }
       return (
         <ScrollView horizontal={true}
           vertical={true}
-          style={styles.rowBooks}>
+          style={styles.rowBooks}
+          >
+            
           {books.map((book, index) => {
             
             if (book.read === false) {
+              counter += 1;
               return (
                 <View key={book.id}>
                   <View style={styles.square}>
@@ -147,7 +168,13 @@ const BCView = ({ route, navigation }) => {
                         <Text> Finished reading </Text>
                  </TouchableOpacity>  
               </View>
-            )
+            )}
+            if (counter < 1 && index == books.length-1){
+              return(
+              <View>
+                <Text style={styles.historyText}>You are not reading anything right now</Text>
+              </View>
+              )
             }
           })}
         </ScrollView>)
@@ -158,12 +185,22 @@ const BCView = ({ route, navigation }) => {
     let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
       const books = chosenClub.bcbooks;
+      if (books.length < 1){
+        return(
+          <View>
+          <Text style={styles.historyText}>No finished books yet!</Text>
+          </View>
+        )
+      }
+      let counter = 0;
+      
       return (
         <ScrollView horizontal={true}
           vertical={true}
           style={styles.rowBooks}>
           {books.map((book, index) => {
             if (book.read === true) {
+              counter += 1;
               return (
                 <View key={book.id}>
                   <TouchableOpacity
@@ -173,7 +210,20 @@ const BCView = ({ route, navigation }) => {
                       source={{ uri: book.picture }} />
                   </TouchableOpacity>
                 </View>
-              )}})}
+              )}
+              console.log('längd'+books.length)
+              console.log('counter'+counter)
+              if (counter < 1 && index == books.length-1){
+                return (
+                  <View>
+                    <Text style={styles.historyText}>No finished books yet!</Text>
+                  </View>
+                )
+              }
+              })
+              }
+
+              
         </ScrollView>)
     }
   }
