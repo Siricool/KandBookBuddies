@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 
 // orange: #f9ad30 
 // beige: #fde3b7
-// rosa:
+
 
 export default StyleSheet.create({
   
@@ -49,13 +49,14 @@ export default StyleSheet.create({
   smallerGreyText: {
     fontSize: 13,
     color: 'grey',
+    marginTop: 5,
+    marginLeft: 10,
   },  
   smallText: {
     fontSize: 17,
     color: 'grey',
     marginTop: 5,
-    marginBottom: 10,
-    marginLeft: 25,
+    marginLeft: 15,
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
@@ -340,6 +341,23 @@ smallButtonComment: {
     shadowOffset:{ width: 8, height: 8, },
     shadowColor: '#f9ad30',
     shadowOpacity: 0.5,
+},
+
+coolButtonTwo: {
+  backgroundColor: '#fde3b7',
+  marginLeft: 30,
+  marginRight: 30,
+  marginTop: 25,
+  marginBottom: 25,
+  height: 70,
+  width: 180,
+  //center button and text
+  alignItems: "center", 
+  alignSelf: "center", 
+  justifyContent: 'center', 
+  //rounded corners
+  borderRadius:50,
+  
 },
   buttonTitle: {
     color: 'white',

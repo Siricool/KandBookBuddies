@@ -1,28 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
-import styles from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
-import { createStructuredSelector } from 'reselect';
+import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Icon, Rating } from 'react-native-elements'
+import { Rating } from 'react-native-elements';
+
 import { updateRating } from '../../redux/BookClub/bc.actions';
+import styles from '../styles';
 
 const mapStateBC = ({ bookclub }) => ({
     bc: bookclub.bc,
     bcCom: bookclub.comments,
     updatedRatingClub: bookclub.rating
-    // currentBC: bookclub.currentBC
 });
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
-    
   });
 
 const RatingScreen = ({ route, navigation }) => {
-    //const Rating = ({ navigation }) => {
     const { bc, updatedRatingClub } = useSelector(mapStateBC);
     const { currentUser} = useSelector(mapState);
     const { book, documentID, groupName } = route.params;
@@ -31,8 +27,7 @@ const RatingScreen = ({ route, navigation }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // getAverage();
-        //mapClubToId();
+ 
     }, [bc]
     );
 
@@ -58,16 +53,11 @@ const RatingScreen = ({ route, navigation }) => {
 
     const mapComment = () => {
         const scrollViewRef = useRef();
-        console.log(groupName+"dokID")
-        console.log(updatedRatingClub.groupName+"updateddokID")
         let name = groupName;
-        console.log(name)
         if (updatedRatingClub.groupName != undefined && updatedRatingClub.groupName == groupName) {
           let chosenClub = updatedRatingClub
           if (chosenClub) {
-
             let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
-
             if (chosenBook){
             const comments = chosenBook.comments;
             return (
@@ -88,11 +78,8 @@ const RatingScreen = ({ route, navigation }) => {
         else {
           let chosenClub = bc.find(club => club.documentID === documentID);
           if (chosenClub) {
-
             let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
-
             if (chosenBook){
-
             const comments = chosenBook.comments;
             return (
               <ScrollView
@@ -162,7 +149,6 @@ const RatingScreen = ({ route, navigation }) => {
 
     const getAverage = () => {
         let average = averageRating();
-        console.log('averageee' + average)
         if (average.length >= 0){
         return (
             <View>
@@ -236,6 +222,14 @@ const RatingScreen = ({ route, navigation }) => {
                         <Text>Send review</Text>
                     </TouchableOpacity>
 
+                    <TouchableOpacity
+                        style={styles.coolButtonTwo}
+                        onPress={() =>  navigation.navigate('BCView')}
+                    >
+                        <Text> Back to {groupName}</Text>
+                    </TouchableOpacity>
+
+
                     <Image
                         style={styles.bookLogo}
                         source={require('../../../assets/whiteicon.png')}
@@ -249,45 +243,3 @@ const RatingScreen = ({ route, navigation }) => {
 
 export default RatingScreen;
 
-/*const onClickRating = (number) => {
-       console.log(number)
-       return (
-           <View>{style = styles.starClicked}</View>
-       )
-   }*/
-
-/*const setUpRating = () => {
-    var myloop = [];
-    for (let i = 1; i < 6; i++) {
-        myloop.push(
-            <View key={i}>
-                <TouchableHighlight
-                    style={styles.star}
-                    underlayColor='#d679ae'
-                    activeOpacity={0.8}
-                    onPress={() => onClickRating(i)}>
-                    <Icon
-                        //reverse
-                        name='ios-star'
-                        type='ionicon'
-                        color='#fde3b7'
-                        backgroundColor='white'
-                        fontSize={30}
-                    />
-                </TouchableHighlight>
-            </View>)
-    }
-    return (
-        <View style={styles.rowRating}>{myloop}</View>
-    )
-}*/
-
-/*const getRating = () => {
-    <StarRating
-    //type='heart'
-    ratingCount={5}
-    imageSize={50}
-    showRating
-    //onFinishRating={this.ratingCompleted}
-/>
-} */
