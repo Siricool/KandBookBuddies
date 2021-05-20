@@ -24,6 +24,15 @@ export const createdBCSuccess = bookclub => ({
     payload: bc
   });
 
+  export const fetchChosenBCStart = () => ({
+    type: bcTypes.FETCH_CHOSEN_BC_START,
+  });
+  
+  export const setChosenBC = chosenClub => ({
+    type: bcTypes.SET_CHOSEN_BC,
+    payload: chosenClub
+  });
+
   export const updatedBCSuccess = bc => ({
     type: bcTypes.UPDATED_BC_SUCCESS,
     payload: bc
