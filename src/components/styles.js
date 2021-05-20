@@ -35,6 +35,16 @@ export default StyleSheet.create({
     alignSelf: "center",
     fontFamily: 'Helvetica'
   },
+
+  blackTextSmall: {
+    fontSize: 17,
+    color: 'black',
+    marginBottom: 10,
+    marginLeft: 5,
+    marginRight: 5,
+    alignSelf: "center",
+    fontFamily: 'Helvetica'
+  },  
   textItalic: {
     fontStyle: 'italic'
   },
@@ -331,6 +341,22 @@ export default StyleSheet.create({
     shadowOffset:{ width: 8, height: 8, },
     shadowColor: '#f9ad30',
     shadowOpacity: 0.5,
+},
+
+bigButton: {
+  backgroundColor: '#fde3b7',
+  height: 80,
+  width: 180,
+  alignItems: "center", 
+  marginBottom: 9,
+  alignSelf: "center", 
+  justifyContent: 'center', 
+  borderRadius:10,
+  borderWidth: 1,
+  borderColor: '#fde3b7',
+  shadowOffset:{ width: 8, height: 8, },
+  shadowColor: '#f9ad30',
+  shadowOpacity: 0.5,
 },
 smallButtonSquare: {
   backgroundColor: '#fde3b7',

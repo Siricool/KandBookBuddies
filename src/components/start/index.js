@@ -68,7 +68,7 @@ const StartPage = ({ navigation }) => {
     const bookclubs = chosenUser.groupID;
       return (
         <View>
-        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these bookclubs</Text>
+        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these book clubs</Text>
         {bookclubs.map((club, index) =>{
           return(
             <View key={index}>
