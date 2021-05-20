@@ -29,19 +29,14 @@ const StartPage = ({ navigation }) => {
   const { currentUser, chosenUser } = useSelector(mapState);
   const { books } = useSelector(mapStateBook);
   const { bc, chosenClub } = useSelector(mapStateBC);
-  const [random, setRandom] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(
       fetchBooksStart()
     );
-    dispatch(
-      fetchBCStart()
-    );
-  }, [chosenUser]);
 
- 
+  }, []);
 
 
   const configAddToCart = (book) => {
@@ -146,13 +141,6 @@ const StartPage = ({ navigation }) => {
         let chosenClubBook = currentlyReading[randBookNumb];
         return (
           <View>
-            <Icon
-              name='ios-book'
-              type='ionicon'
-              color='black'
-              style={styles.icon}
-            />
-            <Text style={styles.textLeft}>Club Inspiration</Text>
             <Text style={styles.smallBlackText}><Text style={styles.capital}>{chosenClub.groupName}</Text> is currently reading </Text>
             <View style={styles.rowSettings}>
               <View style={[styles.column, styles.maxSquare]}>
@@ -202,14 +190,22 @@ const StartPage = ({ navigation }) => {
               color='black'
               style={styles.icon}
             /></View>
-            <Text style={styles.textLeft}>Buddy Inspiration<Text style={styles.textItalic}> </Text></Text>
+            <Text style={styles.textLeft}>Buddy Inspiration</Text>
             <View>{buddyWeek()}</View>
           </View>
 
           <View style={styles.whiteSquare}>
-
-            <Text>  {bookFromOtherBC()} </Text>
+          <View style={styles.margins}>
+          <Icon
+              name='ios-book'
+              type='ionicon'
+              color='black'
+              style={styles.icon}
+            /></View>
+            <Text style={styles.textLeft}>Club Inspiration</Text>
+            <Text>{bookFromOtherBC()}</Text>
           </View>
+          
 
           <Image
             style={styles.bookLogo}
