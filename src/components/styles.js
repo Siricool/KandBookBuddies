@@ -48,7 +48,6 @@ export default StyleSheet.create({
   textItalic: {
     fontStyle: 'italic'
   },
-
   textLeft: {
     fontSize: 20,    
     marginTop: 10,
@@ -210,6 +209,11 @@ export default StyleSheet.create({
   capital: {
     textTransform: 'capitalize',
   },
+  icon: {
+    marginTop: 2,
+    marginLeft: 25,
+    justifyContent: 'center'
+  },
   bookImage: {
     flex: 1,
     width: 130,
@@ -229,6 +233,16 @@ export default StyleSheet.create({
     height: 150,
     marginTop: 10,
     marginBottom: 10,
+    alignSelf: 'center',
+    borderRadius: 8,
+  },
+  bookImageMediumLeft: {
+    flex: 1,
+    width: 90,
+    height: 100,
+    marginRight: 40,
+    marginBottom: 10,
+    marginTop: 10,
     alignSelf: 'center',
     borderRadius: 8,
   },
@@ -500,7 +514,8 @@ coolButtonTwo: {
   },
   rowSettings: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignContent: 'space-between'
   },
   rowBC: {
     flexDirection: "row",
@@ -552,6 +567,12 @@ coolButtonTwo: {
   },
   width: {
     width: 300
+  },
+  height: {
+    height: 90
+  },
+  maxSquare: {
+    width: 200
   },
   square: {
     height: 60,
