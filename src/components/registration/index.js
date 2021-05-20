@@ -5,20 +5,27 @@ import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import AuthWrapper from './../AuthWrapper';
-import { emailSignInStart } from './../../redux/User/user.actions';
+import { emailSignInStart, fetchAllUsers } from './../../redux/User/user.actions';
 import { signUpUserStart } from './../../redux/User/user.actions';
 import styles from './styles';
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
+  chosenUser: user.chosenUser,
   userErr: user.userErr
 });
+
+const mapStateBC = ({ bookclub }) => ({
+  bc: bookclub.bc
+})
 
 //const Signup = props => {
 const Signup = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser, userErr } = useSelector(mapState);
+  const { bc } = useSelector(mapStateBC);
+  const { currentUser, chosenUser } = useSelector(mapState);
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +34,7 @@ const Signup = ({ navigation }) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    if (currentUser){
+    if (currentUser && chosenUser && bc ){
       navigation.navigate('ChooseBC');
     }
   }, [currentUser]
@@ -55,7 +62,8 @@ const Signup = ({ navigation }) => {
       confirmPassword
     })),
     dispatch(emailSignInStart({ email, password }))
-    
+    dispatch(fetchAllUsers())
+    dispatch(fetchBCStart())
   }
 
   const onFooterLinkPress = () => {
