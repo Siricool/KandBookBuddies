@@ -8,23 +8,24 @@ import AuthWrapper from './../AuthWrapper';
 import { emailSignInStart, fetchAllUsers } from './../../redux/User/user.actions';
 import { signUpUserStart } from './../../redux/User/user.actions';
 import styles from './styles';
-import { fetchBCStart } from '../../redux/BookClub/bc.actions';
+import { fetchBCStart, fetchChosenBCStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   chosenUser: user.chosenUser,
-  userErr: user.userErr
+  //userErr: user.userErr
 });
 
 const mapStateBC = ({ bookclub }) => ({
-  bc: bookclub.bc
+  bc: bookclub.bc,
+  chosenClub: bookclub.chosenClub
 })
 
 //const Signup = props => {
 const Signup = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { bc } = useSelector(mapStateBC);
+  const { bc, chosenClub } = useSelector(mapStateBC);
   const { currentUser, chosenUser } = useSelector(mapState);
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,7 +35,7 @@ const Signup = ({ navigation }) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    if (currentUser && chosenUser && bc ){
+    if (currentUser && chosenUser && chosenClub && bc){
       navigation.navigate('ChooseBC');
     }
   }, [currentUser]
@@ -64,6 +65,7 @@ const Signup = ({ navigation }) => {
     dispatch(emailSignInStart({ email, password }))
     dispatch(fetchAllUsers())
     dispatch(fetchBCStart())
+    dispatch(fetchChosenBCStart())
   }
 
   const onFooterLinkPress = () => {
