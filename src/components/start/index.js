@@ -86,7 +86,7 @@ const StartPage = ({ navigation }) => {
       return (
         <View>
           <Text style={styles.middleTextOrange}>{chosenBook.title}</Text>
-          <Text style={styles.smallText}>by {chosenBook.author}</Text>
+          <Text style={styles.authorText}>by {chosenBook.author}</Text>
 
           <View style={styles.rowSettings}>
             <View>

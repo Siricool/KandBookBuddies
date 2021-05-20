@@ -60,6 +60,14 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+  authorText: {
+    fontSize: 17,
+    color: 'grey',
+    marginTop: 5,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
   smallBlackText: {
     fontSize: 17,
     color: 'black',
