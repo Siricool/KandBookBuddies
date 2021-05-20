@@ -89,14 +89,14 @@ const BCOverview = ({ navigation }) => {
               <TouchableOpacity style={styles.smallButtonBC}
                 onPress={() => handleJoin()}>
                 <Text style={styles.buttonText}>
-                  Join a bookclub
+                  Join a book club
             </Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.smallButtonBC}
                 onPress={() => handleCreate()}>
                 <Text style={styles.buttonText}>
-                  Create a bookclub
+                  Create a book club
             </Text>
               </TouchableOpacity>
             </View>

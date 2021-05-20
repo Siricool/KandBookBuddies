@@ -8,7 +8,7 @@ import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 import { addBook, addBookRead, nextBook } from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
-import { fetchAllUsers } from '../../redux/User/user.actions'
+
 
 
 const mapState = ({ user }) => ({
@@ -31,6 +31,7 @@ const StartPage = ({ navigation }) => {
   const { bc, chosenClub } = useSelector(mapStateBC);
   const [random, setRandom] = useState('');
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(
       fetchBooksStart()
@@ -69,7 +70,7 @@ const StartPage = ({ navigation }) => {
     const bookclubs = chosenUser.groupID;
       return (
         <View>
-        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these bookclubs</Text>
+        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these book clubs</Text>
         {bookclubs.map((club, index) =>{
           return(
             <View key={index}>
@@ -194,6 +195,13 @@ const StartPage = ({ navigation }) => {
           </View>
 
           <View style={styles.whiteSquare}>
+          <View style={styles.margins}>
+          <Icon
+              name='ios-star'
+              type='ionicon'
+              color='black'
+              style={styles.icon}
+            /></View>
             <Text style={styles.textLeft}>Buddy Inspiration<Text style={styles.textItalic}> </Text></Text>
             <View>{buddyWeek()}</View>
           </View>
