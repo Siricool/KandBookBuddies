@@ -16,18 +16,18 @@ const mapStateBC = ({ bookclub }) => ({
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
-  });
+});
 
 const RatingScreen = ({ route, navigation }) => {
     const { bc, updatedRatingClub } = useSelector(mapStateBC);
-    const { currentUser} = useSelector(mapState);
+    const { currentUser } = useSelector(mapState);
     const { book, documentID, groupName } = route.params;
     const [star, setRating] = useState('');
     const [comment, setComment] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
- 
+
     }, [bc]
     );
 
@@ -55,48 +55,56 @@ const RatingScreen = ({ route, navigation }) => {
         const scrollViewRef = useRef();
         let name = groupName;
         if (updatedRatingClub.groupName != undefined && updatedRatingClub.groupName == groupName) {
-          let chosenClub = updatedRatingClub
-          if (chosenClub) {
-            let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
-            if (chosenBook){
-            const comments = chosenBook.comments;
-            return (
-              <ScrollView
-                ref={scrollViewRef}
-                onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
-                {comments.map((comment, index) => {
-                  return (
-                    <View key={comment.comment}>
-                        <Text style={styles.smallText}>
-                      <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
-                      <Text> {comment.comment} </Text>
-                      </Text>
-                    </View>
-                  )})}
-              </ScrollView>
-            )}}}
+            let chosenClub = updatedRatingClub
+            if (chosenClub) {
+                let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
+                if (chosenBook) {
+                    const comments = chosenBook.comments;
+                    return (
+                        <ScrollView
+                            ref={scrollViewRef}
+                            onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
+                            {comments.map((comment, index) => {
+                                return (
+                                    <View key={comment.comment}>
+                                        <Text style={styles.smallText}>
+                                            <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
+                                            <Text> {comment.comment} </Text>
+                                        </Text>
+                                    </View>
+                                )
+                            })}
+                        </ScrollView>
+                    )
+                }
+            }
+        }
         else {
-          let chosenClub = bc.find(club => club.documentID === documentID);
-          if (chosenClub) {
-            let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
-            if (chosenBook){
-            const comments = chosenBook.comments;
-            return (
-              <ScrollView
-                ref={scrollViewRef}
-                onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
-                {comments.map((comment, index) => {
-                  return (
-                    <View key={comment.comment}>
-                      <Text style={styles.smallText}>
-                      <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
-                      <Text> {comment.comment} </Text>
-                      </Text>
-                    </View>
-                  )})}
-              </ScrollView>
-            )}}}
-      };
+            let chosenClub = bc.find(club => club.documentID === documentID);
+            if (chosenClub) {
+                let chosenBook = chosenClub.bcbooks.find(bookBC => bookBC.id === book.id);
+                if (chosenBook) {
+                    const comments = chosenBook.comments;
+                    return (
+                        <ScrollView
+                            ref={scrollViewRef}
+                            onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
+                            {comments.map((comment, index) => {
+                                return (
+                                    <View key={comment.comment}>
+                                        <Text style={styles.smallText}>
+                                            <Text style={[styles.middleTextPink, styles.capital]}>{comment.user}:</Text>
+                                            <Text> {comment.comment} </Text>
+                                        </Text>
+                                    </View>
+                                )
+                            })}
+                        </ScrollView>
+                    )
+                }
+            }
+        }
+    };
 
     const averageRating = () => {
         let average = 0;
@@ -149,18 +157,18 @@ const RatingScreen = ({ route, navigation }) => {
 
     const getAverage = () => {
         let average = averageRating();
-        if (average.length >= 0){
-        return (
-            <View>
-            <Text style={styles.bigTextPink}>{average}</Text>
-            </View>
-        )
+        if (average.length >= 0) {
+            return (
+                <View>
+                    <Text style={styles.bigTextPink}>{average}</Text>
+                </View>
+            )
         }
-        else{
-            return(
-            <View>
-            <Text style= {styles.smallText}>No ratings yet</Text>
-            </View>
+        else {
+            return (
+                <View>
+                    <Text style={styles.smallText}>No ratings yet</Text>
+                </View>
             )
         }
     }
@@ -173,12 +181,12 @@ const RatingScreen = ({ route, navigation }) => {
                     source={require('../../../assets/backg.png')}
                 >
                     <Text style={styles.whiteText}>Club Discussion</Text>
-                    <Image style={styles.bookImageMedium} source={{uri: book.picture}} />
+                    <Image style={styles.bookImageMedium} source={{ uri: book.picture }} />
 
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>Club Average Rating</Text>
-                       
-                        <Text  style={styles.center} >{getAverage()} </Text>
+
+                        <Text style={styles.center} >{getAverage()} </Text>
                     </View>
 
                     <View style={styles.whiteSquare}>
@@ -198,9 +206,9 @@ const RatingScreen = ({ route, navigation }) => {
                             startingValue={0}
                             onFinishRating={(ratingCount) => setRating(ratingCount)}
                         />
-                    
-                    
-                         <Text></Text>
+
+
+                        <Text></Text>
                         <Text style={styles.smallText}>Leave a comment about the book.</Text>
                         <TextInput
                             multiline
@@ -213,20 +221,21 @@ const RatingScreen = ({ route, navigation }) => {
                             value={comment}
                             autoCapitalize="sentences"
                         />
+                        <TouchableOpacity
+                            style={styles.smallButtonComment}
+                            onPress={() => handleReview()}
+                        >
+                            <Text>Send review</Text>
+                        </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity
-                        style={styles.smallButtonComment}
-                        onPress={() => handleReview()}
-                    >
-                        <Text>Send review</Text>
-                    </TouchableOpacity>
+
 
                     <TouchableOpacity
                         style={styles.coolButtonTwo}
-                        onPress={() =>  navigation.navigate('BCView')}
+                        onPress={() => navigation.navigate('BCView')}
                     >
-                        <Text> Back to {groupName}</Text>
+                        <Text>Back to {groupName}</Text>
                     </TouchableOpacity>
 
 

@@ -65,12 +65,12 @@ const StartPage = ({ navigation }) => {
     const bookclubs = chosenUser.groupID;
       return (
         <View>
-        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these book clubs</Text>
+        <Text style={styles.smallBlackText}>The Buddy <Text style={[styles.capital, styles.middleTextPink]}>{userName}</Text> loves clubbing and is enjoying these book clubs:</Text>
         {bookclubs.map((club, index) =>{
           return(
             <View key={index}>
-                <Text style={styles.middleTextOrangeInspo}>
-                  - {club}
+                <Text style={[styles.middleTextOrangeInspo, styles.capital]}>
+                  {club}
                 </Text>
             </View>
           )
@@ -141,7 +141,8 @@ const StartPage = ({ navigation }) => {
         let chosenClubBook = currentlyReading[randBookNumb];
         return (
           <View>
-            <Text style={styles.smallBlackText}><Text style={styles.capital}>{chosenClub.groupName}</Text> is currently reading </Text>
+            <Text style={styles.smallBlackText}>The Club 
+            <Text style={[styles.capital, styles.middleTextPink]}> {chosenClub.groupName}</Text> is currently reading </Text>
             <View style={styles.rowSettings}>
               <View style={[styles.column, styles.maxSquare]}>
                 <View>

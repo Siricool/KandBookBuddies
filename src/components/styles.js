@@ -400,6 +400,7 @@ smallButtonComment: {
   width: 140,
   alignItems: "center", 
   alignSelf: "center", 
+  marginBottom: 10,
   justifyContent: 'center', 
   borderRadius:10,
   borderWidth: 1,
@@ -434,7 +435,7 @@ coolButtonTwo: {
   marginTop: 25,
   marginBottom: 25,
   height: 70,
-  width: 180,
+  width: 200,
   //center button and text
   alignItems: "center", 
   alignSelf: "center", 
