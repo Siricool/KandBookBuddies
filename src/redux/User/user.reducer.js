@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   currentUser: null,
   updatedUser: null,
   resetPasswordSuccess: false,
-  userErr: []
+  userErr: [],
+  chosenUser: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -32,9 +33,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         updatedUser: action.payload
       }
+    case userTypes.FETCH_ALL_USERS_SUCCESS: 
+    return {
+      ...state,
+      chosenUser: action.payload
+    }
     default:
       return state;
   }
+  
 };
 
 export default userReducer;
