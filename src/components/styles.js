@@ -35,7 +35,9 @@ export default StyleSheet.create({
     alignSelf: "center",
     fontFamily: 'Helvetica'
   },
-
+  margins: {
+    marginTop:20,
+  },
   blackTextSmall: {
     fontSize: 17,
     color: 'black',
@@ -211,7 +213,7 @@ export default StyleSheet.create({
   },
   icon: {
     marginTop: 2,
-    marginLeft: 25,
+   // marginLeft: 25,
     justifyContent: 'center'
   },
   bookImage: {
