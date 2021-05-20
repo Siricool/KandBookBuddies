@@ -211,8 +211,7 @@ const BCView = ({ route, navigation }) => {
                   </TouchableOpacity>
                 </View>
               )}
-              console.log('längd'+books.length)
-              console.log('counter'+counter)
+              
               if (counter < 1 && index == books.length-1){
                 return (
                   <View>

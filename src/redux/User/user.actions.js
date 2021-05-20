@@ -46,3 +46,13 @@ export const updatedUserSuccess = user => ({
   type: userTypes.UPDATED_USER_SUCCESS,
   payload: user
 });
+
+export const fetchAllUsers = users => ({
+  type: userTypes.FETCH_ALL_USERS,
+  payload: users
+})
+
+export const fetchAllUsersSuccess = user => ({
+  type: userTypes.FETCH_ALL_USERS_SUCCESS,
+  payload: user
+})
