@@ -2,33 +2,17 @@ import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBCStart } from '../../redux/BookClub/bc.actions';
-
-const mapStateBC = ({ bookclub }) => ({
-  bc: bookclub.bc
-})
 
 const ChooseBC = ({ navigation }) => {
-  const { bc } = useSelector(mapStateBC);
-
-  const dispatch = useDispatch();
-
+  
   useEffect(() => {
-    if (bc != undefined && bc.length > 0) {
-      navigation.navigate('JoinBC')
-    }
-
-  }, [bc]
-  )
+  }, [])
 
   const handleCreate = () => {
     navigation.navigate('CreateBC')
   }
   const handleJoin = () => {
-    dispatch(
-      fetchBCStart()
-    )
+    navigation.navigate('JoinBC')
   }
 
   return (
