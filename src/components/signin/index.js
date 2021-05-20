@@ -4,32 +4,33 @@ import { useHistory } from 'react-router-native';
 import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { emailSignInStart } from './../../redux/User/user.actions';
+import { emailSignInStart, fetchAllUsers } from './../../redux/User/user.actions';
 import AuthWrapper from './../AuthWrapper/index';
 import styles from './styles.js';
-import { Icon } from 'react-native-elements'
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  chosenUser: user.chosenUser
 });
 
 const SignIn = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, chosenUser } = useSelector(mapState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-    if (currentUser){
+    if (currentUser && chosenUser){
       navigation.navigate('StartPage');
     }
-  }, [currentUser]
+  }, [currentUser, chosenUser]
   );
 
   const handleSubmit = () => { 
-    dispatch(emailSignInStart({ email, password })) ;
+    dispatch(emailSignInStart({ email, password }))
+    dispatch(fetchAllUsers())
   }
 
   const onFooterLinkPress = () => {
@@ -96,10 +97,3 @@ export default SignIn;
 
 
 
-/*
-<TouchableOpacity
-            style={styles.button}
-            onPress={() => handleSign()}>
-            <Text>Continue to Book Buddies!</Text>
-          </TouchableOpacity>
-*/

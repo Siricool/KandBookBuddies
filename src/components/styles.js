@@ -69,6 +69,8 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+
+
   smallerText: {
     fontSize: 15,
     color: 'grey',
@@ -125,6 +127,17 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+
+  middleTextOrangeInspo: {
+    fontSize: 18,
+    color: '#f9ad30',
+    fontWeight: "bold",
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 25,
+    marginRight: 25,
+    fontFamily: 'Helvetica'
+  },
   smallTextOrange: {
     fontSize: 15,
     color: '#f9ad30',
@@ -146,6 +159,8 @@ export default StyleSheet.create({
     marginRight: 25,
     fontFamily: 'Helvetica'
   },
+
+  
     middleTextPink: {
     fontSize: 18,
     color: '#d679ae',

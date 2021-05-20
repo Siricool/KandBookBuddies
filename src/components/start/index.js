@@ -1,31 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, TouchableHighlight, View, Text, ImageBackground } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import { addBook, addBookRead, nextBook } from '../../redux/Cart/cart.actions'
+import { addBook, addBookRead, nextBook } from '../../redux/Cart/cart.actions';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
+import { fetchAllUsers } from '../../redux/User/user.actions'
 
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
+  chosenUser: user.chosenUser
 });
 
 const mapStateBook = ({ booksData }) => ({
   books: booksData.books
 });
 
+
 const StartPage = ({ navigation }) => {
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, chosenUser } = useSelector(mapState);
   const { books } = useSelector(mapStateBook);
+  const [random, setRandom] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
       fetchBooksStart()
     );
-  }, []);
+  
+  }, [chosenUser]);
+
+ 
 
   const configAddToCart = (book) => {
     if (!book) return;
@@ -47,12 +54,34 @@ const StartPage = ({ navigation }) => {
     );
   };
 
+  const buddyWeek = () => {    
+    if (chosenUser && chosenUser.displayName != undefined){
+    const userName = chosenUser.displayName
+    const bookclubs = chosenUser.groupID;
+      return (
+        <View>
+        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these bookclubs</Text>
+        {bookclubs.map((club, index) =>{
+          return(
+            <View key={index}>
+                <Text style={styles.middleTextOrangeInspo}>
+                  - {club}
+                </Text>
+            </View>
+          )
+        })}
+        <Text> </Text>
+        </View>
+      )
+    }
+  }
+
   const recommendBook = () => {
     const numbOfBooks = books.length;
     const randNumb = Math.floor(Math.random() * (numbOfBooks)) + 1;
     let chosenBook = books.find(book => book.id === randNumb);
     if (chosenBook) {
-      console.log('random chosen BOOK ' + chosenBook.title)
+     
       const bookurl = { uri: chosenBook.picture }
       return (
         <View>
@@ -108,7 +137,8 @@ const StartPage = ({ navigation }) => {
           </View>
 
           <View style={styles.whiteSquare}>
-            <Text style={styles.textLeft}>Book Buddy of the Week<Text style={styles.textItalic}> - under development  </Text></Text>
+            <Text style={styles.textLeft}>Buddy Inspiration<Text style={styles.textItalic}> </Text></Text>
+            <View>{buddyWeek()}</View>
           </View>
 
           <View style={styles.whiteSquare}>

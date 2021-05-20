@@ -1,7 +1,8 @@
-import { takeLatest, call, all, put } from 'redux-saga/effects';
+import { takeLatest, call, all, put, take } from 'redux-saga/effects';
 import { auth, handleUserProfile, getCurrentUser, firestore } from './../../firebase/utils';
 import userTypes from './user.types';
-import { signInSuccess, signOutUserSuccess, userError, updatedUserSuccess } from './user.actions';
+import { signInSuccess, signOutUserSuccess, userError, updatedUserSuccess, fetchAllUsersSuccess } from './user.actions';
+import { handleFetchUsers } from './user.helpers';
 
 
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
@@ -134,6 +135,20 @@ export function* updateGroupsForUser({payload: {groupName}}){
   }
 }
 
+export function* fetchUsers() {
+  try{
+    const usersArray = yield handleFetchUsers();
+    const numOfUsers = usersArray.length;
+    const randNumb = Math.floor(Math.random() * (numOfUsers));
+    let chosenUser = usersArray[randNumb];
+    yield put(
+      fetchAllUsersSuccess(chosenUser)
+    );
+  }
+  catch(err){
+  }
+}
+
 export function* onSignUpUserStart() {
   yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser);
 }
@@ -142,6 +157,9 @@ export function* onUpdateGroupsForUser() {
   yield takeLatest(userTypes.UPDATE_GROUPS_FOR_USER, updateGroupsForUser);
 }
 
+export function* onFetchAllUsers() {
+  yield takeLatest(userTypes.FETCH_ALL_USERS, fetchUsers)
+}
 
 export default function* userSagas() {
   yield all([
@@ -150,5 +168,6 @@ export default function* userSagas() {
     call(onSignOutUserStart),
     call(onSignUpUserStart),
     call(onUpdateGroupsForUser),
+    call(onFetchAllUsers)
   ])
 }
