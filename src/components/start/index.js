@@ -29,19 +29,14 @@ const StartPage = ({ navigation }) => {
   const { currentUser, chosenUser } = useSelector(mapState);
   const { books } = useSelector(mapStateBook);
   const { bc, chosenClub } = useSelector(mapStateBC);
-  const [random, setRandom] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(
       fetchBooksStart()
     );
-    dispatch(
-      fetchBCStart()
-    );
-  }, [chosenUser]);
 
- 
+  }, []);
 
 
   const configAddToCart = (book) => {
@@ -70,12 +65,12 @@ const StartPage = ({ navigation }) => {
     const bookclubs = chosenUser.groupID;
       return (
         <View>
-        <Text style={styles.smallBlackText}><Text style={styles.capital}>{userName}</Text> loves clubbing and is enjoying these book clubs</Text>
+        <Text style={styles.smallBlackText}>The Buddy <Text style={[styles.capital, styles.middleTextPink]}>{userName}</Text> loves clubbing and is enjoying these book clubs:</Text>
         {bookclubs.map((club, index) =>{
           return(
             <View key={index}>
-                <Text style={styles.middleTextOrangeInspo}>
-                  - {club}
+                <Text style={[styles.middleTextOrangeInspo, styles.capital]}>
+                  {club}
                 </Text>
             </View>
           )
@@ -146,14 +141,8 @@ const StartPage = ({ navigation }) => {
         let chosenClubBook = currentlyReading[randBookNumb];
         return (
           <View>
-            <Icon
-              name='ios-book'
-              type='ionicon'
-              color='black'
-              style={styles.icon}
-            />
-            <Text style={styles.textLeft}>Club Inspiration</Text>
-            <Text style={styles.smallBlackText}><Text style={styles.capital}>{chosenClub.groupName}</Text> is currently reading </Text>
+            <Text style={styles.smallBlackText}>The Club 
+            <Text style={[styles.capital, styles.middleTextPink]}> {chosenClub.groupName}</Text> is currently reading </Text>
             <View style={styles.rowSettings}>
               <View style={[styles.column, styles.maxSquare]}>
                 <View>
@@ -202,14 +191,22 @@ const StartPage = ({ navigation }) => {
               color='black'
               style={styles.icon}
             /></View>
-            <Text style={styles.textLeft}>Buddy Inspiration<Text style={styles.textItalic}> </Text></Text>
+            <Text style={styles.textLeft}>Buddy Inspiration</Text>
             <View>{buddyWeek()}</View>
           </View>
 
           <View style={styles.whiteSquare}>
-
-            <Text>  {bookFromOtherBC()} </Text>
+          <View style={styles.margins}>
+          <Icon
+              name='ios-book'
+              type='ionicon'
+              color='black'
+              style={styles.icon}
+            /></View>
+            <Text style={styles.textLeft}>Club Inspiration</Text>
+            <Text>{bookFromOtherBC()}</Text>
           </View>
+          
 
           <Image
             style={styles.bookLogo}
