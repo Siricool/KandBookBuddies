@@ -5,6 +5,7 @@ import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { emailSignInStart, fetchAllUsers } from './../../redux/User/user.actions';
+import {fetchChosenBCStart} from './../../redux/BookClub/bc.actions';
 import AuthWrapper from './../AuthWrapper/index';
 import styles from './styles.js';
 
@@ -14,23 +15,31 @@ const mapState = ({ user }) => ({
   chosenUser: user.chosenUser
 });
 
+const mapStateBC = ({ bookclub }) => ({
+  bc: bookclub.bc,
+  chosenClub: bookclub.chosenClub
+})
+
 const SignIn = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser, chosenUser } = useSelector(mapState);
+  const { bc, chosenClub } = useSelector(mapStateBC);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-    if (currentUser && chosenUser){
+    if (currentUser && chosenUser && chosenClub){
       navigation.navigate('StartPage');
     }
-  }, [currentUser, chosenUser]
+  }, [currentUser, chosenUser, chosenClub]
   );
 
   const handleSubmit = () => { 
     dispatch(emailSignInStart({ email, password }))
     dispatch(fetchAllUsers())
+    dispatch(fetchChosenBCStart())
   }
 
   const onFooterLinkPress = () => {

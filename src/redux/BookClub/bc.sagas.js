@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { firestore } from './../../firebase/utils';
-import { createdBCSuccess, createdCommentSuccess, setBC, updatedRatingSuccess } from "./bc.actions";
+import { createdBCSuccess, createdCommentSuccess, setBC, setChosenBC, updatedRatingSuccess } from "./bc.actions";
 import bcTypes from './bc.types'
 import { handleFetchBC } from './bc.helpers'
 
@@ -52,6 +52,24 @@ export function* fetchBC() {
 export function* onFetchBCStart() {
     yield takeLatest(bcTypes.FETCH_BC_START, fetchBC);
 }
+
+export function* fetchChosenBC() {
+    try {
+        const bc = yield handleFetchBC();
+        let numbOfClubs = bc.length;
+        const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) + 1;
+        let chosenClub = bc[randClubNumb];
+        yield put(
+            setChosenBC(chosenClub)
+        );
+    } catch (err) {
+    }
+}
+
+export function* onFetchChosenBCStart() {
+    yield takeLatest(bcTypes.FETCH_CHOSEN_BC_START, fetchChosenBC);
+}
+
 
 
 export function* joinBC({ payload: {
@@ -213,6 +231,7 @@ export default function* bcSagas() {
     yield all([
         call(onCreateBCStart),
         call(onFetchBCStart),
+        call(onFetchChosenBCStart),
         call(onJoinBCStart),
         call(onBookInBC),
         call(onCreateCommentStart),
