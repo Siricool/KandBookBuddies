@@ -140,6 +140,19 @@ const BCView = ({ route, navigation }) => {
         return(
           <View>
           <Text style={styles.historyText}>You are not reading anything yet</Text>
+
+          <TouchableOpacity
+                style={styles.coolButton}
+                onPress={() => navigation.navigate('Search')}>  
+                <View style={styles.rowSettings}>
+                  <Icon
+                  name='ios-search'
+                  type='ionicon'
+                  color='black'
+                 />
+                <Text style={styles.blackTextSmall}>Look for Books</Text>
+                </View>
+                </TouchableOpacity>
           </View>
         )
       }
