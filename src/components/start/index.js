@@ -21,13 +21,15 @@ const mapStateBook = ({ booksData }) => ({
 });
 
 const mapStateBC = ({ bookclub }) => ({
-  bc: bookclub.bc
+  bc: bookclub.bc,
+  chosenClub: bookclub.chosenClub
 })
 
 const StartPage = ({ navigation }) => {
   const { currentUser, chosenUser } = useSelector(mapState);
   const { books } = useSelector(mapStateBook);
-  const { bc } = useSelector(mapStateBC);
+  const { bc, chosenClub } = useSelector(mapStateBC);
+  const [random, setRandom] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -130,11 +132,7 @@ const StartPage = ({ navigation }) => {
 
 
   const bookFromOtherBC = () => {
-    let numbOfClubs = bc.length;
-    const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) + 1;
-    let chosenClub = bc[randClubNumb];
     let currentlyReading = [];
-    if (chosenClub) {
       let books = chosenClub.bcbooks;
       for (book in books) {
         let tempBook = chosenClub.bcbooks[book];
@@ -154,7 +152,8 @@ const StartPage = ({ navigation }) => {
               color='black'
               style={styles.icon}
             />
-            <Text style={styles.textLeft}><Text style={styles.capital}>{chosenClub.groupName}</Text> is currently reading </Text>
+            <Text style={styles.textLeft}>Club Inspiration</Text>
+            <Text style={styles.smallBlackText}><Text style={styles.capital}>{chosenClub.groupName}</Text> is currently reading </Text>
             <View style={styles.rowSettings}>
               <View style={[styles.column, styles.maxSquare]}>
                 <View>
@@ -176,7 +175,6 @@ const StartPage = ({ navigation }) => {
           <Text>{bookFromOtherBC()}</Text>
         )
       }
-    }
 
   }
 

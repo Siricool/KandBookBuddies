@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     bc: [],
     bcbooks: [],
     comments: [],
-    rating: []
+    rating: [],
+    chosenClub: null
 
 };
 
@@ -20,6 +21,11 @@ const bcReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 bc: action.payload
+            }
+        case bcTypes.SET_CHOSEN_BC:
+            return {
+                ...state,
+                chosenClub: action.payload
             }
         case bcTypes.BOOK_IN_BC: //eventuellt onödig
             return {
