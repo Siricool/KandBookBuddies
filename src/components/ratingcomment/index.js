@@ -24,6 +24,7 @@ const RatingScreen = ({ route, navigation }) => {
     const { book, documentID, groupName } = route.params;
     const [star, setRating] = useState('');
     const [comment, setComment] = useState('');
+    const [club, setChosenClub] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,6 +34,7 @@ const RatingScreen = ({ route, navigation }) => {
 
     const handleReview = () => {
         let chosenClub = bc.find(club => club.documentID === documentID);
+        setChosenClub(chosenClub);
         let counter = -1;
 
         if (chosenClub) {
@@ -155,6 +157,12 @@ const RatingScreen = ({ route, navigation }) => {
         }
     }
 
+    const goBack = () => {
+       
+        navigation.navigate('BCView', club)
+        
+    }
+
     const getAverage = () => {
         let average = averageRating();
         if (average.length >= 0) {
@@ -233,7 +241,7 @@ const RatingScreen = ({ route, navigation }) => {
 
                     <TouchableOpacity
                         style={styles.coolButtonTwo}
-                        onPress={() => navigation.navigate('BCView')}
+                        onPress={() => goBack()}
                     >
                         <Text>Back to {groupName}</Text>
                     </TouchableOpacity>

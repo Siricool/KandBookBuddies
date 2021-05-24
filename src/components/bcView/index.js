@@ -15,13 +15,14 @@ const mapState = ({ user }) => ({
 
 const mapStateBC = ({ bookclub }) => ({
   bc: bookclub.bc,
-  bcCom: bookclub.comments
+  bcCom: bookclub.comments,
+  
 });
 
 const BCView = ({ route, navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
-  const { bcCom } = useSelector(mapStateBC);
+  const { bcCom} = useSelector(mapStateBC);
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
   const { groupName } = route.params;
@@ -29,7 +30,7 @@ const BCView = ({ route, navigation }) => {
 
   useEffect(() => {
     mapClubToId();
-
+    
   }, [bc, bcCom]
   );
 
@@ -182,13 +183,6 @@ const BCView = ({ route, navigation }) => {
                  </TouchableOpacity>  
               </View>
             )}
-            if (counter < 1 && index == books.length-1){
-              return(
-              <View>
-                <Text style={styles.historyText}>You are not reading anything right now</Text>
-              </View>
-              )
-            }
           })}
         </ScrollView>)
     }
@@ -213,7 +207,7 @@ const BCView = ({ route, navigation }) => {
           style={styles.rowBooks}>
           {books.map((book, index) => {
             if (book.read === true) {
-              counter += 1;
+              
               return (
                 <View key={book.id}>
                   <TouchableOpacity
@@ -225,13 +219,7 @@ const BCView = ({ route, navigation }) => {
                 </View>
               )}
               
-              if (counter < 1 && index == books.length-1){
-                return (
-                  <View>
-                    <Text style={styles.historyText}>No finished books yet!</Text>
-                  </View>
-                )
-              }
+             
               })
               }
 
