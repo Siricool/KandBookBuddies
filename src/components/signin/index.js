@@ -16,13 +16,13 @@ const mapState = ({ user }) => ({
 });
 
 const mapStateBC = ({ bookclub }) => ({
-  bc: bookclub.bc,
+ // bc: bookclub.bc,
   chosenClub: bookclub.chosenClub
 })
 
 const SignIn = ({ navigation }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+ // const history = useHistory();
   const { currentUser, chosenUser } = useSelector(mapState);
   const { bc, chosenClub } = useSelector(mapStateBC);
 
@@ -38,16 +38,26 @@ const SignIn = ({ navigation }) => {
 
   const handleSubmit = () => { 
     dispatch(emailSignInStart({ email, password }))
-    dispatch(fetchAllUsers())
+    if (currentUser){
+      dispatch(fetchAllUsers())
     dispatch(fetchChosenBCStart())
+    }
+    
   }
 
   const onFooterLinkPress = () => {
     navigation.navigate('Signup')
   }
+  const fetchData = () =>{
+    dispatch(fetchAllUsers())
+    dispatch(fetchChosenBCStart())
+  }
 
+  
   return (
+    
     <AuthWrapper >
+     
       <View style={styles.container}>
         <KeyboardAwareScrollView
           style={{ width: '100%', height: '100%' }}
