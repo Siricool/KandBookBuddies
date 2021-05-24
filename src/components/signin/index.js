@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-native';
 import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -16,7 +15,7 @@ const mapState = ({ user }) => ({
 });
 
 const mapStateBC = ({ bookclub }) => ({
- // bc: bookclub.bc,
+  bc: bookclub.bc,
   chosenClub: bookclub.chosenClub
 })
 
@@ -38,10 +37,10 @@ const SignIn = ({ navigation }) => {
 
   const handleSubmit = () => { 
     dispatch(emailSignInStart({ email, password }))
-    if (currentUser){
+ 
       dispatch(fetchAllUsers())
-    dispatch(fetchChosenBCStart())
-    }
+      dispatch(fetchChosenBCStart())
+    
     
   }
 

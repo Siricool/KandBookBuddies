@@ -35,7 +35,8 @@ const Signup = ({ navigation }) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    if (currentUser && chosenUser && chosenClub && bc){
+    if (currentUser && chosenClub && chosenUser){
+      //CHOSENCLUB  BC
       navigation.navigate('ChooseBC');
     }
   }, [currentUser]

@@ -57,7 +57,9 @@ export function* fetchChosenBC() {
     try {
         const bc = yield handleFetchBC();
         let numbOfClubs = bc.length;
-        const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) + 1;
+        console.log('längden av klubbar'+numbOfClubs)
+        const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) ;
+        console.log('längden av klubbar'+randClubNumb )
         let chosenClub = bc[randClubNumb];
         yield put(
             setChosenBC(chosenClub)
