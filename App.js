@@ -4,10 +4,12 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import SignIn from './src/components/signin/index';
 import Signup from './src/components/registration';
+
 import StartPage from './src/components/start';
 import BCOverview from './src/components/bcOverview';
-import Settings from './src/components/settings';
 import MyProfile from './src/components/profile';
+import Settings from './src/components/settings';
+
 import CreateBC from './src/components/createBC';
 import CreateBCInside from './src/components/createBCInside';
 import ChooseBC from './src/components/chooseBC';
@@ -38,11 +40,12 @@ export default function App() {
         <Stack.Navigator>
               <Stack.Screen name="SignIn" component={SignIn} />
               <Stack.Screen name="Signup" component={Signup} />
-              <Stack.Screen name="StartPage" component={StartPage} />
               <Stack.Screen name="BCOverview" component={BCOverview} />
               <Stack.Screen name="BCView" component={BCView} />
-              <Stack.Screen name="Settings" component={Settings} />
               <Stack.Screen name="MyProfile" component={MyProfile} />
+              <Stack.Screen name="StartPage" component={StartPage} />
+              
+              <Stack.Screen name="Settings" component={Settings} />
               <Stack.Screen name="CreateBC" component={CreateBC} />
               <Stack.Screen name="CreateBCInside" component={CreateBCInside} />
               <Stack.Screen name="JoinBC" component={JoinBC} />

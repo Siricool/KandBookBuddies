@@ -57,7 +57,9 @@ export function* fetchChosenBC() {
     try {
         const bc = yield handleFetchBC();
         let numbOfClubs = bc.length;
-        const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) + 1;
+        console.log('längden av klubbar'+numbOfClubs)
+        const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) ;
+        console.log('längden av klubbar'+randClubNumb )
         let chosenClub = bc[randClubNumb];
         yield put(
             setChosenBC(chosenClub)
@@ -203,7 +205,10 @@ export function* updateRating({ payload: {
         yield firestore.collection('bookclubs').doc(clubID).update({ bcbooks: newBookList })
         const updatedRatingRef = yield firestore.collection('bookclubs')
             .doc(documentID);
+
+        
         yield getSnapshotFromBCRating(updatedRatingRef);
+        yield onFetchBCStart();
     }
     catch (err) {
     }

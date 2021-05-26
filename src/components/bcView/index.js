@@ -7,6 +7,7 @@ import { Icon } from 'react-native-elements'
 
 import { createCommentStart } from '../../redux/BookClub/bc.actions';
 import styles from '../styles';
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -15,13 +16,14 @@ const mapState = ({ user }) => ({
 
 const mapStateBC = ({ bookclub }) => ({
   bc: bookclub.bc,
-  bcCom: bookclub.comments
+  bcCom: bookclub.comments,
+  
 });
 
 const BCView = ({ route, navigation }) => {
   const { currentUser } = useSelector(mapState);
   const { bc } = useSelector(mapStateBC);
-  const { bcCom } = useSelector(mapStateBC);
+  const { bcCom} = useSelector(mapStateBC);
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
   const { groupName } = route.params;
@@ -29,7 +31,8 @@ const BCView = ({ route, navigation }) => {
 
   useEffect(() => {
     mapClubToId();
-
+    dispatch(fetchBCStart());
+    
   }, [bc, bcCom]
   );
 
@@ -182,13 +185,6 @@ const BCView = ({ route, navigation }) => {
                  </TouchableOpacity>  
               </View>
             )}
-            if (counter < 1 && index == books.length-1){
-              return(
-              <View>
-                <Text style={styles.historyText}>You are not reading anything right now</Text>
-              </View>
-              )
-            }
           })}
         </ScrollView>)
     }
@@ -213,7 +209,7 @@ const BCView = ({ route, navigation }) => {
           style={styles.rowBooks}>
           {books.map((book, index) => {
             if (book.read === true) {
-              counter += 1;
+              
               return (
                 <View key={book.id}>
                   <TouchableOpacity
@@ -225,13 +221,7 @@ const BCView = ({ route, navigation }) => {
                 </View>
               )}
               
-              if (counter < 1 && index == books.length-1){
-                return (
-                  <View>
-                    <Text style={styles.historyText}>No finished books yet!</Text>
-                  </View>
-                )
-              }
+             
               })
               }
 
@@ -287,6 +277,7 @@ const BCView = ({ route, navigation }) => {
 
           <Text style={styles.textLeft}> Questions </Text>
           <View style={styles.whiteSquare}>
+          <Text style={styles.smallBlackText}>Here you have some questions you can discuss!</Text>
             <Text style={styles.smallMiddleText}>- What is the significance of the title? Did you find it meaningful, why or why not?</Text>
             <Text style={styles.smallMiddleText}>- What did you think of the writing style and content structure of the book?</Text>
             <Text style={styles.smallMiddleText}>- How did the book make you feel? What emotions did it evoke?</Text>

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../styles.js';
 import { fetchBooksStart } from '../../redux/Books/book.actions.js';
-import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 import { addBook, addBookRead, nextBook } from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
@@ -142,7 +141,7 @@ const StartPage = ({ navigation }) => {
         return (
           <View>
             <Text style={styles.smallBlackText}>The Club 
-            <Text style={[styles.capital, styles.middleTextPink]}> {chosenClub.groupName}</Text> is currently reading </Text>
+            <Text style={[styles.capital, styles.middleTextPink]}> {chosenClub.groupName}</Text> is currently reading: </Text>
             <View style={styles.rowSettings}>
               <View style={[styles.column, styles.maxSquare]}>
                 <View>

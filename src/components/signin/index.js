@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-native';
 import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -22,7 +21,7 @@ const mapStateBC = ({ bookclub }) => ({
 
 const SignIn = ({ navigation }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+ // const history = useHistory();
   const { currentUser, chosenUser } = useSelector(mapState);
   const { bc, chosenClub } = useSelector(mapStateBC);
 
@@ -38,16 +37,26 @@ const SignIn = ({ navigation }) => {
 
   const handleSubmit = () => { 
     dispatch(emailSignInStart({ email, password }))
-    dispatch(fetchAllUsers())
-    dispatch(fetchChosenBCStart())
+ 
+      dispatch(fetchAllUsers())
+      dispatch(fetchChosenBCStart())
+    
+    
   }
 
   const onFooterLinkPress = () => {
     navigation.navigate('Signup')
   }
+  const fetchData = () =>{
+    dispatch(fetchAllUsers())
+    dispatch(fetchChosenBCStart())
+  }
 
+  
   return (
+    
     <AuthWrapper >
+     
       <View style={styles.container}>
         <KeyboardAwareScrollView
           style={{ width: '100%', height: '100%' }}
