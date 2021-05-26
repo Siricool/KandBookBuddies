@@ -205,7 +205,10 @@ export function* updateRating({ payload: {
         yield firestore.collection('bookclubs').doc(clubID).update({ bcbooks: newBookList })
         const updatedRatingRef = yield firestore.collection('bookclubs')
             .doc(documentID);
+
+        
         yield getSnapshotFromBCRating(updatedRatingRef);
+        yield onFetchBCStart();
     }
     catch (err) {
     }

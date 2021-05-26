@@ -46,6 +46,7 @@ const RatingScreen = ({ route, navigation }) => {
                         dispatch(
                             updateRating({ documentID, star, counter, bookObject, comment, currentUser })
                         )
+                        
                         setComment('');
                     }
                 }
