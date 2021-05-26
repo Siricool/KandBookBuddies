@@ -7,6 +7,7 @@ import { Icon } from 'react-native-elements'
 
 import { createCommentStart } from '../../redux/BookClub/bc.actions';
 import styles from '../styles';
+import { fetchBCStart } from '../../redux/BookClub/bc.actions';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -30,6 +31,7 @@ const BCView = ({ route, navigation }) => {
 
   useEffect(() => {
     mapClubToId();
+    dispatch(fetchBCStart());
     
   }, [bc, bcCom]
   );
@@ -275,6 +277,7 @@ const BCView = ({ route, navigation }) => {
 
           <Text style={styles.textLeft}> Questions </Text>
           <View style={styles.whiteSquare}>
+          <Text style={styles.smallBlackText}>Here you have some questions you can discuss!</Text>
             <Text style={styles.smallMiddleText}>- What is the significance of the title? Did you find it meaningful, why or why not?</Text>
             <Text style={styles.smallMiddleText}>- What did you think of the writing style and content structure of the book?</Text>
             <Text style={styles.smallMiddleText}>- How did the book make you feel? What emotions did it evoke?</Text>
