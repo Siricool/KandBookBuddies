@@ -158,11 +158,6 @@ const StartPage = ({ navigation }) => {
           </View>
         )
       }
-      else {
-        return (
-          <Text>{bookFromOtherBC()}</Text>
-        )
-      }
 
   }
 

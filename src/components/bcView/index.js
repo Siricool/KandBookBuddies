@@ -142,7 +142,7 @@ const BCView = ({ route, navigation }) => {
       if (books.length < 1){
         return(
           <View>
-          <Text style={styles.smallBlackText}>You are not reading anything yet.</Text>
+          <Text style={styles.historyText}>You are not reading anything yet.</Text>
 
           <TouchableOpacity
                 style={styles.coolButton}
@@ -194,42 +194,39 @@ const BCView = ({ route, navigation }) => {
     let chosenClub = bc.find(club => club.groupName === groupName);
     if (chosenClub) {
       const books = chosenClub.bcbooks;
-      if (books.length < 1) {
+      if (books.length < 1){
         return(
           <View>
-          <Text style={styles.smallBlackText}>No finished books yet!</Text>
+          <Text style={styles.historyText}>No finished books yet!</Text>
           </View>
         )
       }
-      else {
-        return (
-          <View>
-            {books.map((book, index) => {
-              if (book.read === true) {
-                
-                return (
-                  <View key={book.id}>
-                    <Text style={styles.smallBlackText}>Books you've read together: </Text>
-                    <ScrollView horizontal={true}
-            vertical={true}
-            style={styles.rowBooks}>
-                    <TouchableOpacity
-                      onPress={() => goToRatingScreen(book)}>
-                      <Image
-                        style={styles.bookImageSmall}
-                        source={{ uri: book.picture }} />
-                    </TouchableOpacity>
-                    </ScrollView>
-
-                  </View>
-                )}
-                })
-                } 
-           </View>             
-          )
-
-      }
+      let counter = 0;
       
+      return (
+        <ScrollView horizontal={true}
+          vertical={true}
+          style={styles.rowBooks}>
+          {books.map((book, index) => {
+            if (book.read === true) {
+              
+              return (
+                <View key={book.id}>
+                  <TouchableOpacity
+                    onPress={() => goToRatingScreen(book)}>
+                    <Image
+                      style={styles.bookImageSmall}
+                      source={{ uri: book.picture }} />
+                  </TouchableOpacity>
+                </View>
+              )}
+              
+             
+              })
+              }
+
+              
+        </ScrollView>)
     }
   }
 
@@ -252,7 +249,7 @@ const BCView = ({ route, navigation }) => {
           </View>
 
           <Text style={styles.textLeft}>History </Text>
-          
+          <Text style={styles.smallBlackText}>Books you've read together: </Text>
           {getHistoryBooks()}
 
           <Text style={styles.textLeft}> Discussion </Text>
