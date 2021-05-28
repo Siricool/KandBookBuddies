@@ -32,6 +32,9 @@ const MyProfile = ({ navigation }) => {
     const { bc } = useSelector(mapStateBC);
     const numbOfRead = readingItems.length;
     const dispatch = useDispatch();
+    console.log('readingItems')
+    console.log(readingItems)
+    console.log(readingItems.length)
 
     useEffect(() => {
         dispatch(
@@ -80,6 +83,91 @@ const MyProfile = ({ navigation }) => {
         )
     }
 
+    const getReadBooks = () => {
+        if (readingItems.length < 1) {
+            console.log('i if')
+            return (
+                <View>
+                    <Text></Text>
+                    <Text style={styles.smallBlackText}>You don't have any finished books yet.</Text>
+                    <TouchableOpacity
+                            style={styles.coolButton}
+                            onPress={() => navigation.navigate('Search')}>
+                            <View style={styles.rowSettings}>
+                                <Icon
+                                    name='ios-search'
+                                    type='ionicon'
+                                    color='black'
+                                />
+                                <Text style={styles.blackTextSmall}>Go to Look for Books</Text>
+                            </View>
+                        </TouchableOpacity>
+                </View>
+            )
+        }
+        else {
+            console.log('i else')
+            return (
+                <View>
+                    <ScrollView vertical={true} style={styles.rowBooks}>
+                        {readingItems.map((readingItem, index) => {
+                            return (
+                                <View key={readingItem.title} style={styles.orangeSquare}>
+                                    <Image
+                                        style={styles.bookImageSmall}
+                                        source={bookurl} />
+                                    <Text style={styles.smallTextOrange}> {readingItem.title} </Text>
+                                    <Text style={styles.smallerText}> {readingItem.author} </Text>
+                                </View>
+                            )
+                        })}
+                    </ScrollView>
+                </View>
+            )
+        }
+    }
+    const getWishBooks = () => {
+        if (cartItems.length < 1) {
+            return (
+                    <View>
+                        <Text></Text>
+                        <Text style={styles.smallBlackText}>You don't have any books in your wish list yet. </Text>
+                        <TouchableOpacity
+                            style={styles.coolButton}
+                            onPress={() => navigation.navigate('Search')}>
+                            <View style={styles.rowSettings}>
+                                <Icon
+                                    name='ios-search'
+                                    type='ionicon'
+                                    color='black'
+                                />
+                                <Text style={styles.blackTextSmall}>Go to Look for Books</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+            )
+        }
+        else {
+            return (
+                <ScrollView vertical={true} style={styles.rowBooks}>
+                    {cartItems.map((cartItem, index) => {
+                        const bookurl = { uri: cartItem.picture }
+                        return (
+                            <View key={cartItem.title} style={styles.orangeSquare}>
+                                <Image
+                                    style={styles.bookImageSmall}
+                                    source={bookurl} />
+                                <Text style={styles.smallTextOrange}> {cartItem.title} </Text>
+                                <Text style={styles.smallerText}> {cartItem.author} </Text>
+                            </View>
+                        )
+                    })}
+                </ScrollView>
+            )
+        }
+    }
+
     return (
         <View>
             <KeyboardAwareScrollView style={{ width: '100%', height: '90%' }}>
@@ -90,47 +178,18 @@ const MyProfile = ({ navigation }) => {
 
                     <View style={styles.whiteSquare}>
                         <Text style={styles.textLeft}>My Stats</Text>
-                        <Text style={styles.smallText}>Read books:   Clubs: </Text>
+                        <Text style={styles.smallText}>  Read books:   Clubs: </Text>
                         <Text style={styles.middleTextPink}>       {numbOfRead}               {mapBC().length}</Text>
                     </View>
 
                     <View style={styles.whiteBigSquare}>
-                        <Text style={styles.textLeft}>My Read Books</Text>
-
-                        <ScrollView vertical={true} style={styles.rowBooks}>
-                            {readingItems.map((readingItem, index) => {
-                                const bookurl = { uri: readingItem.picture }
-
-                                return (
-                                    <View key={readingItem.title} style={styles.orangeSquare}>
-                                        <Image
-                                            style={styles.bookImageSmall}
-                                            source={bookurl} />
-                                        <Text style={styles.smallTextOrange}> {readingItem.title} </Text>
-                                        <Text style={styles.smallerText}> {readingItem.author} </Text>
-                                    </View>
-                                )
-                            })}
-                        </ScrollView>
+                    <Text style={styles.textLeft}>My Read Books</Text>
+                        {getReadBooks()}
                     </View>
 
                     <View style={styles.whiteBigSquare}>
                         <Text style={styles.textLeft}>My Wish List</Text>
-                        <ScrollView vertical={true} style={styles.rowBooks}>
-                            {cartItems.map((cartItem, index) => {
-                                const bookurl = { uri: cartItem.picture }
-                                return (
-                                    <View key={cartItem.title} style={styles.orangeSquare}>
-
-                                        <Image
-                                            style={styles.bookImageSmall}
-                                            source={bookurl} />
-                                        <Text style={styles.smallTextOrange}> {cartItem.title} </Text>
-                                        <Text style={styles.smallerText}> {cartItem.author} </Text>
-                                    </View>
-                                )
-                            })}
-                        </ScrollView>
+                        {getWishBooks()}
                     </View>
 
                     <View style={styles.whiteSquare}>

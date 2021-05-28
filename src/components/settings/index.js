@@ -40,7 +40,7 @@ const Settings= ({ navigation }) => {
             <View>
           <Text style={styles.textLeft}><Text style={styles.capital}></Text>Profile picture</Text>
          
-         <Text style={styles.smallText}>Time to update your profile pic?</Text>
+         <Text style={styles.smallText}>  Time to update your profile pic?</Text>
          </View>
          <TouchableHighlight underlayColor='none'>
           <Icon
@@ -57,7 +57,7 @@ const Settings= ({ navigation }) => {
             <View>
           <Text style={styles.textLeft}><Text style={styles.capital}></Text>Night mode</Text>
          
-         <Text style={styles.smallText}>Time to change to night mode?</Text>
+         <Text style={styles.smallText}>  Time to change to night mode?</Text>
          </View>
          <TouchableHighlight underlayColor='none'>
           <Icon
@@ -72,7 +72,7 @@ const Settings= ({ navigation }) => {
          
          <View style={styles.whiteSquare}>
           <Text style={styles.textLeft}>Sign Out area</Text>
-         <Text style={styles.smallText}>We hope you are logging in soon! Best regards, Team Book Buddies.</Text>
+         <Text style={styles.smallText}>  We hope you are logging in soon! Best regards, Team Book Buddies.</Text>
           <View style={styles.marginB}>
          <TouchableOpacity
             style={styles.button}
@@ -81,6 +81,8 @@ const Settings= ({ navigation }) => {
           </TouchableOpacity>
           </View>
           </View>
+          <Text></Text>
+          <Text></Text>
           <Text></Text>
          <Image
             style={styles.bookLogo}
