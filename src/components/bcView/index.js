@@ -203,26 +203,29 @@ const BCView = ({ route, navigation }) => {
       }
       else {
         return (
-          <ScrollView horizontal={true}
-            vertical={true}
-            style={styles.rowBooks}>
+          <View>
             {books.map((book, index) => {
               if (book.read === true) {
                 
                 return (
                   <View key={book.id}>
                     <Text style={styles.smallBlackText}>Books you've read together: </Text>
+                    <ScrollView horizontal={true}
+            vertical={true}
+            style={styles.rowBooks}>
                     <TouchableOpacity
                       onPress={() => goToRatingScreen(book)}>
                       <Image
                         style={styles.bookImageSmall}
                         source={{ uri: book.picture }} />
                     </TouchableOpacity>
+                    </ScrollView>
+
                   </View>
                 )}
                 })
-                }              
-          </ScrollView>
+                } 
+           </View>             
           )
 
       }
