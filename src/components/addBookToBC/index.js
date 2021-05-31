@@ -86,10 +86,31 @@ const AddBookToBC = ({ route, navigation }) => {
                     <Text style={styles.whiteText}> Choose Book Club</Text>
                     <Text style={styles.textLeft}> Which club do you want to add the book to?</Text>
                     {mapBC()}
+                    
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+
                     <Image
                         style={styles.bookLogo}
                         source={require('../../../assets/whiteicon.png')}
                     />
+                     <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    <Text> </Text>
+                    
                 </ImageBackground>
             </KeyboardAwareScrollView>
         </View>
