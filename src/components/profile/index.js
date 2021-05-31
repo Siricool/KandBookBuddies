@@ -105,12 +105,13 @@ const MyProfile = ({ navigation }) => {
                 </View>
             )
         }
-        else {
-            console.log('i else')
+        
+            
             return (
-                <View>
+                
                     <ScrollView vertical={true} style={styles.rowBooks}>
                         {readingItems.map((readingItem, index) => {
+                             const bookurl = { uri: readingItem.picture }
                             return (
                                 <View key={readingItem.title} style={styles.orangeSquare}>
                                     <Image
@@ -122,9 +123,10 @@ const MyProfile = ({ navigation }) => {
                             )
                         })}
                     </ScrollView>
-                </View>
+                
             )
-        }
+            
+        
     }
     const getWishBooks = () => {
         if (cartItems.length < 1) {
@@ -148,8 +150,11 @@ const MyProfile = ({ navigation }) => {
 
             )
         }
-        else {
+
+
+     
             return (
+                
                 <ScrollView vertical={true} style={styles.rowBooks}>
                     {cartItems.map((cartItem, index) => {
                         const bookurl = { uri: cartItem.picture }
@@ -165,7 +170,7 @@ const MyProfile = ({ navigation }) => {
                     })}
                 </ScrollView>
             )
-        }
+        
     }
 
     return (
@@ -184,7 +189,8 @@ const MyProfile = ({ navigation }) => {
 
                     <View style={styles.whiteBigSquare}>
                     <Text style={styles.textLeft}>My Read Books</Text>
-                        {getReadBooks()}
+
+                   {getReadBooks()}
                     </View>
 
                     <View style={styles.whiteBigSquare}>
