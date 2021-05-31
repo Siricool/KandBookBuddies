@@ -13,7 +13,6 @@ import { fetchBCStart, fetchChosenBCStart } from '../../redux/BookClub/bc.action
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   chosenUser: user.chosenUser,
-  //userErr: user.userErr
 });
 
 const mapStateBC = ({ bookclub }) => ({
@@ -21,7 +20,6 @@ const mapStateBC = ({ bookclub }) => ({
   chosenClub: bookclub.chosenClub
 })
 
-//const Signup = props => {
 const Signup = ({ navigation }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -36,7 +34,6 @@ const Signup = ({ navigation }) => {
 
   useEffect(() => {
     if (currentUser && chosenClub && chosenUser){
-      //CHOSENCLUB  BC
       navigation.navigate('ChooseBC');
     }
   }, [currentUser]
@@ -74,22 +71,19 @@ const Signup = ({ navigation }) => {
   }
 
   return (
-    <AuthWrapper /*{...configAuthWrapper}*/>
+    <AuthWrapper>
       <View style={styles.container}>
         <KeyboardAwareScrollView
-          /*style={{ flex: 1, width: '100%' }}
-          keyboardShouldPersistTaps="always"*/
           style={{ width: '100%', height: '100%' }}
         >
 
           <Text style={styles.text}>Sign Up</Text>
-          <Text style={styles.smallText}> Welcome to Book Buddies! We are glad you are joining us. </Text>
+          <Text style={styles.smallText}>Welcome to Book Buddies! We are glad you are joining us. </Text>
           <TextInput
             style={styles.input}
             placeholder="Full name"
             value={displayName}
             placeholderTextColor="#aaaaaa"
-            /*handleFormSubmit={displayName => setDisplayName(displayName)}*/
             onChangeText={(text) => setDisplayName(text)}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
@@ -101,7 +95,6 @@ const Signup = ({ navigation }) => {
             name="email"
             value={email}
             placeholder="Email"
-            /*handleFormSubmit={e => setEmail(e.target.value)}*/
             onChangeText={(text) => setEmail(text)}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
@@ -114,7 +107,6 @@ const Signup = ({ navigation }) => {
             name="password"
             value={password}
             placeholder="Password"
-            /*handleFormSubmit={e => setPassword(e.target.value)}*/
             onChangeText={(text) => setPassword(text)}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
@@ -128,7 +120,6 @@ const Signup = ({ navigation }) => {
             value={confirmPassword}
             placeholder="Confirm Password"
             onChangeText={(text) => setConfirmPassword(text)}
-            /*handleFormSubmit={e => setConfirmPasswsord(e.target.value)}*/
             underlineColorAndroid="transparent"
             autoCapitalize="none"
           />
@@ -139,7 +130,6 @@ const Signup = ({ navigation }) => {
             <Text>Sign up</Text>
           </TouchableOpacity>
 
-
           <View style={styles.footerView}>
             <Text style={styles.footerText}> Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign in!</Text></Text>
           </View>
@@ -148,8 +138,6 @@ const Signup = ({ navigation }) => {
             style={styles.logo}
             source={require('../../../assets/BBicon.png')}
           />
-
-          
 
         </KeyboardAwareScrollView>
       </View>
@@ -160,10 +148,3 @@ const Signup = ({ navigation }) => {
 export default Signup;
 
 
-/*
-LÄGG IN NAVIGATION I PROPS
-
-
-
-
-*/

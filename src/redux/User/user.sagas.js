@@ -4,7 +4,6 @@ import userTypes from './user.types';
 import { signInSuccess, signOutUserSuccess, userError, updatedUserSuccess, fetchAllUsersSuccess } from './user.actions';
 import { handleFetchUsers } from './user.helpers';
 
-
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
     const userRef = yield call(handleUserProfile, { userAuth: user, additionalData });
@@ -17,8 +16,6 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
     );
 
   } catch (err) {
-     //alert(err)
-     console.log(err);
   }
 }
 
@@ -28,8 +25,6 @@ export function* emailSignIn({ payload: { email, password } }) {
     yield getSnapshotFromUserAuth(user);
 
   } catch (err) {
-     //alert(err)
-     console.log(err);
   }
 }
 
@@ -44,8 +39,6 @@ export function* isUserAuthenticated() {
     yield getSnapshotFromUserAuth(userAuth);
 
   } catch (err) {
-     //alert(err)
-     console.log(err);
   }
 }
 
@@ -61,7 +54,6 @@ export function* signOutUser() {
     )
 
   } catch (err) {
-    // console.log(err);
   }
 }
 
@@ -91,15 +83,12 @@ export function* signUpUser({ payload: {
     yield getSnapshotFromUserAuth(user, additionalData);
 
   } catch (err) {
-      alert(err)
-    console.log(err);
-
+    alert(err)
   }
-
 }
 
-export function* getSnapshotFromUser(updatedUser = {}){
-  try{
+export function* getSnapshotFromUser(updatedUser = {}) {
+  try {
     const snapshot = yield updatedUser.get();
     yield put(
       updatedUserSuccess({
@@ -108,35 +97,34 @@ export function* getSnapshotFromUser(updatedUser = {}){
       })
     );
   }
-  catch (err){
-    //console.log('err')
+  catch (err) {
 
   }
 }
 
-export function* updateGroupsForUser({payload: {groupName}}){
-  
-  try{   
-      const user = yield getCurrentUser();
-      const userID = user.uid;
- 
-      const userRef= yield firestore.collection('users').doc(userID).get();
-      const snapshotUser = userRef.data();
-      const groupArray = snapshotUser.groupID;
-      groupArray.push(groupName);
+export function* updateGroupsForUser({ payload: { groupName } }) {
 
-      yield firestore.collection('users').doc(userID).update({groupID: groupArray})
-      const updatedUserRef = firestore.collection('users').doc(userID);
-      
-      yield getSnapshotFromUser(updatedUserRef);
+  try {
+    const user = yield getCurrentUser();
+    const userID = user.uid;
+
+    const userRef = yield firestore.collection('users').doc(userID).get();
+    const snapshotUser = userRef.data();
+    const groupArray = snapshotUser.groupID;
+    groupArray.push(groupName);
+
+    yield firestore.collection('users').doc(userID).update({ groupID: groupArray })
+    const updatedUserRef = firestore.collection('users').doc(userID);
+
+    yield getSnapshotFromUser(updatedUserRef);
   }
-  catch (err){
+  catch (err) {
 
   }
 }
 
 export function* fetchUsers() {
-  try{
+  try {
     const usersArray = yield handleFetchUsers();
     const numOfUsers = usersArray.length;
     const randNumb = Math.floor(Math.random() * (numOfUsers));
@@ -145,7 +133,7 @@ export function* fetchUsers() {
       fetchAllUsersSuccess(chosenUser)
     );
   }
-  catch(err){
+  catch (err) {
   }
 }
 

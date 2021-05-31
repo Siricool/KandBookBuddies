@@ -15,24 +15,18 @@ const mapState = ({ user }) => ({
     userErr: user.userErr
 });
 
-const mapClub = ({ bookclub }) => ({
-    currentBC: bookclub.currentBC,
-    bcbooks: bookclub.bcbooks
-})
-
 const CreateBCInside = ({ navigation }) => {
     const [groupName, setGroupName] = useState('');
     const { currentUser, updatedUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const members = [currentUser];
-    
+
     useEffect(() => {
-
-        if (updatedUser){
-        if (updatedUser.groupID.includes(groupName)) {
-            navigation.navigate('BCOverview')
-        }}
-
+        if (updatedUser) {
+            if (updatedUser.groupID.includes(groupName)) {
+                navigation.navigate('BCOverview')
+            }
+        }
     }, [currentUser, updatedUser]
     );
 
@@ -40,10 +34,7 @@ const CreateBCInside = ({ navigation }) => {
         dispatch(createBCStart({
             groupName,
             members,
-           
-            
         }));
-
         dispatch(updateGroupsForUser({ groupName }));
     }
 
@@ -51,18 +42,16 @@ const CreateBCInside = ({ navigation }) => {
         <AuthWrapper>
             <View style={styles.container}>
                 <KeyboardAwareScrollView style={{ width: '100%', height: '100%' }}>
-                <Text></Text><Text></Text>
+                    <Text></Text><Text></Text>
                     <Text style={styles.text}>Create Book Club</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Name of Book Club"
-
                         placeholderTextColor='#aaaaaa'
                         onChangeText={(text) => setGroupName(text)}
                         underlineColorAndroid='transparent'
                         autoCapitalize='none'
                     />
-                   
 
                     <TouchableOpacity
                         style={styles.button}
@@ -77,7 +66,6 @@ const CreateBCInside = ({ navigation }) => {
                     <Text></Text><Text></Text>
                     <Text></Text><Text></Text>
                     <Text></Text><Text></Text>
-
 
                     <Image
                         style={styles.logo}

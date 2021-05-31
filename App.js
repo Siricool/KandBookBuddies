@@ -20,9 +20,8 @@ import BCView from './src/components/bcView';
 import AddBookToBC from './src/components/addBookToBC';
 import RatingScreen from './src/components/ratingcomment'
 
-import { store, persistor } from './src/redux/createStore'; // 7/5 persistor
+import { store } from './src/redux/createStore'; 
 import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
 
 import { decode, encode } from 'base-64'
 if (!global.btoa) { global.btoa = encode }
@@ -60,8 +59,3 @@ export default function App() {
     </Provider>
   );
 }
-
-
-/* Behövs om persist store:
-<PersistGate persistor={persistor}></PersistGate>
-*/

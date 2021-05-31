@@ -13,7 +13,6 @@ export function* fetchBooks() {
     );
 
   } catch (err) {
-    // console.log(err);
   }
 }
 

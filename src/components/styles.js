@@ -1,10 +1,6 @@
 
 import { StyleSheet } from 'react-native'
 
-// orange: #f9ad30 
-// beige: #fde3b7
-
-
 export default StyleSheet.create({
   
   title: {
