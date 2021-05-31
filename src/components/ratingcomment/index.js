@@ -28,7 +28,7 @@ const RatingScreen = ({ route, navigation }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
+        //dispatch(fetchBCStart());
     }, [bc]
     );
 
@@ -126,6 +126,7 @@ const RatingScreen = ({ route, navigation }) => {
                             })
                             average = sumAverage / numbOfRatings;
                             let roundedAverage = Math.round(average)
+
                             return (
                                 roundedAverage
                             )

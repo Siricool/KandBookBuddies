@@ -101,11 +101,12 @@ const MyProfile = ({ navigation }) => {
                 </View>
             )
         }
-        else {
+       // else { //denna  fanns inte i siris
             return (
-                <View>
+                
                     <ScrollView vertical={true} style={styles.rowBooks}>
                         {readingItems.map((readingItem, index) => {
+                             const bookurl = { uri: readingItem.picture }
                             return (
                                 <View key={readingItem.title} style={styles.orangeSquare}>
                                     <Image
@@ -117,9 +118,10 @@ const MyProfile = ({ navigation }) => {
                             )
                         })}
                     </ScrollView>
-                </View>
+                
             )
-        }
+            
+        
     }
     const getWishBooks = () => {
         if (cartItems.length < 1) {
@@ -143,8 +145,11 @@ const MyProfile = ({ navigation }) => {
 
             )
         }
-        else {
+
+
+     
             return (
+                
                 <ScrollView vertical={true} style={styles.rowBooks}>
                     {cartItems.map((cartItem, index) => {
                         const bookurl = { uri: cartItem.picture }
@@ -160,7 +165,7 @@ const MyProfile = ({ navigation }) => {
                     })}
                 </ScrollView>
             )
-        }
+        
     }
 
     return (

@@ -123,6 +123,18 @@ const BCOverview = ({ navigation }) => {
             <Text> </Text>
             <Text> </Text>
             <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
+            <Text> </Text>
         </ImageBackground>
       </KeyboardAwareScrollView>
 
