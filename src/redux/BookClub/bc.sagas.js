@@ -29,7 +29,6 @@ export function* createBC({ payload: {
         const bookclub = yield firestore.collection('bookclubs').add({ groupName, members, bcbooks, comments });
         yield getSnapshotFromBC(bookclub);
     } catch (err) {
-        console.log('error oups');
     }
 }
 
@@ -57,9 +56,7 @@ export function* fetchChosenBC() {
     try {
         const bc = yield handleFetchBC();
         let numbOfClubs = bc.length;
-        console.log('längden av klubbar'+numbOfClubs)
-        const randClubNumb = Math.floor(Math.random() * (numbOfClubs)) ;
-        console.log('längden av klubbar'+randClubNumb )
+        const randClubNumb = Math.floor(Math.random() * (numbOfClubs));
         let chosenClub = bc[randClubNumb];
         yield put(
             setChosenBC(chosenClub)
@@ -114,7 +111,6 @@ export function* bookInBC({ payload: {
         yield getSnapshotFromBC(updatedBookRef);
     }
     catch (err) {
-        console.log('ERROR I SAGA')
     }
 }
 
@@ -127,7 +123,7 @@ export function* createComment({ payload: {
     currentUser,
     clubID,
     timeStamp,
-     }
+}
 }) {
     try {
         const userName = currentUser.displayName;
@@ -141,7 +137,6 @@ export function* createComment({ payload: {
         yield getSnapshotFromBCComment(updatedCommentsRef);
     }
     catch (err) {
-        console.log('ERROR I SAGA')
     }
 }
 
@@ -162,7 +157,6 @@ export function* onCreateCommentStart() {
     yield takeLatest(bcTypes.CREATE_COMMENT_START, createComment)
 }
 
-
 export function* updateRating({ payload: {
     documentID,
     star,
@@ -177,12 +171,11 @@ export function* updateRating({ payload: {
         const ratingArr = snapshot.data().bcbooks[counter].rating;
         const commentArr = snapshot.data().bcbooks[counter].comments;
         ratingArr.push(star);
-        commentArr.push({comment: comment, user: currentUser.displayName})
-
+        commentArr.push({ comment: comment, user: currentUser.displayName })
         const booksInBC = yield firestore.collection('bookclubs').doc(clubID).get()
         const bookbcarr = booksInBC.data().bcbooks;
         const newBookList = [];
-        
+
         bookbcarr.map((bcBook, index) => {
             if (bcBook.title == bookObject.title) {
                 const newBook = {
@@ -205,8 +198,6 @@ export function* updateRating({ payload: {
         yield firestore.collection('bookclubs').doc(clubID).update({ bcbooks: newBookList })
         const updatedRatingRef = yield firestore.collection('bookclubs')
             .doc(documentID);
-
-        
         yield getSnapshotFromBCRating(updatedRatingRef);
         yield onFetchBCStart();
     }

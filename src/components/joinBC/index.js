@@ -32,7 +32,6 @@ const JoinBC = ({ navigation }) => {
 
 
     const handleJoinBC = ( club, clubName ) => {
-        console.log(clubName)
         const groupName = clubName.toString();
         dispatch(joinBCStart({club, currentUser}));
         dispatch(updateGroupsForUser({groupName}));

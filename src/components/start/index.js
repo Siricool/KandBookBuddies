@@ -8,8 +8,6 @@ import { addBook, addBookRead, nextBook } from '../../redux/Cart/cart.actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 
-
-
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   chosenUser: user.chosenUser
@@ -42,9 +40,9 @@ const StartPage = ({ navigation }) => {
     if (!book) return;
     dispatch(
       addBook(book)
-
     )
   };
+
   const configAddToRead = (book) => {
     if (!book) return;
     dispatch(
@@ -58,23 +56,23 @@ const StartPage = ({ navigation }) => {
     );
   };
 
-  const buddyWeek = () => {    
-    if (chosenUser && chosenUser.displayName != undefined){
-    const userName = chosenUser.displayName
-    const bookclubs = chosenUser.groupID;
+  const buddyWeek = () => {
+    if (chosenUser && chosenUser.displayName != undefined) {
+      const userName = chosenUser.displayName
+      const bookclubs = chosenUser.groupID;
       return (
         <View>
-        <Text style={styles.smallBlackText}>The Buddy <Text style={[styles.capital, styles.middleTextPink]}>{userName}</Text> loves clubbing and is enjoying these book clubs:</Text>
-        {bookclubs.map((club, index) =>{
-          return(
-            <View key={index}>
+          <Text style={styles.smallBlackText}>The Buddy <Text style={[styles.capital, styles.middleTextPink]}>{userName}</Text> loves clubbing and is enjoying these book clubs:</Text>
+          {bookclubs.map((club, index) => {
+            return (
+              <View key={index}>
                 <Text style={[styles.middleTextOrangeInspo, styles.capital]}>
                   {club}
                 </Text>
-            </View>
-          )
-        })}
-        <Text> </Text>
+              </View>
+            )
+          })}
+          <Text> </Text>
         </View>
       )
     }
@@ -85,7 +83,6 @@ const StartPage = ({ navigation }) => {
     const randNumb = Math.floor(Math.random() * (numbOfBooks)) + 1;
     let chosenBook = books.find(book => book.id === randNumb);
     if (chosenBook) {
-     
       const bookurl = { uri: chosenBook.picture }
       return (
         <View>
@@ -124,41 +121,39 @@ const StartPage = ({ navigation }) => {
     }
   };
 
-
   const bookFromOtherBC = () => {
     let currentlyReading = [];
-      let books = chosenClub.bcbooks;
-      for (book in books) {
-        let tempBook = chosenClub.bcbooks[book];
-        if (tempBook.read == false) {
-          currentlyReading.push(tempBook)
-        }
+    let books = chosenClub.bcbooks;
+    for (book in books) {
+      let tempBook = chosenClub.bcbooks[book];
+      if (tempBook.read == false) {
+        currentlyReading.push(tempBook)
       }
-      let numbOfClubBooks = currentlyReading.length;
-      if (numbOfClubBooks > 0) {
-        const randBookNumb = Math.floor(Math.random() * (numbOfClubBooks));
-        let chosenClubBook = currentlyReading[randBookNumb];
-        return (
-          <View>
-            <Text style={styles.smallBlackText}>The Club 
+    }
+    let numbOfClubBooks = currentlyReading.length;
+    if (numbOfClubBooks > 0) {
+      const randBookNumb = Math.floor(Math.random() * (numbOfClubBooks));
+      let chosenClubBook = currentlyReading[randBookNumb];
+      return (
+        <View>
+          <Text style={styles.smallBlackText}>The Club
             <Text style={[styles.capital, styles.middleTextPink]}> {chosenClub.groupName}</Text> is currently reading: </Text>
-            <View style={styles.rowSettings}>
-              <View style={[styles.column, styles.maxSquare]}>
-                <View>
-                  <Text style={styles.middleTextOrange}>{chosenClubBook.title}</Text>
-                  <Text style={styles.authorText}>by {chosenClubBook.author}</Text>
-                  <Text style={styles.height} />
-                </View>
-              </View>
+          <View style={styles.rowSettings}>
+            <View style={[styles.column, styles.maxSquare]}>
               <View>
-                <Image source={{ uri: chosenClubBook.picture }}
-                  style={styles.bookImageMediumLeft} />
+                <Text style={styles.middleTextOrange}>{chosenClubBook.title}</Text>
+                <Text style={styles.authorText}>by {chosenClubBook.author}</Text>
+                <Text style={styles.height} />
               </View>
             </View>
+            <View>
+              <Image source={{ uri: chosenClubBook.picture }}
+                style={styles.bookImageMediumLeft} />
+            </View>
           </View>
-        )
-      }
-
+        </View>
+      )
+    }
   }
 
   return (
@@ -174,33 +169,31 @@ const StartPage = ({ navigation }) => {
           <View style={styles.whiteBigSquare}>
             <Text style={styles.textLeft}><Text style={styles.capital}>{currentUser.displayName}</Text>, check out this book!  </Text>
             <Text>{recommendBook()}</Text>
-
           </View>
 
           <View style={styles.whiteSquare}>
-          <View style={styles.margins}>
-          <Icon
-              name='ios-star'
-              type='ionicon'
-              color='black'
-              style={styles.icon}
-            /></View>
+            <View style={styles.margins}>
+              <Icon
+                name='ios-star'
+                type='ionicon'
+                color='black'
+                style={styles.icon}
+              /></View>
             <Text style={styles.textLeft}>Buddy Inspiration</Text>
             <View>{buddyWeek()}</View>
           </View>
 
           <View style={styles.whiteSquare}>
-          <View style={styles.margins}>
-          <Icon
-              name='ios-book'
-              type='ionicon'
-              color='black'
-              style={styles.icon}
-            /></View>
+            <View style={styles.margins}>
+              <Icon
+                name='ios-book'
+                type='ionicon'
+                color='black'
+                style={styles.icon}
+              /></View>
             <Text style={styles.textLeft}>Club Inspiration</Text>
             <Text>{bookFromOtherBC()}</Text>
           </View>
-          
 
           <Image
             style={styles.bookLogo}

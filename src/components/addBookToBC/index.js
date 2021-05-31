@@ -21,8 +21,6 @@ const AddBookToBC = ({ route, navigation }) => {
     const book = route.params;
     const dispatch = useDispatch();
 
-    console.log('MEDSKICKAD BOK:' + book)
-
     useEffect(() => {
         dispatch(
             fetchBCStart()

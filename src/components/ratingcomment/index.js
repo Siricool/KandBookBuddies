@@ -46,7 +46,7 @@ const RatingScreen = ({ route, navigation }) => {
                         dispatch(
                             updateRating({ documentID, star, counter, bookObject, comment, currentUser })
                         )
-                        
+
                         setComment('');
                     }
                 }
@@ -160,9 +160,7 @@ const RatingScreen = ({ route, navigation }) => {
     }
 
     const goBack = () => {
-       
         navigation.navigate('BCView', club)
-        
     }
 
     const getAverage = () => {
@@ -217,7 +215,6 @@ const RatingScreen = ({ route, navigation }) => {
                             onFinishRating={(ratingCount) => setRating(ratingCount)}
                         />
 
-
                         <Text></Text>
                         <Text style={styles.smallText}>Leave a comment about the book.</Text>
                         <TextInput
@@ -239,15 +236,12 @@ const RatingScreen = ({ route, navigation }) => {
                         </TouchableOpacity>
                     </View>
 
-
-
                     <TouchableOpacity
                         style={styles.coolButtonTwo}
                         onPress={() => goBack()}
                     >
                         <Text>Back to {groupName}</Text>
                     </TouchableOpacity>
-
 
                     <Image
                         style={styles.bookLogo}
@@ -257,7 +251,6 @@ const RatingScreen = ({ route, navigation }) => {
             </KeyboardAwareScrollView>
         </View >
     )
-
 }
 
 export default RatingScreen;

@@ -32,9 +32,6 @@ const MyProfile = ({ navigation }) => {
     const { bc } = useSelector(mapStateBC);
     const numbOfRead = readingItems.length;
     const dispatch = useDispatch();
-    console.log('readingItems')
-    console.log(readingItems)
-    console.log(readingItems.length)
 
     useEffect(() => {
         dispatch(
@@ -85,28 +82,26 @@ const MyProfile = ({ navigation }) => {
 
     const getReadBooks = () => {
         if (readingItems.length < 1) {
-            console.log('i if')
             return (
                 <View>
                     <Text></Text>
                     <Text style={styles.smallBlackText}>You don't have any finished books yet.</Text>
                     <TouchableOpacity
-                            style={styles.coolButton}
-                            onPress={() => navigation.navigate('Search')}>
-                            <View style={styles.rowSettings}>
-                                <Icon
-                                    name='ios-search'
-                                    type='ionicon'
-                                    color='black'
-                                />
-                                <Text style={styles.blackTextSmall}>Go to Look for Books</Text>
-                            </View>
-                        </TouchableOpacity>
+                        style={styles.coolButton}
+                        onPress={() => navigation.navigate('Search')}>
+                        <View style={styles.rowSettings}>
+                            <Icon
+                                name='ios-search'
+                                type='ionicon'
+                                color='black'
+                            />
+                            <Text style={styles.blackTextSmall}>Go to Look for Books</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             )
         }
-        
-            
+       // else { //denna  fanns inte i siris
             return (
                 
                     <ScrollView vertical={true} style={styles.rowBooks}>
@@ -131,22 +126,22 @@ const MyProfile = ({ navigation }) => {
     const getWishBooks = () => {
         if (cartItems.length < 1) {
             return (
-                    <View>
-                        <Text></Text>
-                        <Text style={styles.smallBlackText}>You don't have any books in your wish list yet. </Text>
-                        <TouchableOpacity
-                            style={styles.coolButton}
-                            onPress={() => navigation.navigate('Search')}>
-                            <View style={styles.rowSettings}>
-                                <Icon
-                                    name='ios-search'
-                                    type='ionicon'
-                                    color='black'
-                                />
-                                <Text style={styles.blackTextSmall}>Go to Look for Books</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                <View>
+                    <Text></Text>
+                    <Text style={styles.smallBlackText}>You don't have any books in your wish list yet. </Text>
+                    <TouchableOpacity
+                        style={styles.coolButton}
+                        onPress={() => navigation.navigate('Search')}>
+                        <View style={styles.rowSettings}>
+                            <Icon
+                                name='ios-search'
+                                type='ionicon'
+                                color='black'
+                            />
+                            <Text style={styles.blackTextSmall}>Go to Look for Books</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
 
             )
         }
@@ -188,9 +183,8 @@ const MyProfile = ({ navigation }) => {
                     </View>
 
                     <View style={styles.whiteBigSquare}>
-                    <Text style={styles.textLeft}>My Read Books</Text>
-
-                   {getReadBooks()}
+                        <Text style={styles.textLeft}>My Read Books</Text>
+                        {getReadBooks()}
                     </View>
 
                     <View style={styles.whiteBigSquare}>
